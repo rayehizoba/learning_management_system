@@ -15,4 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('dashboard');
+
+Route::get('/files-folders', function () {
+    return view('files-folders');
+})->name('files-folders');;
