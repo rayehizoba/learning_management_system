@@ -1,0 +1,418 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/6.6.96/css/materialdesignicons.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Open Sans', 'Helvetica', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .btn {
+                @apply p-2 rounded-md whitespace-nowrap transition flex items-center justify-center;
+            }
+
+            .btn-primary {
+                @apply bg-teal-500 hover:bg-teal-600 text-white btn;
+            }
+
+            .btn-outline {
+                @apply border text-gray-400 btn hover:bg-gray-50;
+            }
+        }
+    </style>
+</head>
+<body x-data="{open: true, newFolder: false, newFile: false}" class="relative">
+
+<!-- New Folder Modal -->
+<div
+    x-show="newFolder"
+    tabindex="-1"
+    aria-hidden="true"
+    class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex bg-black/75"
+>
+    <div class="relative p-4 w-full max-w-sm h-full md:h-auto mx-auto">
+        <!-- Modal content -->
+        <div @click.away="newFolder = false" class="relative bg-white rounded-lg shadow">
+            <!-- Modal header -->
+            <div class="flex justify-between items-start p-4 px-6 rounded-t">
+                <h3 class="text-xl font-semibold text-gray-900">
+                    New folder
+                </h3>
+                <button
+                    @click="newFolder = false"
+                    type="button"
+                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                >
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="px-6 pb-3">
+                <input type="text" class="border rounded-md focus:outline-none p-2 px-4 w-full"/>
+            </div>
+            <!-- Modal footer -->
+            <div class="flex justify-end items-center p-4 px-6 space-x-2 rounded-b">
+                <button
+                    @click="newFolder = false"
+                    type="button"
+                    class="btn-outline w-24 text-sm"
+                >
+                    Cancel
+                </button>
+                <button
+                    @click="newFolder = false"
+                    type="button"
+                    class="btn-primary w-24 text-sm"
+                >
+                    Create
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="p-5 h-screen flex">
+    <aside
+        :class="open ? 'opacity-100':'opacity-0'"
+        class="absolute inset-y-0 left-0 p-5 pr-0 w-60 transition flex flex-col space-y-6 overflow-y-auto"
+    >
+    </aside>
+    <div
+        :class="open ? 'ml-60':'ml-0'"
+        class="z-10 transition-all rounded-2xl shadow w-full flex-1 bg-white overflow-y-auto"
+    >
+        <header class="py-3 px-7 border-b sticky top-0 bg-white z-20">
+            <div class="flex justify-between">
+                <div class="flex items-center space-x-5">
+                    <button
+                        @click="open = !open"
+                        class="rounded border-2 border-l-[10px] h-7 w-7 border-gray-400 transition hover:bg-gray-100 hover:ring-8 ring-gray-100"
+                    >
+                        <i :class="open ? 'mdi-chevron-left':'mdi-chevron-right'" class="mdi text-gray-400"></i>
+                    </button>
+                    <div class="h-7 border-l"></div>
+                    <div class="">
+                        <div class="text-2xl font-bold">
+                            Files & Folders
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-5">
+                    <ul class="flex space-x-3">
+                        <li>
+                            <button class="btn-primary h-9 w-9 text-xl">
+                                <i class="mdi mdi-plus"></i>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="btn-outline h-9 w-9 text-xl">
+                                <i class="mdi mdi-bell-outline"></i>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="btn-outline h-9 w-9 text-xl">
+                                <i class="mdi mdi-magnify"></i>
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="h-7 border-l"></div>
+                    <div class="flex items-center space-x-2 cursor-pointer hover:opacity-75 transition">
+                        <div class="rounded-full w-8 h-8 bg-gray-200"></div>
+                        <div class="">
+                            <div class="text-sm font-semibold">
+                                Theresa
+                            </div>
+                            <div class="text-gray-400 text-xs">
+                                Super Admin
+                            </div>
+                        </div>
+                        <i class="mdi mdi-chevron-down text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section>
+            <header class="p-5 border-b flex items-center space-x-5">
+                <div class="w-10/12 flex items-center justify-between">
+                    <div class="text-2xl font-bold">
+                        <span class="whitespace-nowrap">21 <span class="text-gray-400">Files,</span></span>&nbsp;
+                        <span class="whitespace-nowrap">15 <span class="text-gray-400">Folders</span></span>
+                    </div>
+                    <ul class="flex justify-end items-center h-full space-x-7">
+                        <li>
+                            <button
+                                class="text-gray-400 hover:opacity-50 transition text-sm flex items-center whitespace-nowrap">
+                                <i class="text-lg mdi mdi-check-circle-outline mr-1"></i>
+                                All status
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                class="text-gray-400 hover:opacity-50 transition text-sm flex items-center whitespace-nowrap">
+                                <i class="text-lg mdi mdi-filter-variant mr-1"></i>
+                                Filter
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                class="text-gray-400 hover:opacity-50 transition text-sm flex items-center whitespace-nowrap">
+                                <i class="text-lg mdi mdi-sort-variant mr-1"></i>
+                                Sort
+                            </button>
+                        </li>
+                        <li>
+                            <div x-data="{ list: true }"
+                                 class="rounded-md border-2 border-gray-200 bg-gray-200 relative">
+                                <div class="flex relative z-10">
+                                    <button
+                                        @click="list = true"
+                                        class="w-9 aspect-square flex items-center justify-center">
+                                        <i class="mdi mdi-format-list-bulleted text-2xl"></i>
+                                    </button>
+                                    <button
+                                        @click="list = false"
+                                        class="w-9 aspect-square flex items-center justify-center">
+                                        <i class="mdi mdi-view-grid-outline text-2xl"></i>
+                                    </button>
+                                </div>
+                                <div
+                                    :class="list?'':'translate-x-full'"
+                                    class="absolute inset-0 w-1/2 aspect-square bg-white rounded transform transition"
+                                ></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="w-2/12">
+                    <div x-data="{ open: false }" class="w-full relative">
+                        <button @click="open = !open" class="w-full btn-primary">
+                            + Add New
+                        </button>
+                        <ul
+                            x-show="open" x-transition.scale.origin.top
+                            @click.outside="open = false"
+                            class="mt-2 absolute w-full top-full bg-white border rounded-md shadow-md divide-y text-sm"
+                        >
+                            <li class="p-2 px-3 flex items-center hover:bg-gray-100 transition cursor-pointer">
+                                <i class="text-gray-400 mdi mdi-upload text-lg mr-2"></i>
+                                File
+                            </li>
+                            <li
+                                @click="newFolder = true"
+                                class="p-2 px-3 flex items-center hover:bg-gray-100 transition cursor-pointer"
+                            >
+                                <i class="text-gray-400 mdi mdi-folder-plus-outline text-lg mr-2"></i>
+                                Folder
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+            <section class="flex divide-x">
+                <aside class="w-80 px-5">
+                    <ul class="py-3 space-y-5">
+                        <li>
+                            <h3 class="text-lg font-bold px-3 py-2">
+                                <i class="mdi mdi-pin-outline text-xl"></i>
+                                Pinned (2)
+                            </h3>
+                            <ul>
+                                <li class="flex items-center hover:bg-gray-100 transition p-1 rounded-md text-gray-400 px-4 cursor-pointer">
+                                    <i class="mdi mdi-file-document-outline text-red-500 text-2xl mr-2"></i>
+                                    Important notice.pdf
+                                </li>
+                                <li class="flex items-center hover:bg-gray-100 transition p-1 rounded-md text-gray-400 px-4 cursor-pointer">
+                                    <i class="mdi mdi-file-document-outline text-red-500 text-2xl mr-2"></i>
+                                    Schedule.pdf
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h3 class="text-lg font-bold px-3 py-2">
+                                <i class="mdi mdi-clock-outline text-xl"></i>
+                                Recent Upload (8)
+                            </h3>
+                            <ul>
+                                <li class="flex items-center hover:bg-gray-100 transition p-1 rounded-md text-gray-400 px-4 cursor-pointer">
+                                    <i class="mdi mdi-music text-yellow-500 text-2xl mr-2"></i>
+                                    toefl speaking test.mp3
+                                </li>
+                                <li class="flex items-center hover:bg-gray-100 transition p-1 rounded-md text-gray-400 px-4 cursor-pointer">
+                                    <i class="mdi mdi-video-outline text-teal-500 text-2xl mr-2"></i>
+                                    illustrator tutorial.mp4
+                                </li>
+                            </ul>
+                            <button class="text-teal-500 text-sm hover:underline mx-5 mt-2">
+                                View All Recent Uploads
+                            </button>
+                        </li>
+                        <li>
+                            <h3 class="text-lg font-bold px-3 py-2">
+                                Folders (15)
+                            </h3>
+                            <ul>
+                                <li>
+                                    <div
+                                        class="flex items-center hover:bg-gray-100 transition p-1 rounded-md text-gray-400 px-4 cursor-pointer text-teal-500">
+                                        <i class="mdi mdi-folder-open-outline text-teal-500 text-2xl mr-2"></i>
+                                        Design Course Materials
+                                    </div>
+                                    <ul class="ml-8">
+                                        <li class="relative">
+                                            <div class="border-l w-px h-full absolute left-0 top-0"></div>
+                                            <div class="flex items-center">
+                                                <div class="w-5 border-t relative">
+                                                    <div
+                                                        class="h-1.5 w-1.5 rounded-full bg-gray-300 absolute right-0 -mt-1"></div>
+                                                </div>
+                                                <div
+                                                    class="flex-1 flex items-center hover:bg-gray-100 transition p-1 rounded-md text-gray-400 px-4 cursor-pointer">
+                                                    <i class="mdi mdi-folder-outline text-gray-400 text-2xl mr-2"></i>
+                                                    Figma resources
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="relative">
+                                            <div class="border-l w-px h-1/2 absolute left-0 top-0"></div>
+                                            <div class="flex items-center">
+                                                <div class="w-5 border-t relative">
+                                                    <div
+                                                        class="h-1.5 w-1.5 rounded-full bg-gray-300 absolute right-0 -mt-1"></div>
+                                                </div>
+                                                <div
+                                                    class="flex-1 flex items-center hover:bg-gray-100 transition p-1 rounded-md text-gray-400 px-4 cursor-pointer">
+                                                    <i class="mdi mdi-folder-outline text-gray-400 text-2xl mr-2"></i>
+                                                    Beginner Material
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="flex items-center hover:bg-gray-100 transition p-1 rounded-md text-gray-400 px-5 cursor-pointer">
+                                    <i class="mdi mdi-folder-outline text-gray-400 text-2xl mr-2"></i>
+                                    Evaluation Documents
+                                </li>
+                                <li class="flex items-center hover:bg-gray-100 transition p-1 rounded-md text-gray-400 px-5 cursor-pointer">
+                                    <i class="mdi mdi-folder-outline text-gray-400 text-2xl mr-2"></i>
+                                    General
+                                </li>
+                                <li class="flex items-center hover:bg-gray-100 transition p-1 rounded-md text-gray-400 px-5 cursor-pointer">
+                                    <i class="mdi mdi-folder-outline text-gray-400 text-2xl mr-2"></i>
+                                    Meeting Notes
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </aside>
+                <div class="p-5 px-7 flex-1 space-y-5">
+                    <nav>
+                        <ul class="flex items-center space-x-3">
+                            <li>
+                                <a href="#" class="text-gray-400 hover:underline">
+                                    Files & Folders
+                                </a>
+                            </li>
+                            <li>
+                                <i class="mdi mdi-chevron-right text-2xl"></i>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-800 hover:underline">
+                                    Design Course Materials
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <ul class="max-w-4xl grid grid-cols-4 gap-3">
+                        <li>
+                            <div class="w-full aspect-square border rounded-md p-3 relative">
+                                <div class="absolute inset-x-3 top-2 flex items-center justify-between">
+                                    <label for="cb"
+                                           class="cursor-pointer relative w-5 h-5 flex items-center justify-center">
+                                        <input id="cb" type="checkbox" class="peer sr-only"/>
+                                        <i class="z-10 mdi mdi-check text-transparent peer-checked:text-white transition text-xl scale-50 peer-checked:scale-100"></i>
+                                        <span
+                                            class="bg-white absolute inset-0 rounded-sm border peer-checked:bg-teal-500 peer-checked:border-teal-500 transition"></span>
+                                    </label>
+                                    <button>
+                                        <i class="mdi mdi-dots-horizontal text-gray-400 text-2xl"></i>
+                                    </button>
+                                </div>
+                                <div class="flex flex-col justify-center w-full h-full">
+                                    <i class="mdi mdi-folder text-red-700 text-6xl mt-5"></i>
+                                    <div class="text-gray-800 text-sm">
+                                        Figma resources
+                                    </div>
+                                    <small class="text-gray-400 text-xs">
+                                        3 Files, 2 Folders
+                                    </small>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <h3 class="text-lg font-semibold text-gray-400">
+                        Files (3)
+                    </h3>
+
+                    <ul class="max-w-4xl grid grid-cols-4 gap-3">
+                        <li>
+                            <div class="w-full border rounded-md relative">
+                                <div class="absolute inset-x-3 top-2 flex items-center justify-between">
+                                    <label for="cb1"
+                                           class="cursor-pointer relative w-5 h-5 flex items-center justify-center">
+                                        <input id="cb1" type="checkbox" class="peer sr-only"/>
+                                        <i class="z-10 mdi mdi-check text-transparent peer-checked:text-white transition text-xl scale-50 peer-checked:scale-100"></i>
+                                        <span
+                                            class="bg-white absolute inset-0 rounded-sm border peer-checked:bg-teal-500 peer-checked:border-teal-500 transition"></span>
+                                    </label>
+                                    <button>
+                                        <i class="mdi mdi-dots-horizontal text-gray-400 text-2xl drop-shadow-sm"></i>
+                                    </button>
+                                </div>
+                                <div class="aspect-square bg-gray-200">
+                                </div>
+                                <div class="px-2 py-1 h-16 leading-none">
+                                    <div class="flex items-center text-sm">
+                                        <i class="mdi mdi-video-outline text-teal-500 mr-1 text-xl"></i>
+                                        <span class="text-ellipsis overflow-hidden whitespace-nowrap">illustrator tutorial.</span>mp4
+                                    </div>
+                                    <small class="text-gray-400 text-xs font-medium">
+                                        57.1 Mb
+                                    </small>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </section>
+    </div>
+</main>
+
+<figure class="fixed inset-0 bg-gradient-to-tr from-[#41b8b0] via-[#f0bc05] to-[#e4f7ee] opacity-25 -z-10">
+</figure>
+
+<script src="//unpkg.com/alpinejs" defer></script>
+
+</body>
+</html>

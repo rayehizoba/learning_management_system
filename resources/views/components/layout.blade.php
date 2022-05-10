@@ -25,10 +25,10 @@
     <x-navigation ::class="open ? 'opacity-100':'opacity-0'" class="transition"/>
     <div
         :class="open ? 'ml-60':'ml-0'"
-        class="z-10 transition-all rounded-2xl shadow w-full flex-1 bg-white overflow-y-auto"
+        class="z-10 transition-all rounded-2xl shadow w-full flex-1 flex flex-col bg-white overflow-y-auto"
     >
-        <header class="py-3 px-7 sticky top-0 z-10 bg-white border-b">
-            <div class="flex justify-between">
+        <header class="py-3 px-7 sticky top-0 z-20 bg-white border-b h-16">
+            <div class="flex justify-between items-center h-full">
                 <div class="flex items-center space-x-5">
                     <button
                         @click="open = !open"
@@ -38,28 +38,34 @@
                     </button>
                     <div class="h-7 border-l"></div>
                     <div class="">
-                        <div class="text-2xl font-semibold">
-                            Welcome, Raymond 👋
-                        </div>
-                        <div class="text-gray-400 text-xs">
-                            Here's what happened with your learning system
-                        </div>
+                        @isset($heading)
+                            <div class="text-2xl font-bold">
+                                {{ $heading }}
+                            </div>
+                        @else
+                            <div class="text-2xl font-bold">
+                                Welcome, Raymond 👋
+                            </div>
+                            <div class="text-gray-400 text-xs">
+                                Here's what happened with your learning system
+                            </div>
+                        @endisset
                     </div>
                 </div>
                 <div class="flex items-center space-x-5">
                     <ul class="flex space-x-3">
                         <li>
-                            <button class="bg-teal-500 h-9 w-9 rounded-md text-white text-xl">
+                            <button class="btn-primary h-9 w-9 text-xl">
                                 <i class="mdi mdi-plus"></i>
                             </button>
                         </li>
                         <li>
-                            <button class="border h-9 w-9 rounded-md text-xl text-gray-400">
+                            <button class="btn-outline h-9 w-9 text-xl">
                                 <i class="mdi mdi-bell-outline"></i>
                             </button>
                         </li>
                         <li>
-                            <button class="border h-9 w-9 rounded-md text-xl text-gray-400">
+                            <button class="btn-outline h-9 w-9 text-xl">
                                 <i class="mdi mdi-magnify"></i>
                             </button>
                         </li>
@@ -80,7 +86,7 @@
                 </div>
             </div>
         </header>
-        <section class="p-5">
+        <section class="flex flex-col flex-1">
             {{ $slot }}
         </section>
     </div>
@@ -94,6 +100,7 @@
 <script src="//unpkg.com/alpinejs" defer></script>
 @livewireScripts
 @stack('scripts')
+@livewire('livewire-ui-modal')
 
 </body>
 </html>

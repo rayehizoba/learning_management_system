@@ -6,4 +6,16 @@
     [x-cloak] {
         display: none !important;
     }
+
+    .btn {
+        @apply p-2 rounded-md whitespace-nowrap transition flex items-center justify-center font-semibold;
+    }
+
+    .btn-primary {
+        @apply bg-teal-500 hover:bg-teal-600 text-white btn;
+    }
+
+    .btn-outline {
+        @apply border text-gray-400 btn hover:bg-gray-50;
+    }
 }

@@ -4,7 +4,7 @@
         <i class="absolute right-2 top-1/2 transform -translate-y-1/2 mdi opacity-50" :class="open ? 'mdi-chevron-up' : 'mdi-chevron-down'"></i>
     </div>
     <div
-        :class="open ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 pointer-events-none'"
+        :class="open ? 'max-h-screen opacity-100 duration-500 ease-out' : 'max-h-0 opacity-0 pointer-events-none'"
         class="transition-all"
     >
         {{ $children }}

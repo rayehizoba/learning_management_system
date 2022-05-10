@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\FilesFolders;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 })->name('dashboard');
 
-Route::get('/files-folders', function () {
-    return view('files-folders');
-})->name('files-folders');;
+Route::get('/files-folders', FilesFolders::class)
+    ->name('files-folders');;
