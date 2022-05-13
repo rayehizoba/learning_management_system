@@ -15,6 +15,7 @@
 
     <!-- Styles -->
     <meta name=theme-color content=#000>
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css"/>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @livewireStyles
     @stack('styles')
@@ -98,6 +99,10 @@
 
 <!-- Scripts -->
 <script src="//unpkg.com/alpinejs" defer></script>
+{{--<script src="//unpkg.com/@popperjs/core@2"></script>--}}
+{{--<script src="//unpkg.com/tippy.js@6"></script>--}}
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 @livewireScripts
 @stack('scripts')
 @livewire('livewire-ui-modal')

@@ -1,0 +1,272 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/6.6.96/css/materialdesignicons.min.css">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/tippy.js@6/themes/light.css"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=line-clamp"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Open Sans', 'Helvetica', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .btn {
+                @apply p-2 rounded-md whitespace-nowrap transition flex items-center justify-center;
+            }
+
+            .btn-primary {
+                @apply bg-teal-500 hover:bg-teal-600 text-white btn;
+            }
+
+            .btn-outline {
+                @apply border text-gray-400 btn hover:bg-gray-50;
+            }
+
+            .btn-primary-outline {
+                @apply btn border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white font-medium;
+                @apply disabled:border-gray-400 disabled:text-gray-400 disabled:hover:bg-inherit;
+            }
+        }
+    </style>
+</head>
+<body x-data="{open: true,}" class="relative">
+
+<main class="p-5 h-screen flex">
+    <aside
+        :class="open ? 'opacity-100':'opacity-0'"
+        class="absolute inset-y-0 left-0 p-5 pr-0 w-60 transition flex flex-col space-y-6 overflow-y-auto"
+    >
+    </aside>
+    <div
+        :class="open ? 'ml-60':'ml-0'"
+        class="z-10 transition-all rounded-2xl shadow w-full flex-1 bg-white overflow-y-auto"
+    >
+        <header class="py-3 px-7 border-b sticky top-0 bg-white z-20">
+            <div class="flex justify-between">
+                <div class="flex items-center space-x-5">
+                    <button
+                        @click="open = !open"
+                        class="rounded border-2 border-l-[10px] h-7 w-7 border-gray-400 transition hover:bg-gray-100 hover:ring-8 ring-gray-100"
+                    >
+                        <i :class="open ? 'mdi-chevron-left':'mdi-chevron-right'" class="mdi text-gray-400"></i>
+                    </button>
+                    <div class="h-7 border-l"></div>
+                    <div class="">
+                        <div class="text-2xl font-bold">
+                            Quizes
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-5">
+                    <ul class="flex space-x-3">
+                        <li>
+                            <button class="btn-primary h-9 w-9 text-xl">
+                                <i class="mdi mdi-plus"></i>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="btn-outline h-9 w-9 text-xl">
+                                <i class="mdi mdi-bell-outline"></i>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="btn-outline h-9 w-9 text-xl">
+                                <i class="mdi mdi-magnify"></i>
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="h-7 border-l"></div>
+                    <div class="flex items-center space-x-2 cursor-pointer hover:opacity-75 transition">
+                        <div class="rounded-full w-8 h-8 bg-gray-200"></div>
+                        <div class="">
+                            <div class="text-sm font-semibold">
+                                Theresa
+                            </div>
+                            <div class="text-gray-400 text-xs">
+                                Super Admin
+                            </div>
+                        </div>
+                        <i class="mdi mdi-chevron-down text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section>
+            <header class="p-5 border-b flex items-center space-x-5">
+                <div class="w-10/12 flex items-center justify-between">
+                    <div class="text-2xl font-bold">
+                        12 <span class="text-gray-400">Quizes in total</span>
+                    </div>
+                    <ul class="flex justify-end items-center h-full space-x-7">
+                        <li>
+                            <button
+                                class="text-gray-400 hover:opacity-50 transition text-sm flex items-center whitespace-nowrap">
+                                <i class="text-lg mdi mdi-check-circle-outline mr-1"></i>
+                                All status
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                class="text-gray-400 hover:opacity-50 transition text-sm flex items-center whitespace-nowrap">
+                                <i class="text-lg mdi mdi-filter-variant mr-1"></i>
+                                Filter
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                class="text-gray-400 hover:opacity-50 transition text-sm flex items-center whitespace-nowrap">
+                                <i class="text-lg mdi mdi-sort-variant mr-1"></i>
+                                Sort
+                            </button>
+                        </li>
+                        <li>
+                            <div x-data="{ list: true }"
+                                 class="rounded-md border-2 border-gray-200 bg-gray-200 relative">
+                                <div class="flex relative z-10">
+                                    <button
+                                        @click="list = true"
+                                        class="w-9 aspect-square flex items-center justify-center">
+                                        <i class="mdi mdi-format-list-bulleted text-2xl"></i>
+                                    </button>
+                                    <button
+                                        @click="list = false"
+                                        class="w-9 aspect-square flex items-center justify-center">
+                                        <i class="mdi mdi-view-grid-outline text-2xl"></i>
+                                    </button>
+                                </div>
+                                <div
+                                    :class="list?'':'translate-x-full'"
+                                    class="absolute inset-0 w-1/2 aspect-square bg-white rounded transform transition"
+                                ></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="w-2/12">
+                    <a href="#" class="w-full btn-primary">
+                        + New Quiz
+                    </a>
+                </div>
+            </header>
+            <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-5 gap-7">
+                <template x-for="i in (3*3)" :key="i" hidden>
+                    <li>
+                        <div class="border rounded divide-y">
+                            <header>
+                                <div class="p-3 flex items-center justify-between">
+                                    <div class="bg-green-100 text-green-700 text-xs p-1 px-2 rounded-md">
+                                        <i class="mdi mdi-web"></i>
+                                        Published
+                                    </div>
+                                    <button
+                                        class="h-5 w-5 hover:bg-gray-400 transition rounded-full flex items-center justify-center text-gray-400 hover:text-white">
+                                        <i class="mdi mdi-dots-horizontal text-2xl"></i>
+                                    </button>
+                                </div>
+                                <figure class="w-full aspect-[3/1] bg-blue-100"></figure>
+                                <div class="p-3">
+                                    <p class="font-semibold line-clamp-1">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, minus.
+                                    </p>
+                                    <div class="flex items-center space-x-5">
+                                        <div class="flex items-center space-x-1 text-gray-400">
+                                            <i class="mdi mdi-account-circle-outline"></i>
+                                            <span class="text-xs">24 Learners</span>
+                                        </div>
+                                        <div class="flex items-center space-x-1 text-gray-400">
+                                            <i class="mdi mdi-license"></i>
+                                            <span class="text-xs">Design</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </header>
+                            <div x-show="i == 1" class="divide-x flex items-center h-16">
+                                <div class="p-3 space-y-1.5">
+                                    <p class="text-xs text-gray-400">Avg Correct Answer</p>
+                                    <p>
+                                        <span class="text-red-500">12</span> / 24 <span class="font-bold">(50% correct answer rate)</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div x-show="i != 1" class="flex items-center justify-center h-16 text-gray-400 space-x-2">
+                                <i class="mdi mdi-finance"></i>
+                                <p class="text-sm">This quiz has no stats yet</p>
+                            </div>
+                            <footer class="p-4">
+                                <button :disabled="i > 1" class="btn-primary-outline w-full">
+                                    <i class="mdi mdi-plus"></i>
+                                    Assign
+                                </button>
+                            </footer>
+                        </div>
+                    </li>
+                </template>
+            </ul>
+        </section>
+    </div>
+</main>
+
+<figure class="fixed inset-0 bg-gradient-to-tr from-[#41b8b0] via-[#f0bc05] to-[#e4f7ee] opacity-25 -z-10">
+</figure>
+
+<script src="//unpkg.com/alpinejs" defer></script>
+<script src="//unpkg.com/@popperjs/core@2"></script>
+<script src="//unpkg.com/tippy.js@6"></script>
+<script>
+    const observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+            if (mutation.addedNodes.length) {
+                initializeTippy();
+            }
+        });
+    });
+    observer.observe(document.querySelector('.js-tippy-parent'), {
+        childList: true,
+    });
+
+    initializeTippy();
+
+    function initializeTippy() {
+        const config = {
+            interactive: true,
+            trigger: 'click',
+            allowHTML: true,
+            appendTo: 'parent',
+            theme: 'light',
+            placement: 'bottom-end',
+            content: getContent,
+        };
+
+        tippy('[data-folder-popup]', config)
+        tippy('[data-folder-color-popup]', {
+            ...config,
+            placement: 'right-start',
+        })
+    }
+
+    function getContent(reference) {
+        const id = reference.getAttribute('data-template');
+        const template = document.getElementById(id);
+        return template.innerHTML;
+    }
+</script>
+
+</body>
+</html>

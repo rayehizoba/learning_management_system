@@ -4,6 +4,10 @@ Powered by RazorTech
 
 [Inspiration for this app 🙌](https://www.behance.net/gallery/140731063/Trenning-Learning-Management-System-%28LMS%29?tracking_source=search_projects_recommended%7CSchool%20management%20App&isa0=1)
 
+Some important links:
+
+- https://philo.dev/laravel-batches-and-real-time-progress-with-livewire/
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">

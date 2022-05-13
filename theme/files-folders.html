@@ -9,6 +9,10 @@
         href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/6.6.96/css/materialdesignicons.min.css">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/tippy.js@6/themes/light.css"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -39,10 +43,60 @@
 </head>
 <body x-data="{open: true, newFolder: false, newFile: false}" class="relative">
 
+<!-- New File Modal -->
+<dialog
+    x-show="newFile"
+    aria-hidden="true"
+    class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex bg-black/75"
+>
+    <div class="relative p-4 w-full max-w-3xl h-full md:h-auto mx-auto">
+        <!-- Modal content -->
+        <div @click.away="newFile = false" class="relative bg-white rounded-lg shadow">
+            <!-- Modal header -->
+            <div class="p-4 px-6 rounded-t relative">
+                <h3 class="text-2xl font-semibold text-gray-900 text-center">
+                    Upload New File
+                </h3>
+                <button
+                    @click="newFile = false"
+                    type="button"
+                    class="absolute top-4 right-6 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                >
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="px-6 pb-3">
+                <input type="text" class="border rounded-md focus:outline-none p-2 px-4 w-full"/>
+            </div>
+            <!-- Modal footer -->
+            <div class="flex justify-end items-center p-4 px-6 space-x-2 rounded-b">
+                <button
+                    @click="newFile = false"
+                    type="button"
+                    class="btn-outline w-24 text-sm"
+                >
+                    Cancel
+                </button>
+                <button
+                    @click="newFile = false"
+                    type="button"
+                    class="btn-primary w-24 text-sm"
+                >
+                    Create
+                </button>
+            </div>
+        </div>
+    </div>
+</dialog>
+
 <!-- New Folder Modal -->
-<div
+<dialog
     x-show="newFolder"
-    tabindex="-1"
     aria-hidden="true"
     class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex bg-black/75"
 >
@@ -89,7 +143,7 @@
             </div>
         </div>
     </div>
-</div>
+</dialog>
 
 <main class="p-5 h-screen flex">
     <aside
@@ -213,7 +267,10 @@
                             @click.outside="open = false"
                             class="mt-2 absolute w-full top-full bg-white border rounded-md shadow-md divide-y text-sm"
                         >
-                            <li class="p-2 px-3 flex items-center hover:bg-gray-100 transition cursor-pointer">
+                            <li
+                                @click="newFile = true"
+                                class="p-2 px-3 flex items-center hover:bg-gray-100 transition cursor-pointer"
+                            >
                                 <i class="text-gray-400 mdi mdi-upload text-lg mr-2"></i>
                                 File
                             </li>
@@ -345,7 +402,7 @@
                     <ul class="max-w-4xl grid grid-cols-4 gap-3">
                         <li>
                             <div class="w-full aspect-square border rounded-md p-3 relative">
-                                <div class="absolute inset-x-3 top-2 flex items-center justify-between">
+                                <div class="js-tippy-parent absolute inset-x-3 top-2 flex items-center justify-between">
                                     <label for="cb"
                                            class="cursor-pointer relative w-5 h-5 flex items-center justify-center">
                                         <input id="cb" type="checkbox" class="peer sr-only"/>
@@ -353,9 +410,61 @@
                                         <span
                                             class="bg-white absolute inset-0 rounded-sm border peer-checked:bg-teal-500 peer-checked:border-teal-500 transition"></span>
                                     </label>
-                                    <button>
+                                    <button
+                                        type="button"
+                                        data-folder-popup
+                                        data-template="folderPopupTemplate"
+                                    >
                                         <i class="mdi mdi-dots-horizontal text-gray-400 text-2xl"></i>
                                     </button>
+
+                                    <template id="folderPopupTemplate">
+                                        <ul class="w-44 py-1">
+                                            <li class="hover:bg-gray-100 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+                                                <i class="mdi mdi-pencil-outline text-gray-400 mr-1 text-lg"></i>
+                                                Rename
+                                            </li>
+                                            <li
+                                                data-folder-color-popup
+                                                data-template="folderColorPopupTemplate"
+                                                class="hover:bg-gray-100 p-0.5 px-1 cursor-pointer font-medium flex items-center"
+                                            >
+                                                <i class="mdi mdi-palette-outline text-gray-400 mr-1 text-lg"></i>
+                                                Change Color
+                                                <i class="mdi mdi-chevron-right text-gray-400 text-lg ml-auto"></i>
+                                            </li>
+                                            <li class="hover:bg-gray-100 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+                                                <i class="mdi mdi-open-in-new text-gray-400 mr-1 text-lg"></i>
+                                                Move
+                                            </li>
+                                            <li class="hover:bg-gray-100 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+                                                <i class="mdi mdi-format-list-checkbox text-gray-400 mr-1 text-lg"></i>
+                                                View Details
+                                            </li>
+                                            <li class="hover:bg-gray-100 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+                                                <i class="mdi mdi-link-variant text-gray-400 mr-1 text-lg"></i>
+                                                Get Link
+                                            </li>
+                                            <li class="border-t -mx-2 my-2"></li>
+                                            <li class="hover:bg-gray-100 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+                                                <i class="mdi mdi-trash-can-outline text-red-500 mr-1 text-lg"></i>
+                                                Delete
+                                            </li>
+                                        </ul>
+                                    </template>
+
+                                    <template id="folderColorPopupTemplate">
+                                        <ul x-data="{ index: 3 }" class="w-48 py-2 px-1 grid grid-cols-5 gap-1.5">
+                                            <template x-for="i in (5 * 3)" :key="i">
+                                                <li
+                                                    @click="index = i"
+                                                    class="aspect-square w-full bg-gray-300 cursor-pointer hover:shadow-lg transition flex items-center justify-center"
+                                                >
+                                                    <i class="mdi mdi-check text-white text-xl" x-show="i === index" x-transition></i>
+                                                </li>
+                                            </template>
+                                        </ul>
+                                    </template>
                                 </div>
                                 <div class="flex flex-col justify-center w-full h-full">
                                     <i class="mdi mdi-folder text-red-700 text-6xl mt-5"></i>
@@ -413,6 +522,45 @@
 </figure>
 
 <script src="//unpkg.com/alpinejs" defer></script>
+<script src="//unpkg.com/@popperjs/core@2"></script>
+<script src="//unpkg.com/tippy.js@6"></script>
+<script>
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.addedNodes.length) {
+                initializeTippy();
+            }
+        });
+    });
+    observer.observe(document.querySelector('.js-tippy-parent'), {
+        childList: true,
+    });
+
+    initializeTippy();
+    function initializeTippy() {
+        const config = {
+            interactive: true,
+            trigger: 'click',
+            allowHTML: true,
+            appendTo: 'parent',
+            theme: 'light',
+            placement: 'bottom-end',
+            content: getContent,
+        };
+
+        tippy('[data-folder-popup]', config)
+        tippy('[data-folder-color-popup]', {
+            ...config,
+            placement: 'right-start',
+        })
+    }
+
+    function getContent(reference) {
+        const id = reference.getAttribute('data-template');
+        const template = document.getElementById(id);
+        return template.innerHTML;
+    }
+</script>
 
 </body>
 </html>

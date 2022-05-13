@@ -1,8 +1,8 @@
 <form wire:submit.prevent="submit" class="relative bg-white rounded-lg shadow">
     <!-- Modal header -->
     <div class="flex justify-between items-start p-4 px-6 rounded-t">
-        <h3 class="text-xl font-semibold text-gray-900">
-            New folder
+        <h3 class="text-xl font-bold text-gray-900">
+            New Folder
         </h3>
         <button
             wire:click="$emit('closeModal')"
