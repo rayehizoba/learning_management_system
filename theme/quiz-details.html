@@ -1,0 +1,312 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/6.6.96/css/materialdesignicons.min.css">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/tippy.js@6/themes/light.css"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=line-clamp"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Open Sans', 'Helvetica', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .btn {
+                @apply p-2 rounded-md whitespace-nowrap transition flex items-center justify-center font-semibold;
+            }
+
+            .btn-sm {
+                @apply !text-sm !py-1;
+            }
+
+            .btn-primary {
+                @apply bg-teal-500 hover:bg-teal-600 text-white btn;
+            }
+
+            .btn-outline {
+                @apply border border-gray-300 text-gray-400 btn hover:bg-gray-300 hover:text-white;
+            }
+
+            .btn-primary-outline {
+                @apply btn border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white font-medium;
+                @apply disabled:border-gray-400 disabled:text-gray-400 disabled:hover:bg-inherit;
+            }
+        }
+    </style>
+</head>
+<body x-data="{open: true,}" class="relative">
+
+<main class="p-5 h-screen flex">
+    <aside
+        :class="open ? 'opacity-100':'opacity-0'"
+        class="absolute inset-y-0 left-0 p-5 pr-0 w-60 transition flex flex-col space-y-6 overflow-y-auto"
+    >
+    </aside>
+    <div
+        :class="open ? 'ml-60':'ml-0'"
+        class="z-10 transition-all rounded-2xl shadow w-full flex-1 bg-white overflow-y-auto"
+    >
+        <header class="py-3 px-5 border-b sticky top-0 bg-white z-20">
+            <div class="flex justify-between">
+                <div class="flex items-center space-x-5">
+                    <button
+                        @click="open = !open"
+                        class="rounded border-2 border-l-[10px] h-7 w-7 border-gray-400 transition hover:bg-gray-100 hover:ring-8 ring-gray-100"
+                    >
+                        <i :class="open ? 'mdi-chevron-left':'mdi-chevron-right'" class="mdi text-gray-400"></i>
+                    </button>
+                    <div class="h-7 border-l"></div>
+                    <div class="">
+                        <div class="text-2xl font-bold">
+                            Quiz
+                        </div>
+                        <ul class="text-xs flex space-x-1">
+                            <li>
+                                Content
+                            </li>
+                            <li>/</li>
+                            <li>
+                                Quiz
+                            </li>
+                            <li>/</li>
+                            <li class="text-gray-400">
+                                Quiz Details
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-5">
+                    <ul class="flex space-x-3">
+                        <li>
+                            <button class="btn-primary h-9 w-9 text-xl">
+                                <i class="mdi mdi-plus"></i>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="btn-outline h-9 w-9 text-xl">
+                                <i class="mdi mdi-bell-outline"></i>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="btn-outline h-9 w-9 text-xl">
+                                <i class="mdi mdi-magnify"></i>
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="h-7 border-l"></div>
+                    <div class="flex items-center space-x-2 cursor-pointer hover:opacity-75 transition">
+                        <div class="rounded-full w-8 h-8 bg-gray-200"></div>
+                        <div class="">
+                            <div class="text-sm font-semibold">
+                                Theresa
+                            </div>
+                            <div class="text-gray-400 text-xs">
+                                Super Admin
+                            </div>
+                        </div>
+                        <i class="mdi mdi-chevron-down text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <header class="bg-red-100 aspect-[2.5/1] m-5 rounded-md">
+        </header>
+
+        <header class="px-5 flex flex-col lg:flex-row lg:justify-between lg:items-start space-y-5 lg:space-y-0 lg:space-x-5">
+            <section class="space-y-3">
+                <div class="text-2xl font-bold">
+                    UX Design Fundamentals Quiz
+                </div>
+                <div class="flex items-center space-x-2 text-gray-400 flex-wrap">
+                    <div class="bg-green-100 text-green-700 text-xs p-1 px-2 rounded-md">
+                        <i class="mdi mdi-web"></i>
+                        Published
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <i class="mdi mdi-license"></i>
+                        <span class="text-xs">Design</span>
+                    </div>
+                    <span>&bull;</span>
+                    <div class="flex items-center space-x-1">
+                        <i class="mdi mdi-calendar-month-outline"></i>
+                        <span class="text-xs">Created March 17, 2017</span>
+                    </div>
+                    <span>&bull;</span>
+                    <div class="flex items-center space-x-1">
+                        <i class="mdi mdi-eye-outline"></i>
+                        <span class="text-xs">Public</span>
+                    </div>
+                    <span>&bull;</span>
+                    <div class="flex items-center space-x-1">
+                        <i class="mdi mdi-file-document-outline"></i>
+                        <span class="text-xs">Quiz</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="flex items-stretch space-x-2">
+                <button class="btn-outline btn-sm !px-4">
+                    <i class="mdi mdi-pencil-outline text-2xl mr-2"></i>
+                    Edit Quiz
+                </button>
+                <button class="btn-outline btn-sm !px-4">
+                    <i class="mdi mdi-eye-outline text-2xl mr-2"></i>
+                    Preview as learner
+                </button>
+                <button class="btn-outline text-2xl !px-3">
+                    <i class="mdi mdi-cog-outline"></i>
+                </button>
+            </section>
+        </header>
+
+        <nav class="border-b px-5 mt-5">
+            <ul class="text-sm flex items-center space-x-8">
+                <li class="border-b-2 border-yellow-500 font-bold py-2 relative cursor-pointer before:absolute before:-inset-x-2 before:inset-y-1 before:rounded hover:before:bg-gray-100 before:transition before:-z-10">
+                    Content
+                </li>
+                <li class="border-b-2 border-white text-gray-400 py-2 relative cursor-pointer before:absolute before:-inset-x-2 before:inset-y-1 before:rounded hover:before:bg-gray-100 before:transition before:-z-10">
+                    Statistic
+                </li>
+                <li class="border-b-2 border-white text-gray-400 py-2 relative cursor-pointer before:absolute before:-inset-x-2 before:inset-y-1 before:rounded hover:before:bg-gray-100 before:transition before:-z-10">
+                    Learner
+                </li>
+            </ul>
+        </nav>
+
+        <section class="flex divide-x">
+            <nav class="w-3/12">
+                <ul class="divide-y border-b">
+                    <template hidden x-for="i in 10" :key="i">
+                        <li>
+                            <button
+                                :class="i == 1 ? 'border-yellow-500' : 'border-gray-300'"
+                                class="border-l-4 p-3 py-4 flex flex-col transition hover:bg-green-100 w-full"
+                                type="button"
+                            >
+                                <span x-text="`Question - ${i}`">Question - 1</span>
+                                <small class="text-gray-400 text-xs">
+                                    Updated: March 17, 2021 4:22PM
+                                </small>
+                            </button>
+                        </li>
+                    </template>
+                </ul>
+            </nav>
+            <article class="w-9/12 p-7">
+                <p class="text-xs text-gray-400">
+                    State Your Question
+                </p>
+                <p class="text-lg">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, non!
+                </p>
+                <div class="aspect-[2/1] rounded-lg bg-green-200 my-5 p-5 relative">
+                    <div class="absolute bottom-5 left-7 text-white drop-shadow-sm space-y-2">
+                        <p class="text-lg font-semibold">
+                            Figma Intro Quiz.mp4
+                        </p>
+                        <ul class="flex space-x-3 text-sm">
+                            <li>05:43</li>
+                            <li>&bull;</li>
+                            <li>12 Mb</li>
+                        </ul>
+                    </div>
+                </div>
+                <ul class="space-y-3">
+                    <li class="flex items-center space-x-5">
+                        <p class="text-xl font-bold">A.</p>
+                        <div class="flex-1 rounded-md overflow-hidden border flex items-center divide-x">
+                            <div class="p-2 px-3 flex-1">
+                                Shape Tools
+                            </div>
+                            <div class="bg-green-100 flex items-center space-x-2 p-2 px-4 text-green-800">
+                                <i class="mdi mdi-check text-xl"></i>
+                                <span class="text-sm font-semibold">Marked as correct</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="flex items-center space-x-5">
+                        <p class="text-xl font-bold">B.</p>
+                        <div class="flex-1 rounded-md overflow-hidden border flex items-center divide-x">
+                            <div class="p-2 px-3 flex-1">
+                                Text Tools
+                            </div>
+                        </div>
+                    </li>
+                    <li class="flex items-center space-x-5">
+                        <p class="text-xl font-bold">C.</p>
+                        <div class="flex-1 rounded-md overflow-hidden border flex items-center divide-x">
+                            <div class="p-2 px-3 flex-1">
+                                Hand Tool
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </article>
+        </section>
+    </div>
+</main>
+
+<figure class="fixed inset-0 bg-gradient-to-tr from-[#41b8b0] via-[#f0bc05] to-[#e4f7ee] opacity-25 -z-10">
+</figure>
+
+<script src="//unpkg.com/alpinejs" defer></script>
+<script src="//unpkg.com/@popperjs/core@2"></script>
+<script src="//unpkg.com/tippy.js@6"></script>
+<script>
+    const observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+            if (mutation.addedNodes.length) {
+                initializeTippy();
+            }
+        });
+    });
+    observer.observe(document.querySelector('.js-tippy-parent'), {
+        childList: true,
+    });
+
+    initializeTippy();
+
+    function initializeTippy() {
+        const config = {
+            interactive: true,
+            trigger: 'click',
+            allowHTML: true,
+            appendTo: 'parent',
+            theme: 'light',
+            placement: 'bottom-end',
+            content: getContent,
+        };
+
+        tippy('[data-folder-popup]', config)
+        tippy('[data-folder-color-popup]', {
+            ...config,
+            placement: 'right-start',
+        })
+    }
+
+    function getContent(reference) {
+        const id = reference.getAttribute('data-template');
+        const template = document.getElementById(id);
+        return template.innerHTML;
+    }
+</script>
+
+</body>
+</html>
