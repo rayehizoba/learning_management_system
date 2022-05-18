@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/6.6.96/css/materialdesignicons.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/tippy.js@6/themes/light.css"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=line-clamp"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -19,200 +25,235 @@
             }
         }
     </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .btn {
+                @apply p-2 rounded-md whitespace-nowrap transition flex items-center justify-center;
+            }
+
+            .btn-primary {
+                @apply bg-teal-500 hover:bg-teal-600 text-white btn;
+            }
+
+            .btn-outline {
+                @apply border text-gray-400 btn hover:bg-gray-50;
+            }
+
+            .btn-primary-outline {
+                @apply btn border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white font-medium;
+                @apply disabled:border-gray-400 disabled:text-gray-400 disabled:hover:bg-inherit;
+            }
+        }
+    </style>
 </head>
-<body x-data="{open: true}" class="relative">
-<main class="p-5 min-h-screen flex">
-    <aside
-        :class="open ? 'opacity-100':'opacity-0'"
-        class="absolute inset-y-0 left-0 p-5 pr-0 w-60 transition flex flex-col space-y-6 overflow-y-auto"
-    >
-        <figure class="bg-white shadow rounded-lg p-3 flex items-center sticky top-0">
-            <div class="border rounded h-10 w-10 flex items-center justify-center">
-                <div class="h-5 w-5 rounded-md rounded-tr-none bg-black"></div>
-            </div>
-            <div class="px-2">
-                Fikri Studio
-            </div>
-            <i class="mdi mdi-unfold-more-horizontal text-xl text-gray-400 ml-auto px-2"></i>
-        </figure>
+<body x-data="{open: true,}" class="relative">
 
-        <ul class="space-y-3 flex-1 select-none">
-            <li>
-                <a href="#" class="px-2 py-1 flex items-center space-x-2 rounded-md bg-teal-400/25 hover:bg-teal-400/50 transition">
-                    <i class="mdi mdi-view-dashboard-outline text-xl text-teal-500"></i>
-                    <span class="font-medium">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="px-2 py-1 flex items-center space-x-2 rounded-md transition hover:bg-white/25 text-gray-500">
-                    <i class="mdi mdi-email-outline text-2xl"></i>
-                    <span class="">Inbox</span>
-                </a>
-            </li>
-            <li class="border-t"></li>
-            <li x-data="{dropdown: false}">
-                <div
-                    @click="dropdown = !dropdown"
-                    class="px-2 py-1 flex items-center rounded-md transition hover:bg-white/25 text-gray-500 cursor-pointer"
-                >
-                    <i class="mdi mdi-clipboard-text-outline text-2xl"></i>
-                    <span class="mx-2">Contents</span>
-                    <i class="ml-auto mdi" :class="dropdown ? 'mdi-chevron-up' : 'mdi-chevron-down'"></i>
+<main class="h-screen w-screen overflow-hidden relative flex">
+    <!--  LHS: Main Menu  -->
+    <aside class="absolute inset-y-0 left-0 w-72 lg:w-3/12 xl:w-1/5 flex">
+        <div class="flex flex-col space-y-6 overflow-y-auto flex-1 p-5 pb-0">
+            <figure class="bg-white shadow rounded-lg p-3 flex items-center sticky top-0">
+                <div class="border rounded h-10 w-10 flex items-center justify-center">
+                    <div class="h-5 w-5 rounded-md rounded-tr-none bg-black"></div>
                 </div>
-                <ul
-                    :class="dropdown ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 pointer-events-none'"
-                    class="transition-all"
-                >
-                    <li>
-                        <a href="#" class="p-2 pl-10 block rounded-md transition hover:bg-white/25 text-gray-500">
-                            <span class="">Courses</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="p-2 pl-10 block rounded-md transition hover:bg-white/25 text-gray-500">
-                            <span class="">Quiz</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="p-2 pl-10 block rounded-md transition hover:bg-white/25 text-gray-500">
-                            <span class="">Manuals</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="p-2 pl-10 block rounded-md transition hover:bg-white/25 text-gray-500">
-                            <span class="">Files & Folders</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#" class="px-2 py-1 flex items-center space-x-2 rounded-md transition hover:bg-white/25 text-gray-500">
-                    <i class="mdi mdi-book-open-outline text-2xl"></i>
-                    <span class="">Learning Path</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="px-2 py-1 flex items-center space-x-2 rounded-md transition hover:bg-white/25 text-gray-500">
-                    <i class="mdi mdi-application-outline text-2xl"></i>
-                    <span class="">Public Site</span>
-                </a>
-            </li>
-            <li x-data="{dropdown: false}">
-                <div
-                    @click="dropdown = !dropdown"
-                    class="px-2 py-1 flex items-center rounded-md transition hover:bg-white/25 text-gray-500 cursor-pointer"
-                >
-                    <i class="mdi mdi-account-outline text-2xl"></i>
-                    <span class="mx-2">User</span>
-                    <i class="ml-auto mdi" :class="dropdown ? 'mdi-chevron-up' : 'mdi-chevron-down'"></i>
+                <div class="px-2">
+                    Fikri Studio
                 </div>
-                <ul
-                    :class="dropdown ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 pointer-events-none'"
-                    class="transition-all"
-                >
-                    <li>
-                        <a href="#" class="p-2 pl-10 block rounded-md transition hover:bg-white/25 text-gray-500">
-                            <span class="">Individual</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="p-2 pl-10 block rounded-md transition hover:bg-white/25 text-gray-500">
-                            <span class="">Group</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#" class="px-2 py-1 flex items-center space-x-2 rounded-md transition hover:bg-white/25 text-gray-500">
-                    <i class="mdi mdi-poll text-2xl"></i>
-                    <span class="">Tracking</span>
-                </a>
-            </li>
-        </ul>
+                <i class="mdi mdi-unfold-more-horizontal text-xl text-gray-400 ml-auto px-2"></i>
+            </figure>
 
-        <ul class="space-y-3 sticky bottom-0 backdrop-blur">
-            <li class="">
-                <a href="#" class="px-2 py-1 flex items-center space-x-2 rounded-md transition hover:bg-white/25 text-gray-500">
-                    <i class="mdi mdi-chat-question-outline text-2xl"></i>
-                    <span class="">Help</span>
-                </a>
-            </li>
-            <li class="">
-                <a href="#" class="px-2 py-1 flex items-center space-x-2 rounded-md transition hover:bg-white/25 text-gray-500">
-                    <i class="mdi mdi-cog-outline text-2xl"></i>
-                    <span class="">Settings</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="group px-2 block">
-                    <div class="text-gray-400 text-xs">Powered by</div>
-                    <div class="font-bold text-xl text-red-900 group-hover:text-red-700 transition">Razortech</div>
-                </a>
-            </li>
-        </ul>
-    </aside>
-    <div
-        :class="open ? 'ml-60':'ml-0'"
-        class="z-10 transition-all rounded-2xl shadow w-full flex-1 bg-white divide-y"
-    >
-        <header class="py-3 px-7">
-            <div class="flex justify-between">
-                <div class="flex items-center space-x-5">
-                    <button
-                        @click="open = !open"
-                        class="rounded border-2 border-l-[10px] h-7 w-7 border-gray-400 transition hover:bg-gray-100 hover:ring-8 ring-gray-100"
+            <ul class="space-y-3 flex-1 select-none">
+                <li>
+                    <a href="#" class="px-2 py-1 flex items-center space-x-2 rounded-md bg-teal-400/25 hover:bg-teal-400/50 transition">
+                        <i class="mdi mdi-view-dashboard-outline text-xl text-teal-500"></i>
+                        <span class="font-medium">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="px-2 py-1 flex items-center space-x-2 rounded-md transition hover:bg-white/25 text-gray-500">
+                        <i class="mdi mdi-email-outline text-2xl"></i>
+                        <span class="">Inbox</span>
+                    </a>
+                </li>
+                <li class="border-t border-white/50"></li>
+                <li x-data="{dropdown: false}">
+                    <div
+                        @click="dropdown = !dropdown"
+                        class="px-2 py-1 flex items-center rounded-md transition hover:bg-white/25 text-gray-500 cursor-pointer"
                     >
-                        <i :class="open ? 'mdi-chevron-left':'mdi-chevron-right'" class="mdi text-gray-400"></i>
-                    </button>
-                    <div class="h-7 border-l"></div>
-                    <div class="">
-                        <div class="text-2xl font-semibold">
-                            Welcome, Raymond 👋
-                        </div>
-                        <div class="text-gray-400 text-xs">
-                            Here's what happened with your learning system
-                        </div>
+                        <i class="mdi mdi-clipboard-text-outline text-2xl"></i>
+                        <span class="mx-2">Contents</span>
+                        <i class="ml-auto mdi" :class="dropdown ? 'mdi-chevron-up' : 'mdi-chevron-down'"></i>
                     </div>
-                </div>
-                <div class="flex items-center space-x-5">
-                    <ul class="flex space-x-3">
+                    <ul
+                        :class="dropdown ? 'max-h-screen opacity-100 duration-500' : 'max-h-0 opacity-0 pointer-events-none'"
+                        class="transition-all"
+                    >
                         <li>
-                            <button class="bg-teal-500 h-9 w-9 rounded-md text-white text-xl">
-                                <i class="mdi mdi-plus"></i>
-                            </button>
+                            <a href="#" class="p-2 pl-10 block rounded-md transition hover:bg-white/25 text-gray-500">
+                                <span class="">Courses</span>
+                            </a>
                         </li>
                         <li>
-                            <button class="border h-9 w-9 rounded-md text-xl text-gray-400">
-                                <i class="mdi mdi-bell-outline"></i>
-                            </button>
+                            <a href="#" class="p-2 pl-10 block rounded-md transition hover:bg-white/25 text-gray-500">
+                                <span class="">Quiz</span>
+                            </a>
                         </li>
                         <li>
-                            <button class="border h-9 w-9 rounded-md text-xl text-gray-400">
-                                <i class="mdi mdi-magnify"></i>
-                            </button>
+                            <a href="#" class="p-2 pl-10 block rounded-md transition hover:bg-white/25 text-gray-500">
+                                <span class="">Manuals</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="p-2 pl-10 block rounded-md transition hover:bg-white/25 text-gray-500">
+                                <span class="">Files & Folders</span>
+                            </a>
                         </li>
                     </ul>
-                    <div class="h-7 border-l"></div>
-                    <div class="flex items-center space-x-2 cursor-pointer hover:opacity-75 transition">
-                        <div class="rounded-full w-8 h-8 bg-gray-200"></div>
+                </li>
+                <li>
+                    <a href="#" class="px-2 py-1 flex items-center space-x-2 rounded-md transition hover:bg-white/25 text-gray-500">
+                        <i class="mdi mdi-book-open-outline text-2xl"></i>
+                        <span class="">Learning Path</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="px-2 py-1 flex items-center space-x-2 rounded-md transition hover:bg-white/25 text-gray-500">
+                        <i class="mdi mdi-application-outline text-2xl"></i>
+                        <span class="">Public Site</span>
+                    </a>
+                </li>
+                <li x-data="{dropdown: false}">
+                    <div
+                        @click="dropdown = !dropdown"
+                        class="px-2 py-1 flex items-center rounded-md transition hover:bg-white/25 text-gray-500 cursor-pointer"
+                    >
+                        <i class="mdi mdi-account-outline text-2xl"></i>
+                        <span class="mx-2">User</span>
+                        <i class="ml-auto mdi" :class="dropdown ? 'mdi-chevron-up' : 'mdi-chevron-down'"></i>
+                    </div>
+                    <ul
+                        :class="dropdown ? 'max-h-screen opacity-100 duration-500' : 'max-h-0 opacity-0 pointer-events-none'"
+                        class="transition-all"
+                    >
+                        <li>
+                            <a href="#" class="p-2 pl-10 block rounded-md transition hover:bg-white/25 text-gray-500">
+                                <span class="">Individual</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="p-2 pl-10 block rounded-md transition hover:bg-white/25 text-gray-500">
+                                <span class="">Group</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="px-2 py-1 flex items-center space-x-2 rounded-md transition hover:bg-white/25 text-gray-500">
+                        <i class="mdi mdi-poll text-2xl"></i>
+                        <span class="">Tracking</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="space-y-3 sticky bottom-0 backdrop-blur pt-3 pb-5 border-t border-white/50">
+                <li class="">
+                    <a href="#" class="px-2 py-1 flex items-center space-x-2 rounded-md transition hover:bg-white/25 text-gray-500">
+                        <i class="mdi mdi-chat-question-outline text-2xl"></i>
+                        <span class="">Help</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#" class="px-2 py-1 flex items-center space-x-2 rounded-md transition hover:bg-white/25 text-gray-500">
+                        <i class="mdi mdi-cog-outline text-2xl"></i>
+                        <span class="">Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="group px-2 block">
+                        <div class="text-gray-400 text-xs">Powered by</div>
+                        <div class="font-bold text-xl text-red-900 group-hover:text-red-700 transition">Razortech</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <!--  RHS: Main Content  -->
+    <section
+        :class="open ? 'lg:w-9/12 xl:w-4/5 translate-x-72 lg:translate-x-0 p-5' : 'p-0'"
+        class="w-full ml-auto transition-all transform"
+    >
+        <div
+            :class="open ? '-ml-5 rounded-2xl shadow' : ''"
+            class="bg-white overflow-y-auto h-full transition-all"
+        >
+            <header class="py-3 px-4 md:px-7 border-b">
+                <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 justify-between">
+                    <div class="flex items-center space-x-3 md:space-x-5">
+                        <button
+                            @click="open = !open"
+                            :class="open ? 'border-l-[12px] hover:border-l-4' : 'border-l-4 hover:border-l-[12px]'"
+                            class="rounded-md border-2 h-9 w-9 md:h-8 md:w-8 border-gray-400 transition-all"
+                        >
+                            <i
+                                :class="open ? 'mdi-chevron-left':'mdi-chevron-right'"
+                                class="mdi text-gray-400 text-2xl md:text-lg"
+                            ></i>
+                        </button>
+                        <div class="h-10 md:h-7 border-l border-gray-300"></div>
                         <div class="">
-                            <div class="text-sm font-semibold">
-                                Theresa
+                            <div class="text-xl md:text-2xl font-semibold">
+                                Welcome, Raymond 👋
                             </div>
                             <div class="text-gray-400 text-xs">
-                                Super Admin
+                                Here's what happened with your learning system
                             </div>
                         </div>
-                        <i class="mdi mdi-chevron-down text-gray-400"></i>
+                    </div>
+                    <div class="flex items-center space-x-5 justify-between">
+                        <ul class="flex space-x-3 w-1/2 md:w-auto">
+                            <li>
+                                <button class="btn-primary h-9 w-9 text-xl">
+                                    <i class="mdi mdi-plus"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button class="btn-outline h-9 w-9 text-xl">
+                                    <i class="mdi mdi-bell-outline"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button class="btn-outline h-9 w-9 text-xl">
+                                    <i class="mdi mdi-magnify"></i>
+                                </button>
+                            </li>
+                        </ul>
+                        <div class="h-10 md:h-7 border-l border-gray-300 hidden md:block"></div>
+                        <div class="w-1/2 md:w-auto">
+                            <div class="select-none flex items-center space-x-2 cursor-pointer relative before:absolute before:-inset-1 before:-inset-x-2 before:hover:bg-gray-100 before:transition before:rounded-md">
+                                <div class="relative rounded-full w-8 h-8 bg-gray-200"></div>
+                                <div class="relative flex-1">
+                                    <div class="text-sm font-semibold">
+                                        Theresa
+                                    </div>
+                                    <div class="text-gray-400 text-xs">
+                                        Super Admin
+                                    </div>
+                                </div>
+                                <i class="relative mdi mdi-chevron-down text-gray-400"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </header>
-        <div class="p-5">
+            </header>
+            <div class="p-5">
 
+            </div>
         </div>
-    </div>
+    </section>
 </main>
+
 <figure class="fixed inset-0 bg-gradient-to-tr from-[#41b8b0] via-[#f0bc05] to-[#e4f7ee] opacity-25 -z-10">
 </figure>
 
