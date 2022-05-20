@@ -28,7 +28,7 @@
     <style type="text/tailwindcss">
         @layer utilities {
             .btn {
-                @apply p-2 px-4 rounded-md whitespace-nowrap transition flex items-center justify-center text-sm font-medium;
+                @apply p-2 px-4 rounded-md whitespace-nowrap transition flex items-center justify-center text-sm font-medium hover:bg-gray-50;
             }
 
             .btn-primary {
@@ -36,17 +36,22 @@
             }
 
             .btn-outline {
-                @apply border text-gray-400 btn hover:bg-gray-50;
+                @apply border text-gray-400 btn;
             }
 
             .btn-primary-outline {
                 @apply btn border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white font-medium;
                 @apply disabled:border-gray-400 disabled:text-gray-400 disabled:hover:bg-inherit;
             }
+
+            [contenteditable]:empty:before {
+                content: attr(data-placeholder);
+                opacity: 0.5;
+            }
         }
     </style>
 </head>
-<body x-data="{open: true,}" class="relative">
+<body x-data="page" class="relative">
 
 <main class="h-screen w-screen overflow-hidden relative flex">
     <!--  LHS: Main Menu  -->
@@ -165,12 +170,13 @@
                 </div>
             </header>
 
-            <header class="p-3 px-4 md:px-7 border-b flex items-center justify-between">
+            <header class="p-3 px-4 md:px-7 border-b flex items-start justify-between space-x-3">
                 <span
                     contenteditable
                     role="textbox"
-                    class="text-2xl font-semibold border-b border-dashed before:content-['Section Title'] before:text-gray-400 outline-none"
-                >Section Title</span>
+                    data-placeholder="Section Title"
+                    class="text-2xl lg:text-3xl font-semibold border-b border-dashed before:content-['Section Title'] before:text-gray-400 outline-none"
+                ></span>
                 <div class="flex items-center space-x-5 text-gray-400">
                     <div class="flex items-center space-x-5">
                         <button class="hover:opacity-50">
@@ -188,8 +194,76 @@
                 </div>
             </header>
 
-            <div class="p-5">
-
+            <div class="max-w-4xl mx-auto p-5">
+                <ul class="flex items-center space-x-2">
+                    <li>
+                        <button
+                            data-add-content
+                            class="btn text-gray-400 !py-1 !px-2"
+                        >
+                            <i class="mdi mdi-plus text-2xl mr-1"></i>
+                            Content
+                        </button>
+                        <div
+                            data-add-content-template
+                            style="display: none;"
+                            class="divide-y-2 -mx-2"
+                        >
+                            <div class="font-medium">
+                                <p class="p-4 pb-2 text-xs text-gray-400">
+                                    Basic blocks
+                                </p>
+                                <ul class="space-y-2 min-w-[18rem] py-2">
+                                    <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
+                                        <i class="mdi mdi-format-text text-2xl text-gray-400 mr-3"></i>
+                                        <span>Text</span>
+                                    </li>
+                                    <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
+                                        <i class="mdi mdi-format-list-bulleted text-2xl text-gray-400 mr-3"></i>
+                                        <span>Bullet List</span>
+                                    </li>
+                                    <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
+                                        <i class="mdi mdi-format-list-numbered text-2xl text-gray-400 mr-3"></i>
+                                        <span>Numbered List</span>
+                                    </li>
+                                    <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
+                                        <i class="mdi mdi-format-header-1 text-2xl text-gray-400 mr-3"></i>
+                                        <span>Header 1</span>
+                                    </li>
+                                    <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
+                                        <i class="mdi mdi-format-header-2 text-2xl text-gray-400 mr-3"></i>
+                                        <span>Header 2</span>
+                                    </li>
+                                    <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
+                                        <i class="mdi mdi-format-header-3 text-2xl text-gray-400 mr-3"></i>
+                                        <span>Header 3</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="font-medium">
+                                <p class="p-4 pb-2 text-xs text-gray-400">
+                                    Media
+                                </p>
+                                <ul class="space-y-2 min-w-[18rem] py-2">
+                                    <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
+                                        <i class="mdi mdi-image-outline text-2xl text-gray-400 mr-3"></i>
+                                        <span>Image</span>
+                                    </li>
+                                    <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
+                                        <i class="mdi mdi-video-outline text-2xl text-gray-400 mr-3"></i>
+                                        <span>Video</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <button data-library class="btn text-gray-400 !py-1 !px-2">
+                            <i class="mdi mdi-newspaper-variant-outline text-2xl mr-1"></i>
+                            Library
+                        </button>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
@@ -199,6 +273,28 @@
 </figure>
 
 <script src="//unpkg.com/alpinejs" defer></script>
+<script src="//unpkg.com/@popperjs/core@2"></script>
+<script src="//unpkg.com/tippy.js@6"></script>
+<script>
+    function page() {
+        return {
+            open: true,
+            init() {
+                const template = document.querySelector('[data-add-content-template]');
+                template.style.display = 'block';
+                tippy('[data-add-content]', {
+                    trigger: 'click',
+                    interactive: true,
+                    allowHTML: true,
+                    appendTo: 'parent',
+                    theme: 'light',
+                    placement: 'bottom-start',
+                    content: template
+                });
+            },
+        };
+    }
+</script>
 
 </body>
 </html>
