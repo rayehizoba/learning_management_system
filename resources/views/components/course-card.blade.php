@@ -12,28 +12,26 @@
                 <i class="mdi mdi-dots-horizontal text-2xl"></i>
             </button>
         </div>
-        <a href="{{ route('course-detail', ['id' => $course->id]) }}">
+        <a href="{{ route('course-detail', ['id' => $course->id]) }}" class="group">
             <figure class="w-full aspect-[3/1] bg-gray-300 text-gray-100 grid place-content-center">
                 <i class="mdi mdi-image text-5xl"></i>
             </figure>
-        </a>
-        <div class="p-3">
-            <a href="{{ route('course-detail', ['id' => $course->id]) }}" class="hover:underline">
-                <p class="font-semibold line-clamp-1">
+            <div class="p-3">
+                <p class="font-semibold line-clamp-1 group-hover:underline">
                     {{ $course->name }}
                 </p>
-            </a>
-            <div class="flex items-center space-x-5">
-                <div class="flex items-center space-x-1 text-gray-400">
-                    <i class="mdi mdi-account-circle-outline"></i>
-                    <span class="text-xs">24 Learners</span>
-                </div>
-                <div class="flex items-center space-x-1 text-gray-400">
-                    <i class="mdi mdi-license"></i>
-                    <span class="text-xs">Design</span>
+                <div class="flex items-center space-x-5">
+                    <div class="flex items-center space-x-1 text-gray-400">
+                        <i class="mdi mdi-account-circle-outline"></i>
+                        <span class="text-xs">24 Learners</span>
+                    </div>
+                    <div class="flex items-center space-x-1 text-gray-400">
+                        <i class="mdi mdi-license"></i>
+                        <span class="text-xs">Design</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     </header>
 
     @if($course->published)

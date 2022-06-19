@@ -83,21 +83,20 @@
                 @forelse($courses as $course)
                     <tr>
                         <td class="pl-4 md:pl-5 py-5">
-                            <div class="flex items-center space-x-5">
-                                <a href="{{ route('course-detail', ['id' => $course->id]) }}">
-                                    <figure class="w-32 aspect-[7/4] bg-gray-300 text-gray-100 grid place-content-center">
-                                        <i class="mdi mdi-image text-4xl"></i>
-                                    </figure>
-                                </a>
+                            <a
+                                href="{{ route('course-detail', ['id' => $course->id]) }}"
+                                class="flex items-center space-x-5 group"
+                            >
+                                <figure class="w-32 aspect-[7/4] bg-gray-300 text-gray-100 grid place-content-center">
+                                    <i class="mdi mdi-image text-4xl"></i>
+                                </figure>
                                 <div class="space-y-1">
-                                    <a href="{{ route('course-detail', ['id' => $course->id]) }}" class="hover:underline">
-                                        <p class="font-semibold line-clamp-2 text-sm">
-                                            {{ $course->name }}
-                                        </p>
-                                    </a>
+                                    <p class="font-semibold line-clamp-2 text-sm group-hover:underline">
+                                        {{ $course->name }}
+                                    </p>
                                     <x-published-state :published="$course->published"/>
                                 </div>
-                            </div>
+                            </a>
                         </td>
                         <td class="px-5">
                             <div class="flex items-center space-x-1 text-sm whitespace-nowrap">
@@ -153,10 +152,10 @@
 
     <template id="course_menu_template">
         <ul class="w-44 py-1">
-{{--            <li class="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">--}}
-{{--                <i class="mdi mdi-lock-outline mr-1 text-lg"></i>--}}
-{{--                Lock Course--}}
-{{--            </li>--}}
+            {{--            <li class="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">--}}
+            {{--                <i class="mdi mdi-lock-outline mr-1 text-lg"></i>--}}
+            {{--                Lock Course--}}
+            {{--            </li>--}}
             <li class="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
                 <i class="mdi mdi-pencil-outline mr-1 text-lg opacity-50"></i>
                 Edit Course
