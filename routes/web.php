@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('dashboard');
 
+Route::get('/inbox', function () {
+    return view('inbox');
+})->name('inbox');
+
 Route::get('/courses', function () {
     return view('courses');
 })->name('courses');
@@ -34,5 +38,37 @@ Route::get('/create-quiz', function () {
     return view('create-quiz');
 })->name('create-quiz');
 
+Route::get('/manuals', function () {
+    return view('manuals');
+})->name('manuals');
+
 Route::get('/files-folders', FilesFolders::class)
     ->name('files-folders');
+
+Route::get('/learning-path', function () {
+    return view('learning-path');
+})->name('learning-path');
+
+Route::get('/public-site', function () {
+    return view('public-site');
+})->name('public-site');
+
+Route::get('/individual', function () {
+    return view('individual');
+})->name('individual');
+
+Route::get('/group', function () {
+    return view('group');
+})->name('group');
+
+Route::get('/tracking', function () {
+    return view('tracking');
+})->name('tracking');
+
+Route::get('/help', function () {
+    return view('help');
+})->name('help');
+
+Route::get('/settings', function () {
+    return view('settings');
+})->name('settings');

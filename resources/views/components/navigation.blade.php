@@ -19,7 +19,7 @@
             </x-navigation.link>
         </li>
         <li>
-            <x-navigation.link href="#">
+            <x-navigation.link :href="route('inbox')" :active="Route::is('inbox')">
                 <x-slot:icon>
                     <i class="mdi mdi-email-outline"></i>
                 </x-slot:icon>
@@ -28,8 +28,8 @@
         </li>
         <li class="border-t border-white/50"></li>
         <li>
-            <x-navigation.dropdown :open="Route::is(['courses', 'quizes', 'files-folders'])">
-                <x-navigation.link dropdown :active="Route::is(['courses', 'quizes', 'files-folders'])">
+            <x-navigation.dropdown :open="Route::is(['courses', 'quizes', 'manuals', 'files-folders'])">
+                <x-navigation.link dropdown :active="Route::is(['courses', 'quizes', 'manuals', 'files-folders'])">
                     <x-slot:icon>
                         <i class="mdi mdi-clipboard-text-outline"></i>
                     </x-slot:icon>
@@ -42,7 +42,7 @@
                     <x-navigation.link :href="route('quizes')" :active="Route::is('quizes')">
                         Quiz
                     </x-navigation.link>
-                    <x-navigation.link href="#">
+                    <x-navigation.link :href="route('manuals')" :active="Route::is('manuals')">
                         Manuals
                     </x-navigation.link>
                     <x-navigation.link :href="route('files-folders')" :active="Route::is('files-folders')">
@@ -52,7 +52,7 @@
             </x-navigation.dropdown>
         </li>
         <li>
-            <x-navigation.link href="#">
+            <x-navigation.link :href="route('learning-path')" :active="Route::is('learning-path')">
                 <x-slot:icon>
                     <i class="mdi mdi-book-open-outline"></i>
                 </x-slot:icon>
@@ -60,7 +60,7 @@
             </x-navigation.link>
         </li>
         <li>
-            <x-navigation.link href="#">
+            <x-navigation.link :href="route('public-site')" :active="Route::is('public-site')">
                 <x-slot:icon>
                     <i class="mdi mdi-application-outline"></i>
                 </x-slot:icon>
@@ -68,25 +68,25 @@
             </x-navigation.link>
         </li>
         <li>
-            <x-navigation.dropdown>
-                <x-navigation.link>
+            <x-navigation.dropdown :open="Route::is(['individual', 'group'])">
+                <x-navigation.link dropdown :active="Route::is(['individual', 'group'])">
                     <x-slot:icon>
                         <i class="mdi mdi-account-outline"></i>
                     </x-slot:icon>
                     User
                 </x-navigation.link>
                 <x-slot:children>
-                    <x-navigation.link href="#">
+                    <x-navigation.link :href="route('individual')" :active="Route::is('individual')">
                         Individual
                     </x-navigation.link>
-                    <x-navigation.link href="#">
+                    <x-navigation.link :href="route('group')" :active="Route::is('group')">
                         Group
                     </x-navigation.link>
                 </x-slot:children>
             </x-navigation.dropdown>
         </li>
         <li>
-            <x-navigation.link href="#">
+            <x-navigation.link :href="route('tracking')" :active="Route::is('tracking')">
                 <x-slot:icon>
                     <i class="mdi mdi-poll"></i>
                 </x-slot:icon>
@@ -97,7 +97,7 @@
 
     <ul class="space-y-3 sticky bottom-0 backdrop-blur pt-3 pb-5 border-t border-white/50">
         <li>
-            <x-navigation.link href="#">
+            <x-navigation.link :href="route('help')" :active="Route::is('help')">
                 <x-slot:icon>
                     <i class="mdi mdi-chat-question-outline"></i>
                 </x-slot:icon>
@@ -105,7 +105,7 @@
             </x-navigation.link>
         </li>
         <li>
-            <x-navigation.link href="#">
+            <x-navigation.link :href="route('settings')" :active="Route::is('settings')">
                 <x-slot:icon>
                     <i class="mdi mdi-cog-outline"></i>
                 </x-slot:icon>
