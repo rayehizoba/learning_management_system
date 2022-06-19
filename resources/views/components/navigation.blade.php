@@ -1,9 +1,7 @@
-<aside
-    {{ $attributes->merge(['class' => 'absolute inset-y-0 left-0 p-5 pr-0 w-60 flex flex-col space-y-6 overflow-y-auto']) }}
->
+<div class="flex flex-col space-y-6 overflow-y-auto flex-1 p-5 pb-0">
     <figure class="bg-white shadow rounded-lg p-3 flex items-center sticky top-0">
         <div class="border rounded h-10 w-10 flex items-center justify-center">
-            <div class="h-5 w-5 rounded-md rounded-tr-none bg-black"></div>
+            <img src="/img/lms_logo.png" alt="logo" class="w-4"/>
         </div>
         <div class="px-2">
             Fikri Studio
@@ -28,20 +26,20 @@
                 Inbox
             </x-navigation.link>
         </li>
-        <li class="border-t"></li>
+        <li class="border-t border-white/50"></li>
         <li>
-            <x-navigation.dropdown>
-                <x-navigation.link>
+            <x-navigation.dropdown :open="Route::is(['courses', 'quizes', 'files-folders'])">
+                <x-navigation.link dropdown :active="Route::is(['courses', 'quizes', 'files-folders'])">
                     <x-slot:icon>
                         <i class="mdi mdi-clipboard-text-outline"></i>
                     </x-slot:icon>
                     Contents
                 </x-navigation.link>
                 <x-slot:children>
-                    <x-navigation.link href="#">
+                    <x-navigation.link :href="route('courses')" :active="Route::is('courses')">
                         Courses
                     </x-navigation.link>
-                    <x-navigation.link href="#">
+                    <x-navigation.link :href="route('quizes')" :active="Route::is('quizes')">
                         Quiz
                     </x-navigation.link>
                     <x-navigation.link href="#">
@@ -97,7 +95,7 @@
         </li>
     </ul>
 
-    <ul class="space-y-3 sticky bottom-0 backdrop-blur">
+    <ul class="space-y-3 sticky bottom-0 backdrop-blur pt-3 pb-5 border-t border-white/50">
         <li>
             <x-navigation.link href="#">
                 <x-slot:icon>
@@ -121,4 +119,4 @@
             </a>
         </li>
     </ul>
-</aside>
+</div>

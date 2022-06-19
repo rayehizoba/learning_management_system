@@ -18,5 +18,21 @@ Route::get('/', function () {
     return view('welcome');
 })->name('dashboard');
 
+Route::get('/courses', function () {
+    return view('courses');
+})->name('courses');
+
+Route::get('/create-course', function () {
+    return view('create-course');
+})->name('create-course');
+
+Route::get('/quizes', function () {
+    return view('quizes');
+})->name('quizes');
+
+Route::get('/create-quiz', function () {
+    return view('create-quiz');
+})->name('create-quiz');
+
 Route::get('/files-folders', FilesFolders::class)
-    ->name('files-folders');;
+    ->name('files-folders');

@@ -8,7 +8,7 @@
     }
 
     .btn {
-        @apply p-2 rounded-md whitespace-nowrap transition flex items-center justify-center font-semibold;
+        @apply p-2 rounded-md whitespace-nowrap transition flex items-center justify-center font-semibold text-sm;
     }
 
     .btn-primary {
@@ -17,5 +17,15 @@
 
     .btn-outline {
         @apply border text-gray-400 btn hover:bg-gray-50;
+    }
+
+    .btn-primary-outline {
+        @apply btn border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white font-medium;
+        @apply disabled:border-gray-400 disabled:text-gray-400 disabled:hover:bg-inherit;
+    }
+
+    [contenteditable]:empty:before {
+        content: attr(data-placeholder);
+        opacity: 0.5;
     }
 }
