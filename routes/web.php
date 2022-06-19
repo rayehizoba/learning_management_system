@@ -26,6 +26,10 @@ Route::get('/courses', function () {
     return view('courses');
 })->name('courses');
 
+Route::get('/courses/{id}', function () {
+    return view('course-detail');
+})->name('course-detail');
+
 Route::get('/create-course', function () {
     return view('create-course');
 })->name('create-course');

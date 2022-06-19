@@ -76,10 +76,67 @@
                         </div>
                         <div class="flex items-center space-x-5 justify-between">
                             <ul class="flex space-x-3 w-1/2 md:w-auto">
-                                <li>
-                                    <button class="btn-primary h-9 aspect-square">
+                                <li class="js-tippy-parent">
+                                    <button
+                                        data-template="new_menu_template"
+                                        class="btn-primary h-9 aspect-square"
+                                        type="button"
+                                    >
                                         <i class="mdi mdi-plus text-xl"></i>
                                     </button>
+
+                                    <template id="new_menu_template">
+                                        <ul class="w-52 py-1">
+                                            <li class="text-gray-400 px-1 text-xs mb-1 font-semibold">
+                                                Content
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="{{ route('create-course') }}"
+                                                    class="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center"
+                                                >
+                                                    <i class="mdi mdi-plus mr-1 text-lg"></i>
+                                                    New Course
+                                                </a>
+                                            </li>
+                                            <li class="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+                                                <i class="mdi mdi-plus mr-1 text-lg"></i>
+                                                New Quiz
+                                            </li>
+                                            <li class="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+                                                <i class="mdi mdi-plus mr-1 text-lg"></i>
+                                                New Manual
+                                            </li>
+
+                                            <li class="border-t -mx-2 my-2"></li>
+
+                                            <li class="text-gray-400 px-1 text-xs mb-1 font-semibold">
+                                                Users
+                                            </li>
+                                            <li class="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+                                                <i class="mdi mdi-plus mr-1 text-lg"></i>
+                                                Add New User
+                                            </li>
+                                            <li class="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+                                                <i class="mdi mdi-plus mr-1 text-lg"></i>
+                                                Create New Group
+                                            </li>
+
+                                            <li class="border-t -mx-2 my-2"></li>
+
+                                            <li class="text-gray-400 px-1 text-xs mb-1 font-semibold">
+                                                Files & Folders
+                                            </li>
+                                            <li class="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+                                                <i class="mdi mdi-plus mr-1 text-lg"></i>
+                                                Upload File
+                                            </li>
+                                            <li class="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+                                                <i class="mdi mdi-plus mr-1 text-lg"></i>
+                                                Create New Folder
+                                            </li>
+                                        </ul>
+                                    </template>
                                 </li>
                                 <li>
                                     <button class="btn-outline h-9 aspect-square">
@@ -133,14 +190,35 @@
 
 <script>
     document.addEventListener('alpine:init', () => {
+        // side nav global store
         Alpine.store('sideNav', {
             open: true,
 
             toggle() {
-                this.open = ! this.open
+                this.open = !this.open
             }
         })
     })
+
+    // tooltips initialization
+    function initializeTippy() {
+        document.querySelectorAll('[data-template]').forEach(btn => {
+            tippy(btn, {
+                content(reference) {
+                    const id = reference.getAttribute('data-template');
+                    const template = document.getElementById(id);
+                    return template.innerHTML;
+                },
+                interactive: true,
+                trigger: 'click',
+                allowHTML: true,
+                theme: 'light',
+                placement: 'bottom-end',
+            })
+        })
+    }
+
+    initializeTippy()
 </script>
 
 </body>

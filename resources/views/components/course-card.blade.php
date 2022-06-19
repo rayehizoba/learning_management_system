@@ -5,17 +5,24 @@
         <div class="p-3 flex items-center justify-between">
             <x-published-state :published="$course->published"/>
             <button
-                class="h-5 w-5 hover:bg-gray-400 transition rounded-full flex items-center justify-center text-gray-400 hover:text-white">
+                data-template="course_menu_template"
+                class="h-5 w-5 hover:bg-gray-400 transition rounded-full flex items-center justify-center text-gray-400 hover:text-white"
+                type="button"
+            >
                 <i class="mdi mdi-dots-horizontal text-2xl"></i>
             </button>
         </div>
-        <figure class="w-full aspect-[3/1] bg-gray-300 text-gray-100 grid place-content-center">
-            <i class="mdi mdi-image text-5xl"></i>
-        </figure>
+        <a href="{{ route('course-detail', ['id' => $course->id]) }}">
+            <figure class="w-full aspect-[3/1] bg-gray-300 text-gray-100 grid place-content-center">
+                <i class="mdi mdi-image text-5xl"></i>
+            </figure>
+        </a>
         <div class="p-3">
-            <p class="font-semibold line-clamp-1">
-                {{ $course->name }}
-            </p>
+            <a href="{{ route('course-detail', ['id' => $course->id]) }}" class="hover:underline">
+                <p class="font-semibold line-clamp-1">
+                    {{ $course->name }}
+                </p>
+            </a>
             <div class="flex items-center space-x-5">
                 <div class="flex items-center space-x-1 text-gray-400">
                     <i class="mdi mdi-account-circle-outline"></i>

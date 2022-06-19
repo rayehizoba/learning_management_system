@@ -28,15 +28,15 @@
         </li>
         <li class="border-t border-white/50"></li>
         <li>
-            <x-navigation.dropdown :open="Route::is(['courses', 'quizes', 'manuals', 'files-folders'])">
-                <x-navigation.link dropdown :active="Route::is(['courses', 'quizes', 'manuals', 'files-folders'])">
+            <x-navigation.dropdown :open="Route::is(['courses', 'course-detail', 'quizes', 'manuals', 'files-folders'])">
+                <x-navigation.link dropdown :active="Route::is(['courses', 'course-detail', 'quizes', 'manuals', 'files-folders'])">
                     <x-slot:icon>
                         <i class="mdi mdi-clipboard-text-outline"></i>
                     </x-slot:icon>
                     Contents
                 </x-navigation.link>
                 <x-slot:children>
-                    <x-navigation.link :href="route('courses')" :active="Route::is('courses')">
+                    <x-navigation.link :href="route('courses')" :active="Route::is(['courses', 'course-detail'])">
                         Courses
                     </x-navigation.link>
                     <x-navigation.link :href="route('quizes')" :active="Route::is('quizes')">
