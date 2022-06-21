@@ -84,14 +84,15 @@
                     <tr>
                         <td class="pl-4 md:pl-5 py-5">
                             <a
-                                href="{{ route('course-detail', ['id' => $course->id]) }}"
+                                href="{{ route('course-detail', ['course_id' => $course->id]) }}"
                                 class="flex items-center space-x-5 group"
                             >
-                                <figure class="w-32 aspect-[7/4] bg-gray-300 text-gray-100 grid place-content-center">
+                                <figure
+                                    class="flex-shrink-0 w-28 aspect-[5/2] bg-gray-300 text-gray-100 grid place-content-center">
                                     <i class="mdi mdi-image text-4xl"></i>
                                 </figure>
                                 <div class="space-y-1">
-                                    <p class="font-semibold line-clamp-2 text-sm group-hover:underline">
+                                    <p class="min-w-[16ch] font-semibold line-clamp-2 text-sm group-hover:underline">
                                         {{ $course->name }}
                                     </p>
                                     <x-published-state :published="$course->published"/>
@@ -99,10 +100,14 @@
                             </a>
                         </td>
                         <td class="px-5">
-                            <div class="flex items-center space-x-1 text-sm whitespace-nowrap">
-                                <i class="mdi mdi-account-circle-outline"></i>
-                                <span>24 Learners</span>
-                            </div>
+                            @if($course->published)
+                                <div class="flex items-center space-x-1 text-sm whitespace-nowrap">
+                                    <i class="mdi mdi-account-circle-outline"></i>
+                                    <span>24 Learners</span>
+                                </div>
+                            @else
+                                -
+                            @endif
                         </td>
                         <td class="px-5">
                             <div class="flex items-center space-x-1 text-sm">
@@ -111,30 +116,42 @@
                             </div>
                         </td>
                         <td class="px-5">
-                            <div class="flex items-center space-x-1 text-sm">
-                                <i class="mdi mdi-check-circle-outline"></i>
-                                <p>65%</p>
-                            </div>
+                            @if($course->published)
+                                <div class="flex items-center space-x-1 text-sm">
+                                    <i class="mdi mdi-check-circle-outline"></i>
+                                    <p>65%</p>
+                                </div>
+                            @else
+                                -
+                            @endif
                         </td>
                         <td class="px-5">
-                            <div class="flex items-center space-x-1 text-sm whitespace-nowrap">
-                                <i class="mdi mdi-emoticon-outline"></i>
-                                <p>50% Useful</p>
-                            </div>
+                            @if($course->published)
+                                <div class="flex items-center space-x-1 text-sm whitespace-nowrap">
+                                    <i class="mdi mdi-emoticon-outline"></i>
+                                    <p>50% Useful</p>
+                                </div>
+                            @else
+                                -
+                            @endif
                         </td>
                         <td class="pr-4 md:pr-5">
                             <div class="flex justify-end items-center space-x-5">
-                                <button class="btn-primary-outline !px-10 text-sm">
+                                <button
+                                    @if(!$course->published) disabled @endif
+                                class="btn-primary-outline !px-10 text-sm"
+                                >
                                     <i class="mdi mdi-plus"></i>
                                     Assign
                                 </button>
                                 <button
-                                    data-template="course_menu_template"
-                                    class="w-5 h-5 hover:bg-gray-400 transition rounded-full flex items-center justify-center text-gray-400 hover:text-white"
+                                    data-menu-template="{{ 'course-settings-'.$course->id }}"
+                                    class="h-5 w-5 hover:bg-gray-400 transition rounded-full flex items-center justify-center text-gray-400 hover:text-white"
                                     type="button"
                                 >
                                     <i class="mdi mdi-dots-vertical text-2xl"></i>
                                 </button>
+                                <x-menu-template.course-settings :key="$course->id" :course="$course"/>
                             </div>
                         </td>
                     </tr>
@@ -149,29 +166,4 @@
             </table>
         </div>
     @endif
-
-    <template id="course_menu_template">
-        <ul class="w-44 py-1">
-            <li class="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
-                <i class="mdi mdi-lock-outline mr-1 text-lg"></i>
-                Lock Course
-            </li>
-            <li class="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
-                <i class="mdi mdi-pencil-outline mr-1 text-lg opacity-50"></i>
-                Edit Course
-            </li>
-            <li class="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
-                <i class="mdi mdi-history mr-1 text-lg opacity-50"></i>
-                Edit History
-            </li>
-            <li class="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
-                <i class="mdi mdi-export-variant mr-1 text-lg opacity-50"></i>
-                Export Course
-            </li>
-            <li class="hover:bg-red-100 text-red-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
-                <i class="mdi mdi-trash-can-outline mr-1 text-lg opacity-50"></i>
-                Delete Course
-            </li>
-        </ul>
-    </template>
 </div>

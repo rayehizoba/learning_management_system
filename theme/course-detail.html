@@ -46,7 +46,7 @@
         }
     </style>
 </head>
-<body x-data="{open: false, tab: 0, tabs: ['Content', 'Statistic', 'Learner']}" class="relative">
+<body x-data="{open: $persist(true), tab: 0, tabs: ['Content', 'Statistic', 'Learner']}" class="relative">
 
 <main class="h-screen w-screen overflow-hidden relative flex">
     <!--  LHS: Main Menu  -->
@@ -92,7 +92,8 @@
 
             <section class="p-4 md:p-5 space-y-5">
                 <!-- Cover Image -->
-                <header class="group aspect-[5/2] rounded-lg bg-gray-200 w-full relative overflow-hidden">
+                <header class="group aspect-[5/2] rounded-lg bg-gray-200 w-full relative overflow-hidden grid place-content-center">
+                    <i class="mdi mdi-image text-9xl text-gray-100"></i>
                     <div
                         class="md:pointer-events-none group-hover:pointer-events-auto md:opacity-0 group-hover:opacity-100 transition absolute inset-0 top-1/2 md:top-0 bg-gradient-to-b from-transparent to-black/10 md:to-black/25 grid place-content-end">
                         <input type="file" x-ref="cover" accept="image/*" class="hidden"/>
@@ -210,7 +211,7 @@
             <section x-show="tab == 0" class="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x">
                 <div x-data="{ expand: true }" class="md:w-1/4">
                     <ul
-                        :class="expand ? 'max-h-screen':'max-h-0'"
+                        :class="expand ? 'max-h-[1000vh] border-b':'max-h-0'"
                         class="md:max-h-fit overflow-hidden transition-all flex-1 divide-y divide-gray-200"
                     >
                         <template x-for="i in 7" :key="i" hidden>
@@ -229,8 +230,8 @@
                             </li>
                         </template>
                     </ul>
-                    <div @click="expand = !expand" class="p-4 border-t font-bold hover:bg-gray-100 md:hidden text-gray-500">
-                        <i class="mdi mdi-unfold-more-horizontal text-xl text-gray-300"></i>
+                    <div @click="expand = !expand" class="p-4 border-t font-bold bg-gray-100 hover:bg-teal-100 md:hidden flex items-center">
+                        <i class="mdi mdi-unfold-more-horizontal text-2xl text-gray-400"></i>
                         <span x-text="expand ? 'Hide Course Sections':'View Course Sections'">
                             View Course Sections
                         </span>
@@ -458,6 +459,7 @@
 <figure class="fixed inset-0 bg-gradient-to-tr from-[#41b8b0] via-[#f0bc05] to-[#e4f7ee] opacity-25 -z-10">
 </figure>
 
+<script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
 <script src="//unpkg.com/alpinejs" defer></script>
 <script src="//unpkg.com/@popperjs/core@2"></script>
 <script src="//unpkg.com/tippy.js@6"></script>

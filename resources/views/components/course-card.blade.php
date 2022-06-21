@@ -5,14 +5,15 @@
         <div class="p-3 flex items-center justify-between">
             <x-published-state :published="$course->published"/>
             <button
-                data-template="course_menu_template"
+                data-menu-template="{{ 'course-settings-'.$course->id }}"
                 class="h-5 w-5 hover:bg-gray-400 transition rounded-full flex items-center justify-center text-gray-400 hover:text-white"
                 type="button"
             >
                 <i class="mdi mdi-dots-horizontal text-2xl"></i>
             </button>
+            <x-menu-template.course-settings :key="$course->id" :course="$course"/>
         </div>
-        <a href="{{ route('course-detail', ['id' => $course->id]) }}" class="group">
+        <a href="{{ route('course-detail', ['course_id' => $course->id]) }}" class="group">
             <figure class="w-full aspect-[3/1] bg-gray-300 text-gray-100 grid place-content-center">
                 <i class="mdi mdi-image text-5xl"></i>
             </figure>
@@ -67,7 +68,10 @@
     @endif
 
     <footer class="p-4">
-        <button class="btn-primary-outline w-full">
+        <button
+            @if(!$course->published) disabled @endif
+            class="btn-primary-outline w-full"
+        >
             <i class="mdi mdi-plus"></i>
             Assign
         </button>

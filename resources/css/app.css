@@ -8,7 +8,7 @@
     }
 
     .btn {
-        @apply p-2 rounded-md whitespace-nowrap transition flex items-center justify-center font-semibold text-sm;
+        @apply p-2 px-3 md:px-4 rounded-md whitespace-nowrap transition flex items-center justify-center font-semibold text-sm;
     }
 
     .btn-primary {
@@ -16,7 +16,7 @@
     }
 
     .btn-outline {
-        @apply border text-gray-400 btn hover:bg-gray-50;
+        @apply border text-gray-400 btn hover:bg-gray-50 bg-white;
     }
 
     .btn-primary-outline {

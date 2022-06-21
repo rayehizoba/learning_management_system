@@ -26,13 +26,17 @@ Route::get('/courses', function () {
     return view('courses');
 })->name('courses');
 
-Route::get('/courses/{id}', function () {
-    return view('course-detail');
-})->name('course-detail');
-
-Route::get('/create-course', function () {
-    return view('create-course');
+Route::get('/courses/create', function () {
+    return view('edit-course');
 })->name('create-course');
+
+Route::get('/courses/{course_id}/edit', function ($course_id) {
+    return view('edit-course', ['course_id' => $course_id]);
+})->name('edit-course');
+
+Route::get('/courses/{course_id}', function ($course_id) {
+    return view('course-detail', ['course_id' => $course_id]);
+})->name('course-detail');
 
 Route::get('/quizes', function () {
     return view('quizes');

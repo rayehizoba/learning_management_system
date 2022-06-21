@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('course_id')->constrained();
+            $table->integer('sort_order')->default(0);
+            $table->json('content');
             $table->timestamps();
         });
     }

@@ -64,6 +64,11 @@
                                     <div class="text-xl md:text-2xl font-bold">
                                         {{ $title }}
                                     </div>
+                                    @isset($subtitle)
+                                        <div>
+                                            {{ $subtitle }}
+                                        </div>
+                                    @endisset
                                 @else
                                     <div class="text-xl md:text-2xl font-semibold">
                                         Welcome, Raymond 👋
@@ -78,73 +83,21 @@
                             <ul class="flex space-x-3 w-1/2 md:w-auto">
                                 <li class="js-tippy-parent">
                                     <button
-                                        data-template="new_menu_template"
-                                        class="btn-primary h-9 aspect-square"
+                                        data-menu-template="new"
+                                        class="btn-primary h-9 aspect-square !px-0"
                                         type="button"
                                     >
                                         <i class="mdi mdi-plus text-xl"></i>
                                     </button>
-
-                                    <template id="new_menu_template">
-                                        <ul class="w-52 py-1">
-                                            <li class="text-gray-400 px-1 text-xs mb-1 font-semibold">
-                                                Content
-                                            </li>
-                                            <li>
-                                                <a
-                                                    href="{{ route('create-course') }}"
-                                                    class="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center"
-                                                >
-                                                    <i class="mdi mdi-plus mr-1 text-lg"></i>
-                                                    New Course
-                                                </a>
-                                            </li>
-                                            <li class="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
-                                                <i class="mdi mdi-plus mr-1 text-lg"></i>
-                                                New Quiz
-                                            </li>
-                                            <li class="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
-                                                <i class="mdi mdi-plus mr-1 text-lg"></i>
-                                                New Manual
-                                            </li>
-
-                                            <li class="border-t -mx-2 my-2"></li>
-
-                                            <li class="text-gray-400 px-1 text-xs mb-1 font-semibold">
-                                                Users
-                                            </li>
-                                            <li class="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
-                                                <i class="mdi mdi-plus mr-1 text-lg"></i>
-                                                Add New User
-                                            </li>
-                                            <li class="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
-                                                <i class="mdi mdi-plus mr-1 text-lg"></i>
-                                                Create New Group
-                                            </li>
-
-                                            <li class="border-t -mx-2 my-2"></li>
-
-                                            <li class="text-gray-400 px-1 text-xs mb-1 font-semibold">
-                                                Files & Folders
-                                            </li>
-                                            <li class="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
-                                                <i class="mdi mdi-plus mr-1 text-lg"></i>
-                                                Upload File
-                                            </li>
-                                            <li class="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
-                                                <i class="mdi mdi-plus mr-1 text-lg"></i>
-                                                Create New Folder
-                                            </li>
-                                        </ul>
-                                    </template>
+                                    <x-menu-template.new/>
                                 </li>
                                 <li>
-                                    <button class="btn-outline h-9 aspect-square">
+                                    <button class="btn-outline h-9 aspect-square !px-0">
                                         <i class="mdi mdi-bell-outline text-xl"></i>
                                     </button>
                                 </li>
                                 <li>
-                                    <button class="btn-outline h-9 aspect-square">
+                                    <button class="btn-outline h-9 aspect-square !px-0">
                                         <i class="mdi mdi-magnify text-xl"></i>
                                     </button>
                                 </li>
@@ -181,9 +134,9 @@
 </figure>
 
 <!-- Scripts -->
-<script src="//unpkg.com/alpinejs" defer></script>
-<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
 <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.js" integrity="sha512-JCRiGqeZmFnnSl3E68K2QpL8Pwvp4PKAqekg41WWUfjqCnKJEv1DvZJdi76q/XFt6VzZ3V4bCE51NkDQ+dOJKA==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 @livewireScripts
 @stack('scripts')
 @livewire('livewire-ui-modal')
@@ -202,10 +155,10 @@
 
     // tooltips initialization
     function initializeTippy() {
-        document.querySelectorAll('[data-template]').forEach(btn => {
+        document.querySelectorAll('[data-menu-template]').forEach(btn => {
             tippy(btn, {
                 content(reference) {
-                    const id = reference.getAttribute('data-template');
+                    const id = reference.getAttribute('data-menu-template');
                     const template = document.getElementById(id);
                     return template.innerHTML;
                 },
