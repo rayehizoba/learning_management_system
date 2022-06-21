@@ -152,10 +152,10 @@
 
     <template id="course_menu_template">
         <ul class="w-44 py-1">
-            {{--            <li class="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">--}}
-            {{--                <i class="mdi mdi-lock-outline mr-1 text-lg"></i>--}}
-            {{--                Lock Course--}}
-            {{--            </li>--}}
+            <li class="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+                <i class="mdi mdi-lock-outline mr-1 text-lg"></i>
+                Lock Course
+            </li>
             <li class="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
                 <i class="mdi mdi-pencil-outline mr-1 text-lg opacity-50"></i>
                 Edit Course

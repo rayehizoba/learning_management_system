@@ -120,11 +120,44 @@
                             <i class="mdi mdi-eye-outline text-lg"></i>
                             <span>Preview as Learner</span>
                         </button>
-                        <button class="btn-outline w-12 aspect-square font-semibold grid place-content-center">
+                        <button
+                            data-template="course_menu_template"
+                            class="btn-outline w-12 aspect-square font-semibold grid place-content-center"
+                        >
                             <i class="mdi mdi-cog-outline text-lg"></i>
                         </button>
                     </ul>
                 </div>
+
+                <template id="course_menu_template">
+                    <ul class="w-44 py-1">
+                        <li class="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+                            <i class="mdi mdi-lock-outline mr-1 text-lg opacity-50"></i>
+                            Lock Course
+                            <label class="w-10 aspect-[2/1] relative ml-auto rounded-full">
+                                <input type="checkbox" class="sr-only peer">
+                                <span class="absolute inset-0 rounded-full bg-gray-100 peer-checked:bg-teal-100 transition border peer-checked:border-teal-500"></span>
+                                <span class="w-1/2 aspect-[1/1] rounded-full shadow bg-white transform scale-75 transition-all left-0 absolute peer-checked:left-1/2 peer-checked:bg-teal-500"></span>
+                            </label>
+                        </li>
+                        <li class="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+                            <i class="mdi mdi-pencil-outline mr-1 text-lg opacity-50"></i>
+                            Edit Course
+                        </li>
+                        <li class="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+                            <i class="mdi mdi-history mr-1 text-lg opacity-50"></i>
+                            Edit History
+                        </li>
+                        <li class="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+                            <i class="mdi mdi-export-variant mr-1 text-lg opacity-50"></i>
+                            Export Course
+                        </li>
+                        <li class="hover:bg-red-100 text-red-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+                            <i class="mdi mdi-trash-can-outline mr-1 text-lg opacity-50"></i>
+                            Delete Course
+                        </li>
+                    </ul>
+                </template>
 
                 <ul class="flex flex-wrap items-center space-x-3 text-gray-400">
                     <li>
@@ -353,7 +386,7 @@
                         <tr>
                             <th class="pl-5 py-3 font-normal">
                                 <div class="flex items-center space-x-3">
-                                    <label class="text-3xl text-teal-500">
+                                    <label class="text-2xl text-teal-500">
                                         <input type="checkbox" class="peer sr-only"/>
                                         <i class="mdi mdi-checkbox-marked hidden peer-checked:block"></i>
                                         <i class="mdi mdi-checkbox-blank-outline peer-checked:hidden"></i>
@@ -379,7 +412,7 @@
                             <tr>
                                 <td class="pl-5 py-5">
                                     <div class="flex items-center space-x-3">
-                                        <label class="text-3xl text-teal-500">
+                                        <label class="text-2xl text-teal-500">
                                             <input type="checkbox" class="peer sr-only"/>
                                             <i class="mdi mdi-checkbox-marked hidden peer-checked:block"></i>
                                             <i class="mdi mdi-checkbox-blank-outline peer-checked:hidden"></i>
@@ -391,7 +424,7 @@
                                 <td class="px-5">
                                     <p>Dec 29, 2022</p>
                                 </td>
-                                <td class="px-5 xl:max-w-[12ch]">
+                                <td class="px-5 lg:max-w-[16ch] xl:max-w-[12ch]">
                                     <div class="space-y-2">
                                         <div class="flex justify-between items-center space-x-5">
                                             <p class="text-xs text-gray-400 font-semibold">Completed</p>
@@ -429,42 +462,25 @@
 <script src="//unpkg.com/@popperjs/core@2"></script>
 <script src="//unpkg.com/tippy.js@6"></script>
 <script>
-    const observer = new MutationObserver(function (mutations) {
-        mutations.forEach(function (mutation) {
-            if (mutation.addedNodes.length) {
-                initializeTippy();
-            }
-        });
-    });
-    observer.observe(document.querySelector('.js-tippy-parent'), {
-        childList: true,
-    });
-
-    initializeTippy();
-
+    // tooltips initialization
     function initializeTippy() {
-        const config = {
-            interactive: true,
-            trigger: 'click',
-            allowHTML: true,
-            appendTo: 'parent',
-            theme: 'light',
-            placement: 'bottom-end',
-            content: getContent,
-        };
-
-        tippy('[data-folder-popup]', config)
-        tippy('[data-folder-color-popup]', {
-            ...config,
-            placement: 'right-start',
+        document.querySelectorAll('[data-template]').forEach(btn => {
+            tippy(btn, {
+                content(reference) {
+                    const id = reference.getAttribute('data-template');
+                    const template = document.getElementById(id);
+                    return template.innerHTML;
+                },
+                interactive: true,
+                trigger: 'click',
+                allowHTML: true,
+                theme: 'light',
+                placement: 'bottom-end',
+            })
         })
     }
 
-    function getContent(reference) {
-        const id = reference.getAttribute('data-template');
-        const template = document.getElementById(id);
-        return template.innerHTML;
-    }
+    initializeTippy()
 </script>
 
 </body>
