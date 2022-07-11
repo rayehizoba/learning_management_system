@@ -130,7 +130,7 @@
 </main>
 
 {{-- Linear Gradient BG --}}
-<figure class="fixed inset-0 bg-gradient-to-tr from-[#41b8b0] via-[#f0bc05] to-[#e4f7ee] opacity-25 -z-10">
+<figure class="fixed inset-0 bg-gradient-to-tr from-[#e4f7ee] via-[#f0bc05] to-[#41b8b0] opacity-[20%] -z-10">
 </figure>
 
 <!-- Scripts -->

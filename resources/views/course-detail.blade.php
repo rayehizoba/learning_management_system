@@ -1,12 +1,12 @@
 <x-layout title="Course Detail">
     <x-slot:subtitle>
         <ul class="flex space-x-1 text-xs">
-            <li>Contents</li>
+            <li>Content</li>
             <li>/</li>
             <li>
                 <a
                     href="{{ route('courses') }}"
-                    class="text-gray-400 hover:underline"
+                    class="hover:underline"
                 >Courses</a>
             </li>
             <li>/</li>

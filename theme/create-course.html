@@ -28,7 +28,7 @@
     <style type="text/tailwindcss">
         @layer utilities {
             .btn {
-                @apply p-2 px-4 rounded-md whitespace-nowrap transition flex items-center justify-center text-sm font-medium hover:bg-gray-50;
+                @apply p-2 px-3 md:px-4 rounded-md whitespace-nowrap transition flex items-center justify-center text-sm;
             }
 
             .btn-primary {
@@ -36,7 +36,7 @@
             }
 
             .btn-outline {
-                @apply border text-gray-400 btn;
+                @apply bg-white border text-gray-400 btn hover:bg-gray-50;
             }
 
             .btn-primary-outline {
@@ -48,6 +48,10 @@
                 content: attr(data-placeholder);
                 opacity: 0.5;
             }
+
+            .form-input {
+                @apply bg-white rounded border p-2 px-3 outline-none focus:border-teal-500 transition;
+            }
         }
     </style>
 </head>
@@ -56,55 +60,68 @@
 <main class="h-screen w-screen overflow-hidden relative flex">
     <!--  LHS: Main Menu  -->
     <aside class="absolute inset-y-0 left-0 w-72 lg:w-3/12 xl:w-1/5 flex">
-        <div class="flex flex-col space-y-5 divide-y divide-white/50 overflow-y-auto flex-1">
-            <header class="flex items-center space-x-2 relative group mt-10 px-3">
-                <a href="#" class="absolute inset-0"></a>
-                <div
-                    class="block border border-teal-500 rounded-full w-8 h-8 md:w-6 md:h-6 grid place-content-center group-hover:bg-teal-500 group-hover:text-white transition">
-                    <i class="mdi mdi-chevron-left text-2xl"></i>
+        <div class="flex flex-col divide-y divide-white/50 overflow-y-auto flex-1">
+            <header class="sticky top-0 backdrop-blur divide-y divide-white/50">
+                <div class="flex items-center space-x-2 relative group mt-5 px-3 py-5">
+                    <a href="#" class="absolute inset-0"></a>
+                    <div
+                        class="block border border-teal-500 rounded-full w-8 h-8 md:w-6 md:h-6 grid place-content-center group-hover:bg-teal-500 group-hover:text-white transition">
+                        <i class="mdi mdi-chevron-left text-2xl"></i>
+                    </div>
+                    <div class="font-medium">
+                        Back to Course List
+                    </div>
                 </div>
-                <div class="font-medium">
-                    Back to Course List
-                </div>
+                <ul class="flex-1 divide-y divide-white/50">
+                    <li
+                        @click="section = null"
+                        :class="section == null ? '!border-l-yellow-400 bg-blue-100/50':'!border-l-gray-400 hover:bg-gray-100/50'"
+                        class="border-l-4 p-4 cursor-pointer transition-all"
+                    >
+                        <p class="">
+                            General Information
+                        </p>
+                        <p class="text-gray-400 text-xs">
+                            Updated: March 17, 2021 4:22pm
+                        </p>
+                    </li>
+                    <li class="p-5 py-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-5 font-bold">
+                                <p class="">
+                                    Sections
+                                </p>
+                                <p x-text="sections" class="text-gray-400">
+                                    0
+                                </p>
+                            </div>
+                            <button @click="sections++" class="btn-primary h-9 w-9 !text-xl">
+                                <i class="mdi mdi-plus"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
             </header>
-
             <ul class="flex-1 divide-y divide-white/50">
-                <li class="border-l-4 border-l-gray-400 p-4 py-2 bg-red-100/30">
-                    <p class="">
-                        General Information
-                    </p>
-                    <p class="text-gray-400 text-xs">
-                        Updated: March 17, 2021 4:22pm
-                    </p>
-                </li>
-                <li class="p-5 py-4">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-5 font-bold">
-                            <p class="">
-                                Sections
-                            </p>
-                            <p class="text-gray-400">
-                                0
-                            </p>
+                <template x-for="i in sections" hidden :key="i">
+                    <li
+                        @click="section = i"
+                        :class="section == i ? '!border-l-yellow-400 bg-blue-100/50':'!border-l-gray-400 hover:bg-gray-100/50'"
+                        class="border-l-4 p-4 px-1 cursor-pointer transition-all"
+                    >
+                        <div class="flex items-center space-x-1">
+                            <i class="mdi mdi-drag-vertical text-gray-400 text-2xl cursor-grab"></i>
+                            <div>
+                                <p x-text="'Section - '+i" class="">
+                                    Section - 1
+                                </p>
+                                <p class="text-gray-400 text-xs">
+                                    Updated: March 17, 2021 4:22pm
+                                </p>
+                            </div>
                         </div>
-                        <button class="btn-primary h-9 w-9 !text-xl">
-                            <i class="mdi mdi-plus"></i>
-                        </button>
-                    </div>
-                </li>
-                <li class="border-l-4 !border-l-yellow-400 p-4 px-1 bg-green-100">
-                    <div class="flex items-center space-x-1">
-                        <i class="mdi mdi-drag-vertical text-gray-400 text-2xl cursor-grab"></i>
-                        <div>
-                            <p class="">
-                                Section - 1
-                            </p>
-                            <p class="text-gray-400 text-xs">
-                                Updated: March 17, 2021 4:22pm
-                            </p>
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                </template>
             </ul>
 
             <div class="space-y-3 sticky bottom-0 backdrop-blur p-5 pt-3">
@@ -140,7 +157,7 @@
                         </button>
                         <div class="lg:hidden h-10 md:h-7 border-l border-gray-300 mr-3 md:mr-5"></div>
                         <div class="flex flex-col md:flex-row md:flex-1 md:items-center md:justify-between">
-                            <div class="text-xl font-bold">
+                            <div class="text-lg font-bold">
                                 Create Course
                             </div>
                             <p class="text-xs md:text-sm text-gray-400">
@@ -170,148 +187,224 @@
                 </div>
             </header>
 
-            <header class="p-3 px-4 md:px-7 border-b flex items-start justify-between space-x-3">
-                <span
-                    contenteditable
-                    role="textbox"
-                    data-placeholder="Section Title"
-                    class="text-2xl lg:text-3xl font-semibold border-b border-dashed before:content-['Section Title'] before:text-gray-400 outline-none"
-                ></span>
-                <div class="flex items-center space-x-5 text-gray-400">
-                    <div class="flex items-center space-x-5">
-                        <button class="hover:opacity-50">
-                            <i class="mdi mdi-undo text-2xl"></i>
-                        </button>
-                        <button class="hover:opacity-50">
-                            <i class="mdi mdi-redo text-2xl"></i>
-                        </button>
-                    </div>
-                    <div class="h-8 border-l"></div>
-                    <button class="flex items-center hover:opacity-50">
-                        <i class="mdi mdi-cog-outline text-2xl mr-1"></i>
-                        Menu
-                    </button>
-                </div>
-            </header>
-
-            <div class="max-w-4xl mx-auto p-5 space-y-3">
-                <article class="space-y-3">
-                    <p
-                        contenteditable
-                        role="textbox"
-                        data-placeholder="New Text"
-                        class="focus:outline-none"
-                    >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti deserunt, est eum quae quis
-                        reprehenderit! Accusantium excepturi expedita mollitia! Ea eius est facere fugiat laboriosam
-                        repellat repellendus veniam! Aliquam, quas.</p>
-
-                    <h1
-                        contenteditable
-                        role="textbox"
-                        data-placeholder="Header 1"
-                        class="focus:outline-none text-3xl"
-                    >
-                        Header 1
-                    </h1>
-
-                    <h2
-                        contenteditable
-                        role="textbox"
-                        data-placeholder="Header 2"
-                        class="focus:outline-none text-2xl"
-                    >
-                        Header 2
-                    </h2>
-
-                    <h3
-                        contenteditable
-                        role="textbox"
-                        data-placeholder="Header 3"
-                        class="focus:outline-none text-xl"
-                    >
-                        Header 3
-                    </h3>
-
-                    <div class="figure aspect-video w-full bg-gray-200 rounded-lg relative">
-                        <button
-                            class="absolute top-0 right-0 hover:opacity-75 rounded-full bg-black text-white grid place-content-center w-6 h-6 -m-3"
-                            type="button"
-                        >
-                            <i class="mdi mdi-close"></i>
+            <section x-show="section == null" class="max-w-4xl mx-auto p-5">
+                <form class="space-y-7">
+                    <div class="flex space-x-5 justify-between">
+                        <div class="space-y-1">
+                            <h1 class="text-xl md:text-2xl font-bold">
+                                Set the General Information
+                            </h1>
+                            <p class="text-gray-400 text-xs md:text-sm font-medium">
+                                This information will attract learners to take this course, and help them find it easily.
+                            </p>
+                        </div>
+                        <button type="button" class="flex items-center hover:opacity-50 text-gray-400">
+                            <i class="mdi mdi-cog-outline text-2xl mr-1"></i>
+                            Menu
                         </button>
                     </div>
-                </article>
 
-                <ul class="flex items-center space-x-2">
-                    <li>
-                        <button
-                            data-add-content
-                            class="btn text-gray-400 !py-1 !px-2"
-                        >
-                            <i class="mdi mdi-plus text-2xl mr-1"></i>
-                            Content
-                        </button>
-                        <div
-                            data-add-content-template
-                            style="display: none;"
-                            class="divide-y-2 -mx-2"
-                        >
-                            <div class="font-medium">
-                                <p class="p-4 pb-2 text-xs text-gray-400">
-                                    Basic blocks
-                                </p>
-                                <ul class="space-y-2 min-w-[18rem] py-2">
-                                    <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
-                                        <i class="mdi mdi-format-text text-2xl text-gray-400 mr-3"></i>
-                                        <span>Text</span>
-                                    </li>
-                                    <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
-                                        <i class="mdi mdi-format-list-bulleted text-2xl text-gray-400 mr-3"></i>
-                                        <span>Bullet List</span>
-                                    </li>
-                                    <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
-                                        <i class="mdi mdi-format-list-numbered text-2xl text-gray-400 mr-3"></i>
-                                        <span>Numbered List</span>
-                                    </li>
-                                    <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
-                                        <i class="mdi mdi-format-header-1 text-2xl text-gray-400 mr-3"></i>
-                                        <span>Header 1</span>
-                                    </li>
-                                    <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
-                                        <i class="mdi mdi-format-header-2 text-2xl text-gray-400 mr-3"></i>
-                                        <span>Header 2</span>
-                                    </li>
-                                    <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
-                                        <i class="mdi mdi-format-header-3 text-2xl text-gray-400 mr-3"></i>
-                                        <span>Header 3</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="font-medium">
-                                <p class="p-4 pb-2 text-xs text-gray-400">
-                                    Media
-                                </p>
-                                <ul class="space-y-2 min-w-[18rem] py-2">
-                                    <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
-                                        <i class="mdi mdi-image-outline text-2xl text-gray-400 mr-3"></i>
-                                        <span>Image</span>
-                                    </li>
-                                    <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
-                                        <i class="mdi mdi-video-outline text-2xl text-gray-400 mr-3"></i>
-                                        <span>Video</span>
-                                    </li>
-                                </ul>
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <div class="space-y-2 md:col-span-2">
+                            <label class="font-bold">Course Cover</label>
+                            <div class="rounded-md group aspect-[5/2] md:aspect-[6/2] bg-gray-200 w-full relative grid place-content-center">
+                                <i class="mdi mdi-image text-7xl md:text-9xl text-gray-100"></i>
+                                <button
+                                    class="absolute top-0 right-0 hover:opacity-75 rounded-full bg-black text-white grid place-content-center w-7 aspect-square -m-3.5"
+                                    type="button"
+                                >
+                                    <i class="mdi mdi-close"></i>
+                                </button>
+                                <div
+                                    class="rounded-md md:pointer-events-none group-hover:pointer-events-auto md:opacity-0 group-hover:opacity-100 transition absolute inset-0 top-0 bg-gradient-to-b from-transparent to-black/25 grid place-content-end">
+                                    <input type="file" x-ref="cover" accept="image/*" class="hidden"/>
+                                    <button
+                                        @click="$refs.cover.click()"
+                                        class="btn-outline m-3 md:m-5 font-semibold flex items-center space-x-1 text-sm"
+                                    >
+                                        <i class="mdi mdi-camera-outline text-lg"></i>
+                                        <span>Upload Cover</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </li>
-                    <li>
-                        <button data-library class="btn text-gray-400 !py-1 !px-2">
-                            <i class="mdi mdi-newspaper-variant-outline text-2xl mr-1"></i>
-                            Library
+
+                        <div class="md:col-span-2 space-y-2 flex flex-col">
+                            <label class="font-bold after:content-['*'] after:text-red-600">
+                                Course Name
+                            </label>
+                            <input class="form-input"/>
+                        </div>
+
+                        <div class="space-y-2 flex flex-col">
+                            <label class="font-bold after:content-['*'] after:text-red-600">
+                                Course Category
+                            </label>
+                            <select class="form-input"></select>
+                        </div>
+
+                        <div class="space-y-2 flex flex-col">
+                            <label class="font-bold after:content-['*'] after:text-red-600">
+                                Focus Area
+                            </label>
+                            <select class="form-input"></select>
+                        </div>
+
+                        <div class="md:col-span-2 space-y-2 flex flex-col">
+                            <label class="font-bold">
+                                Course Description
+                            </label>
+                            <textarea rows="5" class="form-input"></textarea>
+                        </div>
+                    </div>
+
+                </form>
+            </section>
+
+            <section x-show="section != null">
+                <header class="p-3 px-4 md:px-7 border-b flex items-start justify-between space-x-3">
+                    <span
+                        contenteditable
+                        role="textbox"
+                        data-placeholder="Section Title"
+                        class="text-xl lg:text-2xl font-semibold border-b border-dashed before:content-['Section Title'] before:text-gray-400 outline-none"
+                    ></span>
+                    <div class="flex items-center space-x-5 text-gray-400">
+                        <div class="flex items-center space-x-5">
+                            <button class="hover:opacity-50">
+                                <i class="mdi mdi-undo text-2xl"></i>
+                            </button>
+                            <button class="hover:opacity-50">
+                                <i class="mdi mdi-redo text-2xl"></i>
+                            </button>
+                        </div>
+                        <div class="h-8 border-l"></div>
+                        <button class="flex items-center hover:opacity-50">
+                            <i class="mdi mdi-cog-outline text-2xl mr-1"></i>
+                            Menu
                         </button>
-                    </li>
-                </ul>
-            </div>
+                    </div>
+                </header>
+
+                <div class="max-w-4xl mx-auto p-5 space-y-3">
+                    <article class="space-y-3">
+                        <p
+                            contenteditable
+                            role="textbox"
+                            data-placeholder="New Text"
+                            class="focus:outline-none"
+                        >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti deserunt, est eum quae quis
+                            reprehenderit! Accusantium excepturi expedita mollitia! Ea eius est facere fugiat laboriosam
+                            repellat repellendus veniam! Aliquam, quas.</p>
+
+                        <h1
+                            contenteditable
+                            role="textbox"
+                            data-placeholder="Header 1"
+                            class="focus:outline-none text-3xl"
+                        >
+                            Header 1
+                        </h1>
+
+                        <h2
+                            contenteditable
+                            role="textbox"
+                            data-placeholder="Header 2"
+                            class="focus:outline-none text-2xl"
+                        >
+                            Header 2
+                        </h2>
+
+                        <h3
+                            contenteditable
+                            role="textbox"
+                            data-placeholder="Header 3"
+                            class="focus:outline-none text-xl"
+                        >
+                            Header 3
+                        </h3>
+
+                        <div class="figure aspect-video w-full bg-gray-200 rounded-lg relative">
+                            <button
+                                class="absolute top-0 right-0 hover:opacity-75 rounded-full bg-black text-white grid place-content-center w-6 h-6 -m-3"
+                                type="button"
+                            >
+                                <i class="mdi mdi-close"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <ul class="flex items-center space-x-2">
+                        <li>
+                            <button
+                                data-add-content
+                                class="btn text-gray-400 !py-1 !px-2"
+                            >
+                                <i class="mdi mdi-plus text-2xl mr-1"></i>
+                                Content
+                            </button>
+                            <div
+                                data-add-content-template
+                                style="display: none;"
+                                class="divide-y-2 -mx-2"
+                            >
+                                <div class="font-medium">
+                                    <p class="p-4 pb-2 text-xs text-gray-400">
+                                        Basic blocks
+                                    </p>
+                                    <ul class="space-y-2 min-w-[18rem] py-2">
+                                        <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
+                                            <i class="mdi mdi-format-text text-2xl text-gray-400 mr-3"></i>
+                                            <span>Text</span>
+                                        </li>
+                                        <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
+                                            <i class="mdi mdi-format-list-bulleted text-2xl text-gray-400 mr-3"></i>
+                                            <span>Bullet List</span>
+                                        </li>
+                                        <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
+                                            <i class="mdi mdi-format-list-numbered text-2xl text-gray-400 mr-3"></i>
+                                            <span>Numbered List</span>
+                                        </li>
+                                        <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
+                                            <i class="mdi mdi-format-header-1 text-2xl text-gray-400 mr-3"></i>
+                                            <span>Header 1</span>
+                                        </li>
+                                        <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
+                                            <i class="mdi mdi-format-header-2 text-2xl text-gray-400 mr-3"></i>
+                                            <span>Header 2</span>
+                                        </li>
+                                        <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
+                                            <i class="mdi mdi-format-header-3 text-2xl text-gray-400 mr-3"></i>
+                                            <span>Header 3</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="font-medium">
+                                    <p class="p-4 pb-2 text-xs text-gray-400">
+                                        Media
+                                    </p>
+                                    <ul class="space-y-2 min-w-[18rem] py-2">
+                                        <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
+                                            <i class="mdi mdi-image-outline text-2xl text-gray-400 mr-3"></i>
+                                            <span>Image</span>
+                                        </li>
+                                        <li class="px-4 flex items-center space-x-1 hover:bg-gray-100">
+                                            <i class="mdi mdi-video-outline text-2xl text-gray-400 mr-3"></i>
+                                            <span>Video</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <button data-library class="btn text-gray-400 !py-1 !px-2">
+                                <i class="mdi mdi-newspaper-variant-outline text-2xl mr-1"></i>
+                                Library
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </section>
         </div>
     </section>
 </main>
@@ -326,6 +419,8 @@
     function page() {
         return {
             open: true,
+            sections: 3,
+            section: null,
             init() {
                 const template = document.querySelector('[data-add-content-template]');
                 template.style.display = 'block';

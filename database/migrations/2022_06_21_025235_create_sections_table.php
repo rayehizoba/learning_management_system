@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->foreignId('course_id')->constrained();
             $table->integer('sort_order')->default(0);
-            $table->json('content');
+            $table->json('content')->nullable();
             $table->timestamps();
         });
     }

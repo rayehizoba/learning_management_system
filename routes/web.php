@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\EditCourseSection;
 use App\Http\Livewire\FilesFolders;
 use Illuminate\Support\Facades\Route;
 
@@ -30,9 +31,8 @@ Route::get('/courses/create', function () {
     return view('edit-course');
 })->name('create-course');
 
-Route::get('/courses/{course_id}/edit', function ($course_id) {
-    return view('edit-course', ['course_id' => $course_id]);
-})->name('edit-course');
+Route::get('/courses/{course_id}/edit', EditCourseSection::class)
+    ->name('edit-course');
 
 Route::get('/courses/{course_id}', function ($course_id) {
     return view('course-detail', ['course_id' => $course_id]);

@@ -11,6 +11,10 @@
         @apply p-2 px-3 md:px-4 rounded-md whitespace-nowrap transition flex items-center justify-center font-semibold text-sm;
     }
 
+    .btn:disabled {
+        @apply grayscale opacity-50;
+    }
+
     .btn-primary {
         @apply bg-teal-500 hover:bg-teal-600 text-white btn;
     }
@@ -27,5 +31,13 @@
     [contenteditable]:empty:before {
         content: attr(data-placeholder);
         opacity: 0.5;
+    }
+
+    .form-input {
+        @apply bg-white rounded border p-2 px-3 outline-none focus:border-teal-500 transition;
+    }
+
+    .error {
+        @apply text-red-500 text-sm;
     }
 }

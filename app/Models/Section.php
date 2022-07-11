@@ -9,7 +9,9 @@ class Section extends Model
 {
     use HasFactory;
 
-    protected $connection = "mysql";
+//    protected $connection = "mysql";
+
+    protected $guarded = [];
 
     protected $casts = [
         'content' => 'array',

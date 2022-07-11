@@ -10,18 +10,26 @@ use Livewire\Component;
 class EditCourseSections extends Component
 {
     public Collection $sections;
-    public Section $section;
+    public Section|null $section;
+    public Course $course;
 
     public function mount(int $course_id = null)
     {
         if (isset($course_id)) {
-            $course = Course::all()->find($course_id);
-            $this->sections = Collection::make($course->sections);
-            $this->section = $this->sections->first();
+            $this->course = Course::all()->find($course_id);
+            $this->sections = Collection::make($this->course->sections);
         } else {
+            $this->course = Course::firstOrCreate(
+                ['new' => true],
+                ['name' => '']
+            );
             $this->sections = Collection::make();
         }
     }
+
+//    protected $listeners = [
+//        'refreshSection' => 'refreshSection',
+//    ];
 
     public function render()
     {
@@ -30,12 +38,33 @@ class EditCourseSections extends Component
 
     public function addSection()
     {
-        $this->sections->add($section = Section::make());
-        $this->section = $section;
+        \Session::push('course.sections', ['name' => '']);
+//        $this->sections->add(Section::make());
+//        $this->setSectionIndex($this->sections->count() - 1);
     }
 
     public function setSectionIndex(int $index)
     {
-        $this->section = $this->sections[$index];
+        if ($index < 0) {
+            $this->setSection(null);
+        } else {
+            $this->setSection($this->sections[$index]);
+        }
+        $this->emitTo(EditCourseSection::getName(), 'setSectionIndex', $index);
+    }
+
+    public function setSection(Section|null $value)
+    {
+        $this->section = $value;
+        $this->emitTo(
+            EditCourseSection::getName(), 'setSection',
+            $value instanceof Section ? $value->toJson() : $value
+        );
+    }
+
+    public function refreshSection(int $index, $json)
+    {
+        $this->section = Section::make(json_decode($json, true));
+        $this->sections[$index] = $this->section;
     }
 }

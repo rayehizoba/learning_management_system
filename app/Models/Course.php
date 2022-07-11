@@ -9,6 +9,8 @@ class Course extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function sections(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Section::class);

@@ -33,7 +33,7 @@
                     <x-slot:icon>
                         <i class="mdi mdi-clipboard-text-outline"></i>
                     </x-slot:icon>
-                    Contents
+                    Content
                 </x-navigation.link>
                 <x-slot:children>
                     <x-navigation.link :href="route('courses')" :active="Route::is(['courses', 'course-detail'])">
