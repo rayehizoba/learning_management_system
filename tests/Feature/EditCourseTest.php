@@ -15,7 +15,7 @@ class EditCourseTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
-    /** @test */
+//    /** @test */
     public function can_create_course(): void
     {
         $course = new Course(['name' => $this->faker->name()]);
@@ -43,7 +43,7 @@ class EditCourseTest extends TestCase
         $this->assertEmpty(\Session::get('course.sections'));
     }
 
-    /** @test  */
+//    /** @test  */
     public function name_category_and_focus_area_fields_are_required_for_saving_a_course()
     {
         $course = new Course(['name' => '']);

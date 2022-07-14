@@ -10,6 +10,7 @@
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "laravel/ui": "^3.4",
         "livewire/livewire": "^2.10",
         "wire-elements/modal": "^1.0"
     },
@@ -46,6 +47,9 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "test" : [
+            "vendor/bin/phpunit"
         ]
     },
     "extra": {

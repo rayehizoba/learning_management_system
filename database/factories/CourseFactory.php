@@ -19,7 +19,6 @@ class CourseFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'published' => rand(0,1) == 1,
-            'new' => 0,
             'description' => $this->faker->paragraph(),
         ];
     }

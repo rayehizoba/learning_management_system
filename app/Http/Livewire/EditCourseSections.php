@@ -19,8 +19,7 @@ class EditCourseSections extends Component
             $this->course = Course::all()->find($course_id);
             $this->sections = Collection::make($this->course->sections);
         } else {
-            $this->course = Course::firstOrCreate(
-                ['new' => true],
+            $this->course = Course::Create(
                 ['name' => '']
             );
             $this->sections = Collection::make();

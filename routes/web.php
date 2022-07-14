@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::view('/{path?}', 'home')
+    ->where('path', '.*');
+
 Route::get('/', function () {
     return view('welcome');
 })->name('dashboard');
@@ -80,3 +84,7 @@ Route::get('/help', function () {
 Route::get('/settings', function () {
     return view('settings');
 })->name('settings');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
