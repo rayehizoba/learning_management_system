@@ -35,14 +35,12 @@ function CoursesPage() {
         <PageTemplate title="Courses">
             <header className="p-5 pb-0 flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-5">
                 <div className="flex-1 flex flex-col md:flex-row md:items-center md:justify-between">
-                    {coursesFetch
-                        ? <div className="h-6 w-48 rounded bg-gray-100 animate-pulse"></div>
-                        : (
-                            <div className="text-2xl font-bold">
-                                {courses.length} <span className="text-gray-400">Courses in total</span>
-                            </div>
-                        )
-                    }
+                    <div className="text-2xl font-bold">
+                        {coursesFetch
+                            ? <div className="text-gray-400">Fetching Courses...</div>
+                            : <div>{courses.length} <span className="text-gray-400">Courses in total</span></div>
+                        }
+                    </div>
                     <ol className="flex justify-between md:justify-end items-center h-full space-x-7">
                         <ol className="flex items-center h-full space-x-7">
                             <li>
@@ -82,11 +80,9 @@ function CoursesPage() {
                 </div>
             </header>
 
-            {grid && <GridView
-                collection={coursesFetch ? Array(2).fill() : courses}
-                renderItem={(each) => coursesFetch ?
-                    <div className="aspect-square rounded bg-gray-100 animate-pulse"/> :
-                    <CourseGridItem course={each}/>}
+            {grid && coursesFetchSuccess && <GridView
+                collection={courses}
+                renderItem={(each) => <CourseGridItem course={each}/>}
             />}
 
             {grid || (

@@ -9,40 +9,46 @@ import app from "./app/app.reducer";
 import course from "./course/course.reducer";
 import courses from "./courses/courses.reducer";
 import roles from "./roles/roles.reducer";
+import section from "./section/section.reducer";
+import sections from "./sections/sections.reducer";
 import user from "./user/user.reducer";
 import users from "./users/users.reducer";
 
 export const history = createBrowserHistory();
 
 const reducers = combineReducers({
-  // router: connectRouter(history),
-  app,
-  course,
-  courses,
-  roles,
-  user,
-  users,
+    // router: connectRouter(history),
+    app,
+    course,
+    courses,
+    roles,
+    section,
+    sections,
+    user,
+    users,
 });
 
 const persistConfig = {
-  key: 'root',
-  storage,
-  blacklist: [
-      'courses',
-      'course',
-  ],
-  // whitelist: ['user']
+    key: 'root',
+    storage,
+    blacklist: [
+        'course',
+        'courses',
+        'section',
+        'sections',
+    ],
+    // whitelist: ['user']
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 const middlewareComponents = [
-  thunk,
-  // routerMiddleware(history)
+    thunk,
+    // routerMiddleware(history)
 ];
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-  middlewareComponents.push(logger);
+    middlewareComponents.push(logger);
 }
 
 const middleware = applyMiddleware(...middlewareComponents);
