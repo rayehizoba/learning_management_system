@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import PageTemplate from "./PageTemplate";
 import * as coursesActions from "../store/courses/courses.actions";
@@ -13,8 +14,7 @@ import GridView from "../components/GridView";
 import CourseGridItem from "../components/CourseGridItem";
 import PublishedState from "../components/PublishedState";
 import CourseSettingsMenu from "../components/CourseSettingsMenu";
-import Tippy from "@tippyjs/react";
-import {Link} from "react-router-dom";
+import Tippy from "../components/Tippy";
 
 function CoursesPage() {
     const dispatch = useDispatch();
@@ -26,7 +26,9 @@ function CoursesPage() {
     const [grid, setGrid] = React.useState(true);
 
     React.useEffect(() => {
-        dispatch(coursesActions.fetchCourses());
+        if (!coursesFetchSuccess) {
+            dispatch(coursesActions.fetchCourses());
+        }
     }, []);
 
     return (
@@ -113,7 +115,7 @@ function CoursesPage() {
                         </thead>
                         <tbody className="divide-y">
                         {courses.map(each => (
-                            <tr>
+                            <tr key={each.id}>
                                 <td className="pl-4 md:pl-5 py-5">
                                     <a
                                         href="#"

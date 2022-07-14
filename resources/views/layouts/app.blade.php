@@ -22,7 +22,7 @@
 
     <!-- Styles -->
     <meta name=theme-color content=#000>
-{{--    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css"/>--}}
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css"/>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>

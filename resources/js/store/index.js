@@ -27,7 +27,10 @@ const reducers = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-  // blacklist: ['app'],
+  blacklist: [
+      'courses',
+      'course',
+  ],
   // whitelist: ['user']
 };
 

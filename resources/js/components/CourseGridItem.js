@@ -1,8 +1,7 @@
 import React from 'react';
 import PublishedState from "./PublishedState";
-import NewMenu from "./NewMenu";
-import Tippy from "@tippyjs/react";
 import CourseSettingsMenu from "./CourseSettingsMenu";
+import Tippy from "./Tippy";
 
 function CourseGridItem({course}) {
     return (

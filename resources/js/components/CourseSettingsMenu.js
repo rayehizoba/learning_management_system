@@ -1,6 +1,7 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
-function CourseSettingsMenu(props) {
+function CourseSettingsMenu({course}) {
     return (
         <ul className="w-44 py-1">
             <li className="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
@@ -15,13 +16,13 @@ function CourseSettingsMenu(props) {
                 </label>
             </li>
             <li>
-                <a
-                    href="#"
+                <Link
+                    to={`/courses/${course.id}/edit`}
                     className="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center"
                 >
                     <i className="mdi mdi-pencil-outline mr-1 text-lg opacity-50"></i>
                     Edit Course
-                </a>
+                </Link>
             </li>
             <li className="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
                 <i className="mdi mdi-history mr-1 text-lg opacity-50"></i>

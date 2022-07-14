@@ -1,12 +1,11 @@
 import React from 'react';
-import Tippy from "@tippyjs/react";
 import classNames from "classnames";
 import {useSelector} from "react-redux";
+import Tippy from "../components/Tippy";
 import Navigation from "../components/Navigation";
 import AsideToggleBtn from "../components/AsideToggleBtn";
 import {selectAside} from "../store/app/app.selectors";
 import NewMenu from "../components/NewMenu";
-import 'tippy.js/dist/tippy.css';
 
 function PageTemplate({navigation, header, title, subtitle, children}) {
     const aside = useSelector(selectAside);

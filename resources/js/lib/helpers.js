@@ -1,5 +1,5 @@
 import moment from "moment";
-import * as _ from "underscore";
+// import * as _ from "underscore";
 import resolveConfig from 'tailwindcss/resolveConfig';
 
 /**
@@ -120,7 +120,7 @@ export function updateComment(item, data) {
  * @param datetime
  * @returns {*}
  */
-export const dateForHumansComment = (datetime) => moment(datetime).format("H:mm on D MMM YYYY");
+export const dateForHumans = (datetime) => moment(datetime).format("H:mm on D MMM YYYY");
 
 /**
  *
@@ -186,114 +186,114 @@ export const screenIs = (screen = '') => {
  * @param wordsLimit
  * @returns {string}
  */
-export function formatBodyContent(body, wordsLimit) {
-  if (!body) {
-    return "";
-  }
-
-  let uniqueSeparator = Math.floor(Math.random() * 10000000000 + 1);
-
-  let wordsArray = [];
-  let linesArray = body
-    .replace(/<br>/g, uniqueSeparator)
-    .replace(/\n/g, uniqueSeparator)
-    .split(uniqueSeparator);
-
-  let urlsArray = [];
-  let validatedUrlsArray = [];
-  let displayBody = "";
-
-  let linesWordsArray = [];
-
-  _.each(linesArray, (line, index) => {
-    let lineWords = line.split(/\s/);
-    if (lineWords.length > 0) {
-      linesWordsArray[index] = [];
-
-      _.each(lineWords, word => {
-        wordsArray.push(word);
-        linesWordsArray[index].push(word);
-      });
-    }
-  });
-
-  _.each(wordsArray, word => {
-    let trimmedWord = word.trim("!\"#$%&'()*+,-.@:;<=>[\\]^_`{|}~");
-    if (stringIsValidUrl(trimmedWord)) {
-      urlsArray.push(trimmedWord);
-    }
-  });
-
-  _.each(urlsArray, word => {
-    let prefix = "";
-
-    if (
-      word.substr(0, 7) != "http://" &&
-      word.substr(0, 8) != "https://"
-    ) {
-      prefix = "http://";
-    }
-
-    validatedUrlsArray.push({prefix: prefix, url: word});
-  });
-
-  let wordsCounter = 0;
-
-  let lineIndex = 0,
-    wordIndex = 0,
-    line = null,
-    word = null;
-
-  let output = [];
-  while (
-    lineIndex < linesWordsArray.length &&
-    ((wordsLimit && wordsCounter <= wordsLimit) || !wordsLimit)
-    ) {
-    line = linesWordsArray[lineIndex];
-    let newLine = "";
-    while (
-      wordIndex < line.length &&
-      ((wordsLimit && wordsCounter <= wordsLimit) || !wordsLimit)
-      ) {
-      word = line[wordIndex];
-
-      wordsCounter++;
-
-      if (wordIndex != 0) {
-        newLine += " ";
-      }
-
-      if (
-        validatedUrlsArray.length > 0 &&
-        word.indexOf(validatedUrlsArray[0].url) != -1
-      ) {
-        word = word.replace(
-          validatedUrlsArray[0].url,
-          '<a target="_blank" data-no-history="true" class="underline hover:opacity-75" ' +
-          'onclick="event.stopPropagation();" href=' +
-          validatedUrlsArray[0].prefix +
-          validatedUrlsArray[0].url +
-          ">" +
-          validatedUrlsArray[0].url +
-          "</a>"
-        );
-
-        validatedUrlsArray.splice(0, 1);
-      }
-
-      newLine += word;
-
-      wordIndex++;
-    }
-
-    output.push(newLine);
-
-    lineIndex++;
-    wordIndex = 0;
-  }
-
-  return output.join("<br/>");
-}
+// export function formatBodyContent(body, wordsLimit) {
+//   if (!body) {
+//     return "";
+//   }
+//
+//   let uniqueSeparator = Math.floor(Math.random() * 10000000000 + 1);
+//
+//   let wordsArray = [];
+//   let linesArray = body
+//     .replace(/<br>/g, uniqueSeparator)
+//     .replace(/\n/g, uniqueSeparator)
+//     .split(uniqueSeparator);
+//
+//   let urlsArray = [];
+//   let validatedUrlsArray = [];
+//   let displayBody = "";
+//
+//   let linesWordsArray = [];
+//
+//   _.each(linesArray, (line, index) => {
+//     let lineWords = line.split(/\s/);
+//     if (lineWords.length > 0) {
+//       linesWordsArray[index] = [];
+//
+//       _.each(lineWords, word => {
+//         wordsArray.push(word);
+//         linesWordsArray[index].push(word);
+//       });
+//     }
+//   });
+//
+//   _.each(wordsArray, word => {
+//     let trimmedWord = word.trim("!\"#$%&'()*+,-.@:;<=>[\\]^_`{|}~");
+//     if (stringIsValidUrl(trimmedWord)) {
+//       urlsArray.push(trimmedWord);
+//     }
+//   });
+//
+//   _.each(urlsArray, word => {
+//     let prefix = "";
+//
+//     if (
+//       word.substr(0, 7) != "http://" &&
+//       word.substr(0, 8) != "https://"
+//     ) {
+//       prefix = "http://";
+//     }
+//
+//     validatedUrlsArray.push({prefix: prefix, url: word});
+//   });
+//
+//   let wordsCounter = 0;
+//
+//   let lineIndex = 0,
+//     wordIndex = 0,
+//     line = null,
+//     word = null;
+//
+//   let output = [];
+//   while (
+//     lineIndex < linesWordsArray.length &&
+//     ((wordsLimit && wordsCounter <= wordsLimit) || !wordsLimit)
+//     ) {
+//     line = linesWordsArray[lineIndex];
+//     let newLine = "";
+//     while (
+//       wordIndex < line.length &&
+//       ((wordsLimit && wordsCounter <= wordsLimit) || !wordsLimit)
+//       ) {
+//       word = line[wordIndex];
+//
+//       wordsCounter++;
+//
+//       if (wordIndex != 0) {
+//         newLine += " ";
+//       }
+//
+//       if (
+//         validatedUrlsArray.length > 0 &&
+//         word.indexOf(validatedUrlsArray[0].url) != -1
+//       ) {
+//         word = word.replace(
+//           validatedUrlsArray[0].url,
+//           '<a target="_blank" data-no-history="true" class="underline hover:opacity-75" ' +
+//           'onclick="event.stopPropagation();" href=' +
+//           validatedUrlsArray[0].prefix +
+//           validatedUrlsArray[0].url +
+//           ">" +
+//           validatedUrlsArray[0].url +
+//           "</a>"
+//         );
+//
+//         validatedUrlsArray.splice(0, 1);
+//       }
+//
+//       newLine += word;
+//
+//       wordIndex++;
+//     }
+//
+//     output.push(newLine);
+//
+//     lineIndex++;
+//     wordIndex = 0;
+//   }
+//
+//   return output.join("<br/>");
+// }
 
 /**
  *

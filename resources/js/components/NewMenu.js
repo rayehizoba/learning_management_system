@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 function NewMenu(props) {
     return (
@@ -7,13 +8,13 @@ function NewMenu(props) {
                 Content
             </li>
             <li>
-                <a
-                    href=""
+                <Link
+                    to="/courses/create"
                     className="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center"
                 >
                     <i className="mdi mdi-plus mr-1 text-lg"></i>
                     New Course
-                </a>
+                </Link>
             </li>
             <li className="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
                 <i className="mdi mdi-plus mr-1 text-lg"></i>

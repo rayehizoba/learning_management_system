@@ -19,6 +19,7 @@ function PageSwitch(props) {
         {/*<Switch location={background || location}>*/}
             <Route path="/courses" element={<CoursesPage/>}/>
             <Route path="/courses/create" element={<CourseEditPage/>}/>
+            <Route path="/courses/:course_id/edit" element={<CourseEditPage/>}/>
 
             <Route path="/quizzes" element={<QuizzesPage/>}/>
             {/*<AuthUserRoute*/}
