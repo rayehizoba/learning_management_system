@@ -2,7 +2,7 @@
     <header class="p-5 pb-0 flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-5">
         <div class="flex-1 flex flex-col md:flex-row md:items-center md:justify-between">
             <div class="text-2xl font-bold">
-                {{ $quizzes->count() }} <span class="text-gray-400">QuizzesPage in total</span>
+                {{ $quizzes->count() }} <span class="text-gray-400">Quizzes in total</span>
             </div>
             <ol class="flex justify-between md:justify-end items-center h-full space-x-7">
                 <ol class="flex items-center h-full space-x-7">

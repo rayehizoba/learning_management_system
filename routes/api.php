@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\QuizController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,5 +31,9 @@ Route::middleware(['cors'])->group(function () {
     Route::delete('courses/{course}', [CourseController::class, 'delete']);
     Route::get('courses/{course}/sections', [CourseController::class, 'indexSections']);
     Route::post('courses/{course}/sections', [CourseController::class, 'storeSections']);
+
+    Route::get('quizzes', [QuizController::class, 'index']);
+    Route::get('quizzes/{quiz}', [QuizController::class, 'show']);
+    Route::delete('quizzes/{course}', [QuizController::class, 'delete']);
 });
 

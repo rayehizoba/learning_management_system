@@ -39,6 +39,9 @@ import usePrevious from "../lib/usePrevious";
 import classNames from "classnames";
 import ApiError from "../components/ApiError";
 import AutosizeInput from 'react-input-autosize';
+import Tippy from "../components/Tippy";
+import SectionSettingsMenu from "../components/SectionSettingsMenu";
+import CourseSettingsMenu from "../components/CourseSettingsMenu";
 
 function CourseEditPage(props) {
     const navigate = useNavigate();
@@ -324,10 +327,14 @@ function CourseEditPage(props) {
                             easily.
                         </p>
                     </div>
-                    <button type="button" className="flex items-center hover:opacity-50 text-gray-400">
-                        <i className="mdi mdi-cog-outline text-2xl mr-1"></i>
-                        Menu
-                    </button>
+                    {course && (
+                        <Tippy content={<CourseSettingsMenu course={course}/>}>
+                            <button type="button" className="flex items-center hover:opacity-50 text-gray-400">
+                                <i className="mdi mdi-cog-outline text-2xl mr-1"></i>
+                                Menu
+                            </button>
+                        </Tippy>
+                    )}
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-5">
@@ -431,10 +438,12 @@ function CourseEditPage(props) {
                         </button>
                     </div>
                     <div className="h-8 border-l"></div>
-                    <button className="flex items-center hover:opacity-50">
-                        <i className="mdi mdi-cog-outline text-2xl mr-1"></i>
-                        Menu
-                    </button>
+                    <Tippy content={<SectionSettingsMenu section={section}/>}>
+                        <button className="flex items-center hover:opacity-50">
+                            <i className="mdi mdi-cog-outline text-2xl mr-1"></i>
+                            Menu
+                        </button>
+                    </Tippy>
                 </div>
             </header>
 

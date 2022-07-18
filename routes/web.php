@@ -42,7 +42,7 @@ Route::get('/courses/{course_id}', function ($course_id) {
     return view('course-detail', ['course_id' => $course_id]);
 })->name('course-detail');
 
-Route::get('/quizes', function () {
+Route::get('/quizzes', function () {
     return view('quizes');
 })->name('quizes');
 

@@ -6873,6 +6873,251 @@ function PublishedState(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/components/QuizGridItem.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/QuizGridItem.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _PublishedState__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PublishedState */ "./resources/js/components/PublishedState.js");
+/* harmony import */ var _CourseSettingsMenu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CourseSettingsMenu */ "./resources/js/components/CourseSettingsMenu.js");
+/* harmony import */ var _Tippy__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Tippy */ "./resources/js/components/Tippy.js");
+/* harmony import */ var _QuizSettingsMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./QuizSettingsMenu */ "./resources/js/components/QuizSettingsMenu.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+function QuizGridItem(_ref) {
+  var quiz = _ref.quiz;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    className: "border rounded divide-y",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("header", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "p-3 flex items-center justify-between",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_PublishedState__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          published: quiz.published
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Tippy__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          content: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_QuizSettingsMenu__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            quiz: quiz
+          }),
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+            className: "h-5 w-5 hover:bg-gray-400 transition rounded-full flex items-center justify-center text-gray-400 hover:text-white",
+            type: "button",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+              className: "mdi mdi-dots-horizontal text-2xl"
+            })
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("figure", {
+        className: "w-full aspect-[3/1] bg-gray-300 text-gray-100 grid place-content-center",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+          className: "mdi mdi-image text-5xl"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "p-3",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+          className: "font-semibold line-clamp-1",
+          children: quiz.name
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          className: "flex items-center space-x-5",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "flex items-center space-x-1 text-gray-400",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+              className: "mdi mdi-account-circle-outline"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+              className: "text-xs",
+              children: "24 Learners"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "flex items-center space-x-1 text-gray-400",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+              className: "mdi mdi-license"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+              className: "text-xs",
+              children: "Design"
+            })]
+          })]
+        })]
+      })]
+    }), quiz.published ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      className: "divide-x flex items-center h-16",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "p-3 space-y-1.5",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+          className: "text-xs text-gray-400",
+          children: "Avg Correct Answer"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+          className: "text-sm line-clamp-1",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+            className: "text-red-500",
+            children: "12"
+          }), " / 24 ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+            className: "font-bold",
+            children: "(50% correct answer rate)"
+          })]
+        })]
+      })
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: "flex items-center justify-center h-16 text-gray-400 space-x-2",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+        className: "mdi mdi-finance"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+        className: "text-sm",
+        children: "This quiz has no stats yet"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("footer", {
+      className: "p-4",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("button", {
+        className: "btn-primary-outline w-full",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+          className: "mdi mdi-plus"
+        }), "Assign"]
+      })
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuizGridItem);
+
+/***/ }),
+
+/***/ "./resources/js/components/QuizSettingsMenu.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/QuizSettingsMenu.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_quiz_quiz_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/quiz/quiz.actions */ "./resources/js/store/quiz/quiz.actions.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+function QuizSettingsMenu(_ref) {
+  var quiz = _ref.quiz;
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+
+  var handleDelete = function handleDelete() {
+    if (confirm('Are you sure ?')) {
+      dispatch(_store_quiz_quiz_actions__WEBPACK_IMPORTED_MODULE_2__.deleteQuiz(quiz.id));
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("ul", {
+    className: "w-44 py-1",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("li", {
+      className: "hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
+        className: "mdi mdi-lock-outline mr-1 text-lg opacity-50"
+      }), "Lock Quiz", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+        className: "w-10 aspect-[2/1] relative ml-auto rounded-full",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+          type: "checkbox",
+          className: "sr-only peer"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+          className: "absolute inset-0 rounded-full bg-gray-100 peer-checked:bg-teal-100 transition border peer-checked:border-teal-500"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+          className: "w-1/2 aspect-[1/1] rounded-full shadow bg-white transform scale-75 transition-all left-0 absolute peer-checked:left-1/2 peer-checked:bg-teal-500"
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+        to: "/quizzes/".concat(quiz.id, "/edit"),
+        className: "hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
+          className: "mdi mdi-pencil-outline mr-1 text-lg opacity-50"
+        }), "Edit Quiz"]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("li", {
+      className: "hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
+        className: "mdi mdi-history mr-1 text-lg opacity-50"
+      }), "Edit History"]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("li", {
+      className: "hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
+        className: "mdi mdi-export-variant mr-1 text-lg opacity-50"
+      }), "Export Quiz"]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("li", {
+      onClick: handleDelete,
+      className: "hover:bg-red-100 text-red-600 p-0.5 px-1 cursor-pointer font-medium flex items-center",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
+        className: "mdi mdi-trash-can-outline mr-1 text-lg opacity-50"
+      }), "Delete Quiz"]
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuizSettingsMenu);
+
+/***/ }),
+
+/***/ "./resources/js/components/SectionSettingsMenu.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/SectionSettingsMenu.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+function SectionSettingsMenu(_ref) {
+  var section = _ref.section;
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+
+  var handleDelete = function handleDelete() {
+    if (confirm('Are you sure ?')) {// dispatch(courseActions.deleteCourse(course.id));
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
+    className: "w-44 py-1",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
+      onClick: handleDelete,
+      className: "hover:bg-red-100 text-red-600 p-0.5 px-1 cursor-pointer font-medium flex items-center",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+        className: "mdi mdi-trash-can-outline mr-1 text-lg opacity-50"
+      }), "Delete Section"]
+    })
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SectionSettingsMenu);
+
+/***/ }),
+
 /***/ "./resources/js/components/Spinner.js":
 /*!********************************************!*\
   !*** ./resources/js/components/Spinner.js ***!
@@ -7811,8 +8056,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_helpers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../lib/helpers */ "./resources/js/lib/helpers.js");
 /* harmony import */ var _components_Spinner__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/Spinner */ "./resources/js/components/Spinner.js");
 /* harmony import */ var _store_course_course_selectors__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../store/course/course.selectors */ "./resources/js/store/course/course.selectors.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
 /* harmony import */ var _store_courses_courses_actions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../store/courses/courses.actions */ "./resources/js/store/courses/courses.actions.js");
 /* harmony import */ var _store_courses_courses_selectors__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../store/courses/courses.selectors */ "./resources/js/store/courses/courses.selectors.js");
 /* harmony import */ var _store_app_app_actions__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../store/app/app.actions */ "./resources/js/store/app/app.actions.js");
@@ -7826,7 +8071,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_19__);
 /* harmony import */ var _components_ApiError__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../components/ApiError */ "./resources/js/components/ApiError.js");
 /* harmony import */ var react_input_autosize__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-input-autosize */ "./node_modules/react-input-autosize/lib/AutosizeInput.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_Tippy__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../components/Tippy */ "./resources/js/components/Tippy.js");
+/* harmony import */ var _components_SectionSettingsMenu__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../components/SectionSettingsMenu */ "./resources/js/components/SectionSettingsMenu.js");
+/* harmony import */ var _components_CourseSettingsMenu__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../components/CourseSettingsMenu */ "./resources/js/components/CourseSettingsMenu.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -7872,11 +8120,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
+
 function CourseEditPage(props) {
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_23__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_26__.useNavigate)();
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
 
-  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_23__.useParams)(),
+  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_26__.useParams)(),
       course_id = _useParams.course_id;
 
   var courses = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(_store_courses_courses_selectors__WEBPACK_IMPORTED_MODULE_12__.selectCourses);
@@ -7988,57 +8239,57 @@ function CourseEditPage(props) {
     }
   }, [prevSectionsFetch, prevSections, sections]);
 
-  var header = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+  var header = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
     className: "flex flex-col space-y-3 lg:flex-row lg:space-y-0 lg:space-x-3 justify-between",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
       className: "flex items-center flex-1",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_AsideToggleBtn__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_AsideToggleBtn__WEBPACK_IMPORTED_MODULE_4__["default"], {
         className: "lg:hidden"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("div", {
         className: "h-10 md:h-7 border-l border-gray-300 mx-3 md:mx-5"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
         className: "flex flex-col lg:flex-row lg:flex-1 lg:items-center lg:justify-between lg:space-x-3",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("div", {
           className: "text-xl font-bold whitespace-nowrap",
           children: coursesFetch ? 'Fetching Course...' : Boolean(course) ? 'Edit Course' : 'Create Course'
-        }), Boolean(course) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("p", {
+        }), Boolean(course) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("p", {
           className: "text-sm text-gray-400 font-medium",
           children: ["Last Saved: ", moment__WEBPACK_IMPORTED_MODULE_14___default()(course.updated_at).format("MMM D, YYYY")]
         })]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("ul", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("ul", {
       className: "grid grid-cols-3 gap-3 h-full lg:w-2/5",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("li", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("button", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("li", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("button", {
           className: "btn-outline h-10 w-full",
           children: "Preview"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("li", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("li", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
           className: "relative",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("select", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("select", {
             className: "btn-outline h-10 w-full appearance-none outline-none",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("option", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("option", {
               value: "0",
               children: "Draft"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("option", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("option", {
               value: "1",
               children: "Published"
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("div", {
             className: "absolute right-4 inset-y-0 grid place-content-center",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("i", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("i", {
               className: "mdi mdi-chevron-down text-gray-400"
             })
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("li", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("button", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("li", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("button", {
           onClick: save,
           disabled: saving,
           className: "btn-primary h-10 w-full",
           type: "button",
-          children: [saving && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_Spinner__WEBPACK_IMPORTED_MODULE_9__["default"], {}), "Save"]
+          children: [saving && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_Spinner__WEBPACK_IMPORTED_MODULE_9__["default"], {}), "Save"]
         })
       })]
     })]
@@ -8050,87 +8301,87 @@ function CourseEditPage(props) {
     };
   };
 
-  var navigation = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+  var navigation = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
     className: "flex flex-col divide-y divide-white/50 overflow-y-auto flex-1",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
       className: "divide-y divide-white/50 flex-1",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("header", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("header", {
         className: "sticky top-0 backdrop-blur divide-y divide-white/50",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
           className: "flex items-center space-x-2 relative group px-3 pb-5 pt-10",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Link, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Link, {
             to: "/courses",
             className: "absolute inset-0"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("div", {
             className: "block border border-teal-500 rounded-full w-8 h-8 md:w-6 md:h-6 grid place-content-center group-hover:bg-teal-500 group-hover:text-white transition",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("i", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("i", {
               className: "mdi mdi-chevron-left text-2xl"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("div", {
             className: "font-medium",
             children: "Back to Course List"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("ul", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("ul", {
           className: "flex-1 divide-y divide-white/50",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("li", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("li", {
             onClick: onSetSection(),
             className: classnames__WEBPACK_IMPORTED_MODULE_19___default()("border-l-4 p-4 cursor-pointer transition-all", Boolean(section) ? '!border-l-gray-400 hover:bg-gray-100/50' : '!border-l-yellow-400 bg-blue-100/50'),
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("p", {
               className: "",
               children: "General Information"
-            }), Boolean(course) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("p", {
+            }), Boolean(course) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("p", {
               className: "text-gray-400 text-xs",
               children: ["Updated: ", moment__WEBPACK_IMPORTED_MODULE_14___default()(course.updated_at).format("MMM D, YYYY h:mma")]
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("li", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("li", {
             className: "p-5 py-4",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
               className: "flex items-center justify-between",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("div", {
                   className: "flex items-center space-x-5 font-bold",
-                  children: sectionsFetch ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("p", {
+                  children: sectionsFetch ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("p", {
                     className: "",
                     children: "Fetching sections..."
-                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.Fragment, {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("p", {
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.Fragment, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("p", {
                       className: "",
                       children: "Sections"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("p", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("p", {
                       className: "text-gray-400",
                       children: sections.length
                     })]
                   })
-                }), sectionsError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_ApiError__WEBPACK_IMPORTED_MODULE_20__["default"], {
+                }), sectionsError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_ApiError__WEBPACK_IMPORTED_MODULE_20__["default"], {
                   error: sectionsError
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("button", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("button", {
                 onClick: newSection,
                 className: "btn-primary h-9 w-9 !text-xl",
                 type: "button",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("i", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("i", {
                   className: "mdi mdi-plus"
                 })
               })]
             })
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("ul", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("ul", {
         className: "flex-1 divide-y divide-white/50",
         children: sections.map(function (each, index) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("li", {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("li", {
             id: jsSection + index,
             onClick: onSetSection(each),
             className: classnames__WEBPACK_IMPORTED_MODULE_19___default()("border-l-4 p-4 px-1 cursor-pointer transition-all", Boolean(section) && JSON.stringify(section) == JSON.stringify(each) ? '!border-l-yellow-400 bg-blue-100/50' : '!border-l-gray-400 hover:bg-gray-100/50'),
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
               className: "flex items-center space-x-1",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("i", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("i", {
                 className: "mdi mdi-drag-vertical text-gray-400 text-2xl cursor-grab"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("p", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("p", {
                   className: "",
                   children: each.name || 'Section - ' + (index + 1)
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("p", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("p", {
                   className: "text-gray-400 text-xs",
                   children: ["Updated: ", moment__WEBPACK_IMPORTED_MODULE_14___default()(each.updated_at).format("MMM D, YYYY h:mma")]
                 })]
@@ -8139,15 +8390,15 @@ function CourseEditPage(props) {
           }, index);
         })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("div", {
       className: "space-y-3 sticky bottom-0 backdrop-blur p-5 pt-3",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("a", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("a", {
         href: "#",
         className: "group px-2 block",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("div", {
           className: "text-gray-400 text-xs",
           children: "Powered by"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("div", {
           className: "font-bold text-xl text-red-900 group-hover:text-red-700 transition",
           children: "Razorlab"
         })]
@@ -8155,73 +8406,78 @@ function CourseEditPage(props) {
     })]
   });
 
-  var generalInformation = Boolean(section) || /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("section", {
+  var generalInformation = Boolean(section) || /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("section", {
     className: "max-w-4xl mx-auto p-5",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("form", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("form", {
       onSubmit: (0,_lib_helpers__WEBPACK_IMPORTED_MODULE_8__.preventDefault)(save),
       className: "space-y-7",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
         className: "flex space-x-5 justify-between",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
           className: "space-y-1",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("h1", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("h1", {
             className: "text-xl md:text-2xl font-bold",
             children: "Set the General Information"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("p", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("p", {
             className: "text-gray-400 text-xs md:text-sm font-medium",
             children: "This information will attract learners to take this course, and help them find it easily."
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("button", {
-          type: "button",
-          className: "flex items-center hover:opacity-50 text-gray-400",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("i", {
-            className: "mdi mdi-cog-outline text-2xl mr-1"
-          }), "Menu"]
+        }), course && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_Tippy__WEBPACK_IMPORTED_MODULE_22__["default"], {
+          content: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_CourseSettingsMenu__WEBPACK_IMPORTED_MODULE_24__["default"], {
+            course: course
+          }),
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("button", {
+            type: "button",
+            className: "flex items-center hover:opacity-50 text-gray-400",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("i", {
+              className: "mdi mdi-cog-outline text-2xl mr-1"
+            }), "Menu"]
+          })
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
         className: "grid md:grid-cols-2 gap-5",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
           className: "space-y-2 md:col-span-2",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("label", {
             className: "font-bold",
             children: "Course Cover"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
             className: "rounded-md group aspect-[5/2] md:aspect-[6/2] bg-gray-200 w-full relative grid place-content-center",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("i", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("i", {
               className: "mdi mdi-image text-7xl md:text-9xl text-gray-100"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("button", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("button", {
               className: "absolute top-0 right-0 hover:opacity-75 rounded-full bg-black text-white grid place-content-center w-7 aspect-square -m-3.5",
               type: "button",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("i", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("i", {
                 className: "mdi mdi-close"
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
               className: "rounded-md md:pointer-events-none group-hover:pointer-events-auto md:opacity-0 group-hover:opacity-100 transition absolute inset-0 top-0 bg-gradient-to-b from-transparent to-black/25 grid place-content-end",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("input", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("input", {
                 type: "file",
                 accept: "image/*",
                 className: "hidden"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("button", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("button", {
                 className: "btn-outline m-3 md:m-5 font-semibold flex items-center space-x-1 text-sm",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("i", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("i", {
                   className: "mdi mdi-camera-outline text-lg"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("span", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("span", {
                   children: "Upload Cover"
                 })]
               })]
             })]
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
           className: "md:col-span-2 space-y-2 flex flex-col",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("label", {
             className: "font-bold after:content-['*'] after:text-red-600",
             children: "Course Name"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_ValidatedComponent__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_ValidatedComponent__WEBPACK_IMPORTED_MODULE_5__["default"], {
             name: "name",
             errors: formErrors,
             className: "form-input",
             renderComponent: function renderComponent(cn) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("input", {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("input", {
                 value: formData.name,
                 onChange: function onChange(e) {
                   return changedInput('name', e.target.value);
@@ -8230,33 +8486,33 @@ function CourseEditPage(props) {
               });
             }
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
           className: "space-y-2 flex flex-col",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("label", {
             className: "font-bold after:content-['*'] after:text-red-600",
             children: "Course Category"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("select", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("select", {
             className: "form-input"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
           className: "space-y-2 flex flex-col",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("label", {
             className: "font-bold after:content-['*'] after:text-red-600",
             children: "Focus Area"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("select", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("select", {
             className: "form-input"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
           className: "md:col-span-2 space-y-2 flex flex-col",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("label", {
             className: "font-bold",
             children: "Course Description"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_ValidatedComponent__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_ValidatedComponent__WEBPACK_IMPORTED_MODULE_5__["default"], {
             name: "description",
             errors: formErrors,
             className: "form-input",
             renderComponent: function renderComponent(cn) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("textarea", {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("textarea", {
                 value: formData.description,
                 onChange: function onChange(e) {
                   return changedInput('description', e.target.value);
@@ -8271,12 +8527,12 @@ function CourseEditPage(props) {
     })
   });
 
-  var sectionContent = Boolean(section) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("section", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("header", {
+  var sectionContent = Boolean(section) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("section", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("header", {
       className: "p-3 px-4 md:px-7 border-b flex items-start justify-between space-x-3",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("form", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("form", {
         onSubmit: (0,_lib_helpers__WEBPACK_IMPORTED_MODULE_8__.preventDefault)(save),
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_input_autosize__WEBPACK_IMPORTED_MODULE_21__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_input_autosize__WEBPACK_IMPORTED_MODULE_21__["default"], {
           value: section.name,
           onChange: function onChange(event) {
             return dispatch(_store_section_section_actions__WEBPACK_IMPORTED_MODULE_16__.setSection(_objectSpread(_objectSpread({}, section), {}, {
@@ -8286,57 +8542,62 @@ function CourseEditPage(props) {
           placeholder: "Section Title",
           inputClassName: "text-2xl font-semibold border-b border-dashed placeholder:text-gray-400 outline-none max-w-[16rem] md:max-w-lg lg:max-w-xl xl:max-w-2xl"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
         className: "flex items-center space-x-3 md:space-x-5 text-gray-400",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
           className: "flex items-center space-x-3 md:space-x-5",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("button", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("button", {
             className: "hover:opacity-50",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("i", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("i", {
               className: "mdi mdi-undo text-2xl"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("button", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("button", {
             className: "hover:opacity-50",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("i", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("i", {
               className: "mdi mdi-redo text-2xl"
             })
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("div", {
           className: "h-8 border-l"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("button", {
-          className: "flex items-center hover:opacity-50",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("i", {
-            className: "mdi mdi-cog-outline text-2xl mr-1"
-          }), "Menu"]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_Tippy__WEBPACK_IMPORTED_MODULE_22__["default"], {
+          content: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_SectionSettingsMenu__WEBPACK_IMPORTED_MODULE_23__["default"], {
+            section: section
+          }),
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("button", {
+            className: "flex items-center hover:opacity-50",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("i", {
+              className: "mdi mdi-cog-outline text-2xl mr-1"
+            }), "Menu"]
+          })
         })]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
       className: "max-w-4xl mx-auto p-5 space-y-3",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("article", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("article", {
         className: "space-y-3",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("div", {
           className: "figure aspect-video w-full bg-gray-200 rounded-lg relative",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("button", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("button", {
             className: "absolute top-0 right-0 hover:opacity-75 rounded-full bg-black text-white grid place-content-center w-6 h-6 -m-3",
             type: "button",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("i", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("i", {
               className: "mdi mdi-close"
             })
           })
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("ul", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("ul", {
         className: "flex items-center space-x-2",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("li", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("button", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("li", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("button", {
             className: "btn text-gray-400 !py-1 !px-2",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("i", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("i", {
               className: "mdi mdi-plus text-2xl mr-1"
             }), "Content"]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("li", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("li", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("button", {
             className: "btn text-gray-400 !py-1 !px-2",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)("i", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)("i", {
               className: "mdi mdi-newspaper-variant-outline text-2xl mr-1"
             }), "Library"]
           })
@@ -8345,7 +8606,7 @@ function CourseEditPage(props) {
     })]
   });
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)(_PageTemplate__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)(_PageTemplate__WEBPACK_IMPORTED_MODULE_3__["default"], {
     header: header,
     navigation: navigation,
     children: [generalInformation, sectionContent]
@@ -8848,16 +9109,264 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _PageTemplate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PageTemplate */ "./resources/js/pages/PageTemplate.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _components_GridListToggle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/GridListToggle */ "./resources/js/components/GridListToggle.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var _components_ApiError__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/ApiError */ "./resources/js/components/ApiError.js");
+/* harmony import */ var _components_GridView__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/GridView */ "./resources/js/components/GridView.js");
+/* harmony import */ var _components_CourseGridItem__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/CourseGridItem */ "./resources/js/components/CourseGridItem.js");
+/* harmony import */ var _components_PublishedState__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/PublishedState */ "./resources/js/components/PublishedState.js");
+/* harmony import */ var _components_Tippy__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Tippy */ "./resources/js/components/Tippy.js");
+/* harmony import */ var _components_CourseSettingsMenu__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/CourseSettingsMenu */ "./resources/js/components/CourseSettingsMenu.js");
+/* harmony import */ var _store_quizzes_quizzes_selectors__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../store/quizzes/quizzes.selectors */ "./resources/js/store/quizzes/quizzes.selectors.js");
+/* harmony import */ var _store_quizzes_quizzes_actions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../store/quizzes/quizzes.actions */ "./resources/js/store/quizzes/quizzes.actions.js");
+/* harmony import */ var _components_QuizGridItem__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/QuizGridItem */ "./resources/js/components/QuizGridItem.js");
+/* harmony import */ var _components_QuizSettingsMenu__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/QuizSettingsMenu */ "./resources/js/components/QuizSettingsMenu.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 function QuizzesPage() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_PageTemplate__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
-      children: "Quizzes"
-    })
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
+  var quizzes = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(_store_quizzes_quizzes_selectors__WEBPACK_IMPORTED_MODULE_10__.selectQuizzes);
+  var quizzesFetch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(_store_quizzes_quizzes_selectors__WEBPACK_IMPORTED_MODULE_10__.selectQuizzesFetch);
+  var quizzesFetchSuccess = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(_store_quizzes_quizzes_selectors__WEBPACK_IMPORTED_MODULE_10__.selectQuizzesFetchSuccess);
+  var quizzesFetchError = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(_store_quizzes_quizzes_selectors__WEBPACK_IMPORTED_MODULE_10__.selectQuizzesFetchError);
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(true),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      grid = _React$useState2[0],
+      setGrid = _React$useState2[1];
+
+  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {
+    if (!quizzesFetchSuccess) {
+      dispatch(_store_quizzes_quizzes_actions__WEBPACK_IMPORTED_MODULE_11__.fetchQuizzes());
+    }
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(_PageTemplate__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    title: "Quizzes",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("header", {
+      className: "p-5 pb-0 flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-5",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+        className: "flex-1 flex flex-col md:flex-row md:items-center md:justify-between",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+          className: "text-2xl font-bold",
+          children: quizzesFetch ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+            className: "text-gray-400",
+            children: "Fetching Quizzes..."
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+            children: [quizzes.length, " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("span", {
+              className: "text-gray-400",
+              children: "Quizzes in total"
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("ol", {
+          className: "flex justify-between md:justify-end items-center h-full space-x-7",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("ol", {
+            className: "flex items-center h-full space-x-7",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("li", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("button", {
+                className: "text-gray-400 hover:opacity-50 transition text-sm flex items-center whitespace-nowrap",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
+                  className: "text-lg mdi mdi-check-circle-outline mr-1"
+                }), "All status"]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("li", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("button", {
+                className: "text-gray-400 hover:opacity-50 transition text-sm flex items-center whitespace-nowrap",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
+                  className: "text-lg mdi mdi-filter-variant mr-1"
+                }), "Filter"]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("li", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("button", {
+                className: "text-gray-400 hover:opacity-50 transition text-sm flex items-center whitespace-nowrap",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
+                  className: "text-lg mdi mdi-sort-variant mr-1"
+                }), "Sort"]
+              })
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("li", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_GridListToggle__WEBPACK_IMPORTED_MODULE_3__["default"], {
+              defaultValue: grid,
+              onChange: setGrid
+            })
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+        className: "",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Link, {
+          to: "/quizzes/create",
+          className: "w-full btn-primary md:w-48",
+          children: "+ New Quiz"
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_ApiError__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      error: quizzesFetchError,
+      className: "px-5"
+    }), quizzesFetchSuccess && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.Fragment, {
+      children: [grid && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_GridView__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        collection: quizzes,
+        renderItem: function renderItem(each) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_QuizGridItem__WEBPACK_IMPORTED_MODULE_12__["default"], {
+            quiz: each
+          });
+        }
+      }), grid || /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+        className: "overflow-x-auto",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("table", {
+          className: "table-auto w-full text-left border-y mt-5",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("thead", {
+            className: "border-b text-gray-400 text-xs whitespace-nowrap",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("th", {
+                className: "pl-4 md:pl-5 py-3",
+                children: "Quiz Name"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("th", {
+                className: "px-5",
+                children: "Total Learners"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("th", {
+                className: "px-5",
+                children: "Category"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("th", {
+                className: "px-5",
+                children: "Completion Rate"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("th", {
+                className: "px-5",
+                children: "Reaction Score"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("th", {
+                className: "pr-4 md:pr-5"
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("tbody", {
+            className: "divide-y",
+            children: [quizzes.map(function (each) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("td", {
+                  className: "pl-4 md:pl-5 py-5",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("a", {
+                    href: "#",
+                    className: "flex items-center space-x-5 group",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("figure", {
+                      className: "flex-shrink-0 w-28 aspect-[5/2] bg-gray-300 text-gray-100 grid place-content-center",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
+                        className: "mdi mdi-image text-4xl"
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+                      className: "space-y-1",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("p", {
+                        className: "min-w-[16ch] font-semibold line-clamp-2 text-sm group-hover:underline",
+                        children: each.name
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_PublishedState__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                        published: each.published
+                      })]
+                    })]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("td", {
+                  className: "px-5",
+                  children: each.published ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+                    className: "flex items-center space-x-1 text-sm whitespace-nowrap",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
+                      className: "mdi mdi-account-circle-outline"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("span", {
+                      children: "24 Learners"
+                    })]
+                  }) : '-'
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("td", {
+                  className: "px-5",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+                    className: "flex items-center space-x-1 text-sm",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
+                      className: "mdi mdi-license"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("span", {
+                      children: "Design"
+                    })]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("td", {
+                  className: "px-5",
+                  children: each.published ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+                    className: "flex items-center space-x-1 text-sm",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
+                      className: "mdi mdi-check-circle-outline"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("p", {
+                      children: "65%"
+                    })]
+                  }) : '-'
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("td", {
+                  className: "px-5",
+                  children: each.published ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+                    className: "flex items-center space-x-1 text-sm whitespace-nowrap",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
+                      className: "mdi mdi-emoticon-outline"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("p", {
+                      children: "50% Useful"
+                    })]
+                  }) : '-'
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("td", {
+                  className: "pr-4 md:pr-5",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+                    className: "flex justify-end items-center space-x-5",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("button", {
+                      disabled: !each.published,
+                      className: "btn-primary-outline !px-10 text-sm",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
+                        className: "mdi mdi-plus"
+                      }), "Assign"]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_Tippy__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                      content: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_QuizSettingsMenu__WEBPACK_IMPORTED_MODULE_13__["default"], {
+                        quiz: each
+                      }),
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("button", {
+                        className: "h-5 w-5 hover:bg-gray-400 transition rounded-full flex items-center justify-center text-gray-400 hover:text-white",
+                        type: "button",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
+                          className: "mdi mdi-dots-vertical text-2xl"
+                        })
+                      })
+                    })]
+                  })
+                })]
+              }, each.id);
+            }), quizzes.length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("tr", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("td", {
+                colSpan: "6",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("p", {
+                  children: "No quizzes yet"
+                })
+              })
+            })]
+          })]
+        })
+      })]
+    })]
   });
 }
 
@@ -9471,21 +9980,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "history": () => (/* binding */ history),
 /* harmony export */   "persistor": () => (/* binding */ persistor)
 /* harmony export */ });
-/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
+/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var history__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! history */ "./node_modules/history/index.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var history__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! history */ "./node_modules/history/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_persist__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-persist */ "./node_modules/redux-persist/es/index.js");
 /* harmony import */ var redux_persist_lib_storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-persist/lib/storage */ "./node_modules/redux-persist/lib/storage/index.js");
 /* harmony import */ var _app_app_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app/app.reducer */ "./resources/js/store/app/app.reducer.js");
 /* harmony import */ var _course_course_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./course/course.reducer */ "./resources/js/store/course/course.reducer.js");
 /* harmony import */ var _courses_courses_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./courses/courses.reducer */ "./resources/js/store/courses/courses.reducer.js");
-/* harmony import */ var _roles_roles_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./roles/roles.reducer */ "./resources/js/store/roles/roles.reducer.js");
-/* harmony import */ var _section_section_reducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./section/section.reducer */ "./resources/js/store/section/section.reducer.js");
-/* harmony import */ var _sections_sections_reducer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./sections/sections.reducer */ "./resources/js/store/sections/sections.reducer.js");
-/* harmony import */ var _user_user_reducer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./user/user.reducer */ "./resources/js/store/user/user.reducer.js");
-/* harmony import */ var _users_users_reducer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./users/users.reducer */ "./resources/js/store/users/users.reducer.js");
+/* harmony import */ var _quiz_quiz_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./quiz/quiz.reducer */ "./resources/js/store/quiz/quiz.reducer.js");
+/* harmony import */ var _quizzes_quizzes_reducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./quizzes/quizzes.reducer */ "./resources/js/store/quizzes/quizzes.reducer.js");
+/* harmony import */ var _roles_roles_reducer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./roles/roles.reducer */ "./resources/js/store/roles/roles.reducer.js");
+/* harmony import */ var _section_section_reducer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./section/section.reducer */ "./resources/js/store/section/section.reducer.js");
+/* harmony import */ var _sections_sections_reducer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./sections/sections.reducer */ "./resources/js/store/sections/sections.reducer.js");
+/* harmony import */ var _user_user_reducer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./user/user.reducer */ "./resources/js/store/user/user.reducer.js");
+/* harmony import */ var _users_users_reducer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./users/users.reducer */ "./resources/js/store/users/users.reducer.js");
 
 
 
@@ -9501,36 +10012,478 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var history = (0,history__WEBPACK_IMPORTED_MODULE_11__.createBrowserHistory)();
-var reducers = (0,redux__WEBPACK_IMPORTED_MODULE_12__.combineReducers)({
+
+
+var history = (0,history__WEBPACK_IMPORTED_MODULE_13__.createBrowserHistory)();
+var reducers = (0,redux__WEBPACK_IMPORTED_MODULE_14__.combineReducers)({
   // router: connectRouter(history),
   app: _app_app_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   course: _course_course_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
   courses: _courses_courses_reducer__WEBPACK_IMPORTED_MODULE_5__["default"],
-  roles: _roles_roles_reducer__WEBPACK_IMPORTED_MODULE_6__["default"],
-  section: _section_section_reducer__WEBPACK_IMPORTED_MODULE_7__["default"],
-  sections: _sections_sections_reducer__WEBPACK_IMPORTED_MODULE_8__["default"],
-  user: _user_user_reducer__WEBPACK_IMPORTED_MODULE_9__["default"],
-  users: _users_users_reducer__WEBPACK_IMPORTED_MODULE_10__["default"]
+  quiz: _quiz_quiz_reducer__WEBPACK_IMPORTED_MODULE_6__["default"],
+  quizzes: _quizzes_quizzes_reducer__WEBPACK_IMPORTED_MODULE_7__["default"],
+  roles: _roles_roles_reducer__WEBPACK_IMPORTED_MODULE_8__["default"],
+  section: _section_section_reducer__WEBPACK_IMPORTED_MODULE_9__["default"],
+  sections: _sections_sections_reducer__WEBPACK_IMPORTED_MODULE_10__["default"],
+  user: _user_user_reducer__WEBPACK_IMPORTED_MODULE_11__["default"],
+  users: _users_users_reducer__WEBPACK_IMPORTED_MODULE_12__["default"]
 });
 var persistConfig = {
   key: 'root',
   storage: redux_persist_lib_storage__WEBPACK_IMPORTED_MODULE_2__["default"],
-  blacklist: ['course', 'courses', 'section', 'sections'] // whitelist: ['user']
+  blacklist: ['course', 'courses', 'section', 'sections', 'quiz', 'quizzes'] // whitelist: ['user']
 
 };
 var persistedReducer = (0,redux_persist__WEBPACK_IMPORTED_MODULE_1__.persistReducer)(persistConfig, reducers);
-var middlewareComponents = [redux_thunk__WEBPACK_IMPORTED_MODULE_13__["default"] // routerMiddleware(history)
+var middlewareComponents = [redux_thunk__WEBPACK_IMPORTED_MODULE_15__["default"] // routerMiddleware(history)
 ];
 
 if (true) {
   middlewareComponents.push((redux_logger__WEBPACK_IMPORTED_MODULE_0___default()));
 }
 
-var middleware = redux__WEBPACK_IMPORTED_MODULE_12__.applyMiddleware.apply(void 0, middlewareComponents);
-var store = (0,redux__WEBPACK_IMPORTED_MODULE_12__.createStore)(persistedReducer, middleware);
+var middleware = redux__WEBPACK_IMPORTED_MODULE_14__.applyMiddleware.apply(void 0, middlewareComponents);
+var store = (0,redux__WEBPACK_IMPORTED_MODULE_14__.createStore)(persistedReducer, middleware);
 var persistor = (0,redux_persist__WEBPACK_IMPORTED_MODULE_1__.persistStore)(store);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
+
+/***/ }),
+
+/***/ "./resources/js/store/quiz/quiz.actions.js":
+/*!*************************************************!*\
+  !*** ./resources/js/store/quiz/quiz.actions.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "deleteQuiz": () => (/* binding */ deleteQuiz),
+/* harmony export */   "setQuiz": () => (/* binding */ setQuiz),
+/* harmony export */   "storeQuiz": () => (/* binding */ storeQuiz),
+/* harmony export */   "updateQuiz": () => (/* binding */ updateQuiz)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _quiz_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./quiz.reducer */ "./resources/js/store/quiz/quiz.reducer.js");
+/* harmony import */ var _lib_AxiosConfig__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../lib/AxiosConfig */ "./resources/js/lib/AxiosConfig.js");
+/* harmony import */ var _lib_axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../lib/axios */ "./resources/js/lib/axios.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+/**
+ *
+ * @param data
+ * @returns {Function}
+ */
+
+var setQuiz = function setQuiz() {
+  var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  return function (dispatch) {
+    dispatch({
+      type: _quiz_reducer__WEBPACK_IMPORTED_MODULE_1__.types.SET,
+      data: data
+    });
+  };
+};
+/**
+ *
+ * @param data
+ * @returns {function(*): Promise<*>}
+ */
+
+var storeQuiz = function storeQuiz(data) {
+  return /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(dispatch) {
+      var url;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              dispatch({
+                type: _quiz_reducer__WEBPACK_IMPORTED_MODULE_1__.types.STORE_START
+              });
+              url = _lib_AxiosConfig__WEBPACK_IMPORTED_MODULE_2__["default"].getEndpointAddress() + "/quizzes";
+              _context.next = 4;
+              return _lib_axios__WEBPACK_IMPORTED_MODULE_3__["default"].post(url, data, _lib_AxiosConfig__WEBPACK_IMPORTED_MODULE_2__["default"].getConfig()).then(function (response) {
+                dispatch({
+                  type: _quiz_reducer__WEBPACK_IMPORTED_MODULE_1__.types.STORE_FULFILLED,
+                  data: response.data
+                });
+              })["catch"](function (error) {
+                dispatch({
+                  type: _quiz_reducer__WEBPACK_IMPORTED_MODULE_1__.types.STORE_REJECTED,
+                  data: error.response.data
+                });
+              });
+
+            case 4:
+              return _context.abrupt("return", _context.sent);
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+};
+/**
+ *
+ * @param id
+ * @param data
+ * @returns {function(*): Promise<AxiosResponse<any>>}
+ */
+
+var updateQuiz = function updateQuiz(id, data) {
+  return /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(dispatch) {
+      var url;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              dispatch({
+                type: _quiz_reducer__WEBPACK_IMPORTED_MODULE_1__.types.UPDATE_START
+              });
+              url = _lib_AxiosConfig__WEBPACK_IMPORTED_MODULE_2__["default"].getEndpointAddress() + "/quizzes/" + id;
+              _context2.next = 4;
+              return _lib_axios__WEBPACK_IMPORTED_MODULE_3__["default"].put(url, data, _lib_AxiosConfig__WEBPACK_IMPORTED_MODULE_2__["default"].getConfig()).then(function (response) {
+                dispatch({
+                  type: _quiz_reducer__WEBPACK_IMPORTED_MODULE_1__.types.UPDATE_FULFILLED,
+                  data: response.data
+                });
+              })["catch"](function (error) {
+                dispatch({
+                  type: _quiz_reducer__WEBPACK_IMPORTED_MODULE_1__.types.UPDATE_REJECTED,
+                  data: error.response.data
+                });
+              });
+
+            case 4:
+              return _context2.abrupt("return", _context2.sent);
+
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+};
+/**
+ *
+ * @param id
+ * @returns {function(*): Promise<AxiosResponse<any>>}
+ */
+
+var deleteQuiz = function deleteQuiz(id) {
+  return function (dispatch) {
+    dispatch({
+      type: _quiz_reducer__WEBPACK_IMPORTED_MODULE_1__.types.DELETE_START
+    });
+    var url = _lib_AxiosConfig__WEBPACK_IMPORTED_MODULE_2__["default"].getEndpointAddress() + "/quizzes/" + id;
+    return _lib_axios__WEBPACK_IMPORTED_MODULE_3__["default"]["delete"](url, _lib_AxiosConfig__WEBPACK_IMPORTED_MODULE_2__["default"].getConfig()).then(function (response) {
+      dispatch({
+        type: _quiz_reducer__WEBPACK_IMPORTED_MODULE_1__.types.DELETE_FULFILLED,
+        data: id
+      });
+    })["catch"](function (error) {
+      dispatch({
+        type: _quiz_reducer__WEBPACK_IMPORTED_MODULE_1__.types.DELETE_REJECTED,
+        data: error.response.data
+      });
+    });
+  };
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/quiz/quiz.reducer.js":
+/*!*************************************************!*\
+  !*** ./resources/js/store/quiz/quiz.reducer.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ reducer),
+/* harmony export */   "initialState": () => (/* binding */ initialState),
+/* harmony export */   "types": () => (/* binding */ types)
+/* harmony export */ });
+/* harmony import */ var _user_user_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../user/user.reducer */ "./resources/js/store/user/user.reducer.js");
+/* harmony import */ var _app_app_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../app/app.reducer */ "./resources/js/store/app/app.reducer.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var types = {
+  SET: "QUIZ/SET",
+  STORE_START: "QUIZ/STORE_START",
+  STORE_FULFILLED: "QUIZ/STORE_FULFILLED",
+  STORE_REJECTED: "QUIZ/STORE_REJECTED",
+  UPDATE_START: "QUIZ/UPDATE_START",
+  UPDATE_FULFILLED: "QUIZ/UPDATE_FULFILLED",
+  UPDATE_REJECTED: "QUIZ/UPDATE_REJECTED",
+  DELETE_START: "QUIZ/DELETE_START",
+  DELETE_FULFILLED: "QUIZ/DELETE_FULFILLED",
+  DELETE_REJECTED: "QUIZ/DELETE_REJECTED"
+};
+var initialState = {
+  model: null,
+  store: false,
+  storeSuccess: false,
+  storeError: null,
+  update: false,
+  updateSuccess: false,
+  updateError: null
+};
+function reducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _objectSpread({}, initialState);
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _app_app_reducer__WEBPACK_IMPORTED_MODULE_1__.types.CLEAR_ERRORS:
+      return _objectSpread(_objectSpread({}, initialState), {}, {
+        model: state.model
+      });
+
+    case types.STORE_START:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        store: true,
+        storeSuccess: false,
+        storeError: null
+      });
+
+    case types.STORE_FULFILLED:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        store: false,
+        storeSuccess: true,
+        model: action.data
+      });
+
+    case types.STORE_REJECTED:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        store: false,
+        storeSuccess: false,
+        storeError: action.data
+      });
+
+    case types.UPDATE_START:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        update: true,
+        updateSuccess: false,
+        updateError: null
+      });
+
+    case types.UPDATE_FULFILLED:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        update: false,
+        updateSuccess: true,
+        model: action.data
+      });
+
+    case types.UPDATE_REJECTED:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        update: false,
+        updateSuccess: false,
+        updateError: action.data
+      });
+
+    case types.SET:
+      return _objectSpread(_objectSpread({}, initialState), {}, {
+        model: action.data
+      });
+
+    case _user_user_reducer__WEBPACK_IMPORTED_MODULE_0__.types.LOGOUT:
+      return _objectSpread({}, initialState);
+
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./resources/js/store/quizzes/quizzes.actions.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/store/quizzes/quizzes.actions.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchQuizzes": () => (/* binding */ fetchQuizzes)
+/* harmony export */ });
+/* harmony import */ var _quizzes_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./quizzes.reducer */ "./resources/js/store/quizzes/quizzes.reducer.js");
+/* harmony import */ var _lib_AxiosConfig__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../lib/AxiosConfig */ "./resources/js/lib/AxiosConfig.js");
+/* harmony import */ var _lib_axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../lib/axios */ "./resources/js/lib/axios.js");
+
+
+
+/**
+ *
+ * @returns {function(*): Promise<AxiosResponse<T> | never>}
+ */
+
+var fetchQuizzes = function fetchQuizzes() {
+  return function (dispatch) {
+    dispatch({
+      type: _quizzes_reducer__WEBPACK_IMPORTED_MODULE_0__.types.FETCH_START
+    });
+    var url = _lib_AxiosConfig__WEBPACK_IMPORTED_MODULE_1__["default"].getEndpointAddress() + "/quizzes";
+    return _lib_axios__WEBPACK_IMPORTED_MODULE_2__["default"].get(url, _lib_AxiosConfig__WEBPACK_IMPORTED_MODULE_1__["default"].getAuthConfig()).then(function (response) {
+      dispatch({
+        type: _quizzes_reducer__WEBPACK_IMPORTED_MODULE_0__.types.FETCH_FULFILLED,
+        data: response.data
+      });
+    })["catch"](function (error) {
+      dispatch({
+        type: _quizzes_reducer__WEBPACK_IMPORTED_MODULE_0__.types.FETCH_REJECTED,
+        data: error
+      });
+    });
+  };
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/quizzes/quizzes.reducer.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/store/quizzes/quizzes.reducer.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ reducer),
+/* harmony export */   "initialState": () => (/* binding */ initialState),
+/* harmony export */   "types": () => (/* binding */ types)
+/* harmony export */ });
+/* harmony import */ var _user_user_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../user/user.reducer */ "./resources/js/store/user/user.reducer.js");
+/* harmony import */ var _quiz_quiz_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../quiz/quiz.reducer */ "./resources/js/store/quiz/quiz.reducer.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var types = {
+  FETCH_START: "QUIZZES/FETCH_START",
+  FETCH_FULFILLED: "QUIZZES/FETCH_FULFILLED",
+  FETCH_REJECTED: "QUIZZES/FETCH_REJECTED"
+};
+var initialState = {
+  fetch: false,
+  fetchSuccess: false,
+  fetchError: null,
+  collection: []
+};
+function reducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _objectSpread({}, initialState);
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    // case courseTypes.STORE_FULFILLED:
+    //     return {
+    //         ...state,
+    //         collection: [...state.collection, action.data]
+    //     }
+    case _quiz_quiz_reducer__WEBPACK_IMPORTED_MODULE_1__.types.DELETE_FULFILLED:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        collection: state.collection.filter(function (quiz) {
+          return quiz.id !== action.data;
+        })
+      });
+    // case courseTypes.UPDATE_FULFILLED:
+    //     return {
+    //         ...state,
+    //         collection: state.collection.map(each => (each.id == action.data.id) ? action.data : each)
+    //     };
+
+    case types.FETCH_START:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        fetch: true,
+        fetchSuccess: false,
+        fetchError: null
+      });
+
+    case types.FETCH_FULFILLED:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        fetch: false,
+        fetchSuccess: true,
+        collection: action.data
+      });
+
+    case types.FETCH_REJECTED:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        fetch: false,
+        fetchSuccess: false,
+        fetchError: action.data
+      });
+
+    case _user_user_reducer__WEBPACK_IMPORTED_MODULE_0__.types.LOGOUT:
+    case _user_user_reducer__WEBPACK_IMPORTED_MODULE_0__.types.LOGIN_FULFILLED:
+      return _objectSpread({}, initialState);
+
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./resources/js/store/quizzes/quizzes.selectors.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/store/quizzes/quizzes.selectors.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "selectQuizzes": () => (/* binding */ selectQuizzes),
+/* harmony export */   "selectQuizzesFetch": () => (/* binding */ selectQuizzesFetch),
+/* harmony export */   "selectQuizzesFetchError": () => (/* binding */ selectQuizzesFetchError),
+/* harmony export */   "selectQuizzesFetchSuccess": () => (/* binding */ selectQuizzesFetchSuccess)
+/* harmony export */ });
+var selectQuizzes = function selectQuizzes(state) {
+  return state.quizzes.collection;
+};
+var selectQuizzesFetch = function selectQuizzesFetch(state) {
+  return state.quizzes.fetch;
+};
+var selectQuizzesFetchSuccess = function selectQuizzesFetchSuccess(state) {
+  return state.quizzes.fetchSuccess;
+};
+var selectQuizzesFetchError = function selectQuizzesFetchError(state) {
+  return state.quizzes.fetchError;
+};
 
 /***/ }),
 
