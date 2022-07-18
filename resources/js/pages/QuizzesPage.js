@@ -1,14 +1,11 @@
 import React from "react";
+import PageTemplate from "./PageTemplate";
 
 function QuizzesPage() {
     return (
-        <div className="container">
-            <div className="row justify-content-center mt-3">
-                <div className="col-md-8">
-                    <h2>Quizzes</h2>
-                </div>
-            </div>
-        </div>
+        <PageTemplate>
+            <h2>Quizzes</h2>
+        </PageTemplate>
     );
 }
 

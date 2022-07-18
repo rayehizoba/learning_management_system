@@ -15,8 +15,11 @@ return new class extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('course_id')->constrained();
+            $table->string('name')->nullable();
+            $table->foreignId('course_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->integer('sort_order')->default(0);
             $table->json('content')->nullable();
             $table->timestamps();

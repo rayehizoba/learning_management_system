@@ -18,3 +18,11 @@ mix.js('resources/js/main.js', 'public/js')
         require('tailwindcss'),
     ])
 ;
+
+mix.browserSync({
+    proxy: 'lms.test',
+    middleware: function (req, res, next) {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        next();
+    }
+});

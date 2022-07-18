@@ -1,7 +1,15 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import * as courseActions from "../store/course/course.actions";
 
 function CourseSettingsMenu({course}) {
+    const dispatch = useDispatch();
+    const handleDelete = () => {
+        if (confirm('Are you sure ?')) {
+            dispatch(courseActions.deleteCourse(course.id));
+        }
+    };
     return (
         <ul className="w-44 py-1">
             <li className="hover:bg-gray-100 hover:text-gray-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
@@ -32,7 +40,10 @@ function CourseSettingsMenu({course}) {
                 <i className="mdi mdi-export-variant mr-1 text-lg opacity-50"></i>
                 Export Course
             </li>
-            <li className="hover:bg-red-100 text-red-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
+            <li
+                onClick={handleDelete}
+                className="hover:bg-red-100 text-red-600 p-0.5 px-1 cursor-pointer font-medium flex items-center"
+            >
                 <i className="mdi mdi-trash-can-outline mr-1 text-lg opacity-50"></i>
                 Delete Course
             </li>

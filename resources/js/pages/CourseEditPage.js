@@ -12,7 +12,10 @@ import {
     selectCourse,
     selectCourseStore,
     selectCourseStoreError,
-    selectCourseStoreSuccess, selectCourseUpdate, selectCourseUpdateError, selectCourseUpdateSuccess
+    selectCourseStoreSuccess,
+    selectCourseUpdate,
+    selectCourseUpdateError,
+    selectCourseUpdateSuccess
 } from "../store/course/course.selectors";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import * as coursesActions from "../store/courses/courses.actions";
@@ -24,10 +27,18 @@ import {
 } from "../store/courses/courses.selectors";
 import * as appActions from "../store/app/app.actions";
 import moment from "moment";
-import {selectSections} from "../store/sections/sections.selectors";
+import {
+    selectSections,
+    selectSectionsFetch,
+    selectSectionsFetchError,
+    selectSectionsFetchSuccess, selectSectionsStoreError, selectSectionsStoreSuccess
+} from "../store/sections/sections.selectors";
 import * as sectionActions from "../store/section/section.actions";
 import {selectSection} from "../store/section/section.selectors";
+import usePrevious from "../lib/usePrevious";
 import classNames from "classnames";
+import ApiError from "../components/ApiError";
+import AutosizeInput from 'react-input-autosize';
 
 function CourseEditPage(props) {
     const navigate = useNavigate();
@@ -48,6 +59,14 @@ function CourseEditPage(props) {
     const courseUpdateError = useSelector(selectCourseUpdateError);
 
     const sections = useSelector(selectSections);
+    const prevSections = usePrevious(sections);
+    const sectionsFetch = useSelector(selectSectionsFetch);
+    const prevSectionsFetch = usePrevious(sectionsFetch);
+    const sectionsFetchSuccess = useSelector(selectSectionsFetchSuccess);
+    const sectionsFetchError = useSelector(selectSectionsFetchError);
+    const sectionsStoreSuccess = useSelector(selectSectionsStoreSuccess);
+    const sectionsStoreError = useSelector(selectSectionsStoreError);
+    const sectionsError = sectionsFetchError || sectionsStoreError;
     const section = useSelector(selectSection);
 
     const [formData, setFormData] = React.useState({
@@ -64,31 +83,36 @@ function CourseEditPage(props) {
     const saving = courseStore || courseUpdate;
     const save = () => {
         const validation = new Validator(formData, {
-            name: "required|max:30",
+            name: "required|max:100",
         });
         if (validation.passes()) {
             setFormErrors(null);
-            dispatch(course_id ? courseActions.update(course_id, formData) : courseActions.store(formData));
+            dispatch(course_id
+                ? courseActions.updateCourse(course_id, formData)
+                : courseActions.storeCourse(formData));
         } else {
             setFormErrors(validation.errors.all());
         }
     };
 
-    const newSection = () => {
-        dispatch(sectionsActions.createSection());
-    };
+    const newSection = () => dispatch(sectionsActions.createSection());
 
     React.useEffect(() => {
         if (course_id && !coursesFetchSuccess) {
             dispatch(coursesActions.fetchCourses());
         }
+        if (course_id && !sectionsFetchSuccess) {
+            dispatch(sectionsActions.fetchSections(course_id));
+        }
         return () => {
             dispatch(appActions.clearErrors());
             dispatch(courseActions.setCourse());
+            dispatch(sectionsActions.clearSections());
+            dispatch(sectionActions.setSection());
         }
     }, []);
 
-    React.useEffect( () => {
+    React.useEffect(() => {
         if (course_id && courses.length) {
             const course = courses.find(each => (each.id == course_id));
             dispatch(courseActions.setCourse(course));
@@ -96,24 +120,36 @@ function CourseEditPage(props) {
         }
     }, [courses]);
 
-    React.useEffect(async () => {
+    React.useEffect(() => {
         if (courseStoreSuccess) {
-            navigate(`/courses/${course.id}/edit`);
+            dispatch(sectionsActions.storeSections(course.id, sections));
         }
     }, [courseStoreSuccess]);
 
-    React.useEffect(async () => {
+    React.useEffect(() => {
+        if (sectionsStoreSuccess) {
+            if (course_id) navigate('/courses');
+            else navigate(`/courses/${course.id}/edit`);
+        }
+    }, [sectionsStoreSuccess]);
+
+    React.useEffect(() => {
         if (course_id && courseUpdateSuccess) {
-            navigate('/courses');
+            dispatch(sectionsActions.storeSections(course.id, sections));
         }
     }, [courseUpdateSuccess]);
 
+    const jsSection = 'js-section-';
+
     React.useEffect(() => {
-        if (sections.length) {
-            const last = sections[sections.length - 1];
-            dispatch(sectionActions.setSection(last));
+        if (!prevSectionsFetch && prevSections && prevSections.length !== sections.length) {
+            const last = sections.length - 1;
+            dispatch(sectionActions.setSection(sections[last]));
+            document
+                .getElementById(jsSection + last)
+                .scrollIntoView();
         }
-    }, [sections]);
+    }, [prevSectionsFetch, prevSections, sections]);
 
     const header = (
         <div className="flex flex-col space-y-3 lg:flex-row lg:space-y-0 lg:space-x-3 justify-between">
@@ -123,7 +159,7 @@ function CourseEditPage(props) {
                 <div
                     className="flex flex-col lg:flex-row lg:flex-1 lg:items-center lg:justify-between lg:space-x-3">
                     <div className="text-xl font-bold whitespace-nowrap">
-                        {Boolean(course) ? 'Edit' : 'Create'} Course
+                        {coursesFetch ? 'Fetching Course...' : Boolean(course) ? 'Edit Course' : 'Create Course'}
                     </div>
                     {Boolean(course) && (
                         <p className="text-sm text-gray-400 font-medium">
@@ -157,7 +193,7 @@ function CourseEditPage(props) {
                         className="btn-primary h-10 w-full"
                         type="button"
                     >
-                        {courseStore && <Spinner/>}
+                        {saving && <Spinner/>}
                         Save
                     </button>
                 </li>
@@ -205,13 +241,25 @@ function CourseEditPage(props) {
                         </li>
                         <li className="p-5 py-4">
                             <div className="flex items-center justify-between">
-                                <div className="flex items-center space-x-5 font-bold">
-                                    <p className="">
-                                        Sections
-                                    </p>
-                                    <p className="text-gray-400">
-                                        {sections.length}
-                                    </p>
+                                <div>
+                                    <div className="flex items-center space-x-5 font-bold">
+                                        {sectionsFetch
+                                            ? (
+                                                <p className="">
+                                                    Fetching sections...
+                                                </p>
+                                            )
+                                            : <>
+                                                <p className="">
+                                                    Sections
+                                                </p>
+                                                <p className="text-gray-400">
+                                                    {sections.length}
+                                                </p>
+                                            </>
+                                        }
+                                    </div>
+                                    {sectionsError && <ApiError error={sectionsError}/>}
                                 </div>
                                 <button
                                     onClick={newSection}
@@ -225,10 +273,12 @@ function CourseEditPage(props) {
                     </ul>
                 </header>
 
+                {/* Course Sections */}
                 <ul className="flex-1 divide-y divide-white/50">
                     {sections.map((each, index) => (
                         <li
                             key={index}
+                            id={jsSection + index}
                             onClick={onSetSection(each)}
                             className={classNames(
                                 "border-l-4 p-4 px-1 cursor-pointer transition-all",
@@ -363,12 +413,14 @@ function CourseEditPage(props) {
     const sectionContent = Boolean(section) && (
         <section>
             <header className="p-3 px-4 md:px-7 border-b flex items-start justify-between space-x-3">
-                <div
-                    contentEditable
-                    role="textbox"
-                    data-placeholder="Section Title"
-                    className="text-2xl font-semibold border-b border-dashed before:text-gray-400 outline-none"
-                >{section.name}</div>
+                <form onSubmit={preventDefault(save)}>
+                    <AutosizeInput
+                        value={section.name}
+                        onChange={event => dispatch(sectionActions.setSection({...section, name: event.target.value}))}
+                        placeholder="Section Title"
+                        inputClassName="text-2xl font-semibold border-b border-dashed placeholder:text-gray-400 outline-none max-w-[16rem] md:max-w-lg lg:max-w-xl xl:max-w-2xl"
+                    />
+                </form>
                 <div className="flex items-center space-x-3 md:space-x-5 text-gray-400">
                     <div className="flex items-center space-x-3 md:space-x-5">
                         <button className="hover:opacity-50">

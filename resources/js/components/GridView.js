@@ -12,7 +12,7 @@ function GridView({collection, renderItem, emptyText = 'No items yet'}) {
                 aside ? 'xl:grid-cols-3' : 'lg:grid-cols-3 xl:grid-cols-4'
             )}
         >
-            {collection.map((each, index) => <li key={index}>{renderItem(each, index)}</li>)}
+            {collection.map((each, index) => <li key={each.id}>{renderItem(each, index)}</li>)}
             {collection.length === 0 && (<li>{emptyText}</li>)}
         </ul>
     );

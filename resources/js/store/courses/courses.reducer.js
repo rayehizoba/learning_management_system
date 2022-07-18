@@ -16,11 +16,23 @@ export const initialState = {
 
 export default function reducer(state = {...initialState}, action) {
     switch (action.type) {
+        case courseTypes.STORE_FULFILLED:
+            return {
+                ...state,
+                collection: [...state.collection, action.data]
+            }
+
+        case courseTypes.DELETE_FULFILLED:
+            return {
+                ...state,
+                collection: state.collection.filter(course => course.id !== action.data)
+            };
+
         case courseTypes.UPDATE_FULFILLED:
             return {
                 ...state,
                 collection: state.collection.map(each => (each.id == action.data.id) ? action.data : each)
-            }
+            };
 
         case types.FETCH_START:
             return {

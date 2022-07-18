@@ -15,6 +15,7 @@ import CourseGridItem from "../components/CourseGridItem";
 import PublishedState from "../components/PublishedState";
 import CourseSettingsMenu from "../components/CourseSettingsMenu";
 import Tippy from "../components/Tippy";
+import ApiError from "../components/ApiError";
 
 function CoursesPage() {
     const dispatch = useDispatch();
@@ -80,117 +81,126 @@ function CoursesPage() {
                 </div>
             </header>
 
-            {grid && coursesFetchSuccess && <GridView
-                collection={courses}
-                renderItem={(each) => <CourseGridItem course={each}/>}
-            />}
+            <ApiError error={coursesFetchError} className="px-5"/>
 
-            {grid || (
-                <div className="overflow-x-auto">
-                    <table className="table-auto w-full text-left border-y mt-5">
-                        <thead className="border-b text-gray-400 text-xs whitespace-nowrap">
-                        <tr>
-                            <th className="pl-4 md:pl-5 py-3">
-                                Course Name
-                            </th>
-                            <th className="px-5">
-                                Total Learners
-                            </th>
-                            <th className="px-5">
-                                Category
-                            </th>
-                            <th className="px-5">
-                                Completion Rate
-                            </th>
-                            <th className="px-5">
-                                Reaction Score
-                            </th>
-                            <th className="pr-4 md:pr-5">
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody className="divide-y">
-                        {courses.map(each => (
-                            <tr key={each.id}>
-                                <td className="pl-4 md:pl-5 py-5">
-                                    <a
-                                        href="#"
-                                        className="flex items-center space-x-5 group"
-                                    >
-                                        <figure
-                                            className="flex-shrink-0 w-28 aspect-[5/2] bg-gray-300 text-gray-100 grid place-content-center">
-                                            <i className="mdi mdi-image text-4xl"></i>
-                                        </figure>
-                                        <div className="space-y-1">
-                                            <p className="min-w-[16ch] font-semibold line-clamp-2 text-sm group-hover:underline">
-                                                {each.name}
-                                            </p>
-                                            <PublishedState published={each.published}/>
-                                        </div>
-                                    </a>
-                                </td>
-                                <td className="px-5">
-                                    {each.published ? (
-                                        <div className="flex items-center space-x-1 text-sm whitespace-nowrap">
-                                            <i className="mdi mdi-account-circle-outline"></i>
-                                            <span>24 Learners</span>
-                                        </div>
-                                    ) : '-'}
-                                </td>
-                                <td className="px-5">
-                                    <div className="flex items-center space-x-1 text-sm">
-                                        <i className="mdi mdi-license"></i>
-                                        <span>Design</span>
-                                    </div>
-                                </td>
-                                <td className="px-5">
-                                    {each.published ? (
-                                        <div className="flex items-center space-x-1 text-sm">
-                                            <i className="mdi mdi-check-circle-outline"></i>
-                                            <p>65%</p>
-                                        </div>
-                                    ) : '-'}
-                                </td>
-                                <td className="px-5">
-                                    {each.published ? (
-                                        <div className="flex items-center space-x-1 text-sm whitespace-nowrap">
-                                            <i className="mdi mdi-emoticon-outline"></i>
-                                            <p>50% Useful</p>
-                                        </div>
-                                    ) : '-'}
-                                </td>
-                                <td className="pr-4 md:pr-5">
-                                    <div className="flex justify-end items-center space-x-5">
-                                        <button
-                                            disabled={!each.published}
-                                            className="btn-primary-outline !px-10 text-sm"
-                                        >
-                                            <i className="mdi mdi-plus"></i>
-                                            Assign
-                                        </button>
-                                        <Tippy content={<CourseSettingsMenu course={each}/>}>
-                                            <button
-                                                className="h-5 w-5 hover:bg-gray-400 transition rounded-full flex items-center justify-center text-gray-400 hover:text-white"
-                                                type="button"
+            {coursesFetchSuccess && (
+                <>
+                    {grid && (
+                        <GridView
+                            collection={courses}
+                            renderItem={(each) => <CourseGridItem course={each}/>}
+                        />
+                    )}
+
+                    {grid || (
+                        <div className="overflow-x-auto">
+                            <table className="table-auto w-full text-left border-y mt-5">
+                                <thead className="border-b text-gray-400 text-xs whitespace-nowrap">
+                                <tr>
+                                    <th className="pl-4 md:pl-5 py-3">
+                                        Course Name
+                                    </th>
+                                    <th className="px-5">
+                                        Total Learners
+                                    </th>
+                                    <th className="px-5">
+                                        Category
+                                    </th>
+                                    <th className="px-5">
+                                        Completion Rate
+                                    </th>
+                                    <th className="px-5">
+                                        Reaction Score
+                                    </th>
+                                    <th className="pr-4 md:pr-5">
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody className="divide-y">
+                                {courses.map(each => (
+                                    <tr key={each.id}>
+                                        <td className="pl-4 md:pl-5 py-5">
+                                            <a
+                                                href="#"
+                                                className="flex items-center space-x-5 group"
                                             >
-                                                <i className="mdi mdi-dots-vertical text-2xl"></i>
-                                            </button>
-                                        </Tippy>
-                                    </div>
-                                </td>
-                            </tr>
-                        ))}
-                        {courses.length === 0 && (
-                            <tr>
-                                <td colSpan="6">
-                                    <p>No courses yet</p>
-                                </td>
-                            </tr>
-                        )}
-                        </tbody>
-                    </table>
-                </div>
+                                                <figure
+                                                    className="flex-shrink-0 w-28 aspect-[5/2] bg-gray-300 text-gray-100 grid place-content-center">
+                                                    <i className="mdi mdi-image text-4xl"></i>
+                                                </figure>
+                                                <div className="space-y-1">
+                                                    <p className="min-w-[16ch] font-semibold line-clamp-2 text-sm group-hover:underline">
+                                                        {each.name}
+                                                    </p>
+                                                    <PublishedState published={each.published}/>
+                                                </div>
+                                            </a>
+                                        </td>
+                                        <td className="px-5">
+                                            {each.published ? (
+                                                <div className="flex items-center space-x-1 text-sm whitespace-nowrap">
+                                                    <i className="mdi mdi-account-circle-outline"></i>
+                                                    <span>24 Learners</span>
+                                                </div>
+                                            ) : '-'}
+                                        </td>
+                                        <td className="px-5">
+                                            <div className="flex items-center space-x-1 text-sm">
+                                                <i className="mdi mdi-license"></i>
+                                                <span>Design</span>
+                                            </div>
+                                        </td>
+                                        <td className="px-5">
+                                            {each.published ? (
+                                                <div className="flex items-center space-x-1 text-sm">
+                                                    <i className="mdi mdi-check-circle-outline"></i>
+                                                    <p>65%</p>
+                                                </div>
+                                            ) : '-'}
+                                        </td>
+                                        <td className="px-5">
+                                            {each.published ? (
+                                                <div className="flex items-center space-x-1 text-sm whitespace-nowrap">
+                                                    <i className="mdi mdi-emoticon-outline"></i>
+                                                    <p>50% Useful</p>
+                                                </div>
+                                            ) : '-'}
+                                        </td>
+                                        <td className="pr-4 md:pr-5">
+                                            <div className="flex justify-end items-center space-x-5">
+                                                <button
+                                                    disabled={!each.published}
+                                                    className="btn-primary-outline !px-10 text-sm"
+                                                >
+                                                    <i className="mdi mdi-plus"></i>
+                                                    Assign
+                                                </button>
+                                                <Tippy content={<CourseSettingsMenu course={each}/>}>
+                                                    <button
+                                                        className="h-5 w-5 hover:bg-gray-400 transition rounded-full flex items-center justify-center text-gray-400 hover:text-white"
+                                                        type="button"
+                                                    >
+                                                        <i className="mdi mdi-dots-vertical text-2xl"></i>
+                                                    </button>
+                                                </Tippy>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                                {courses.length === 0 && (
+                                    <tr>
+                                        <td colSpan="6">
+                                            <p>No courses yet</p>
+                                        </td>
+                                    </tr>
+                                )}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                </>
             )}
+
         </PageTemplate>
     );
 }

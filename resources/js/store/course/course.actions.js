@@ -7,10 +7,10 @@ import axios from "../../lib/axios";
  * @param data
  * @returns {Function}
  */
-export const setCourse = data => {
-  return dispatch => {
-    dispatch({type: types.SET, data});
-  };
+export const setCourse = (data = null) => {
+    return dispatch => {
+        dispatch({type: types.SET, data});
+    };
 };
 
 /**
@@ -18,7 +18,7 @@ export const setCourse = data => {
  * @param data
  * @returns {function(*): Promise<*>}
  */
-export const store = (data) => {
+export const storeCourse = (data) => {
     return async dispatch => {
         dispatch({type: types.STORE_START});
         const url = AxiosConfig.getEndpointAddress() + "/courses";
@@ -44,7 +44,7 @@ export const store = (data) => {
  * @param data
  * @returns {function(*): Promise<AxiosResponse<any>>}
  */
-export const update = (id, data) => {
+export const updateCourse = (id, data) => {
     return async dispatch => {
         dispatch({type: types.UPDATE_START});
         const url = AxiosConfig.getEndpointAddress() + "/courses/" + id;
@@ -63,3 +63,28 @@ export const update = (id, data) => {
             });
     }
 };
+
+/**
+ *
+ * @param id
+ * @returns {function(*): Promise<AxiosResponse<any>>}
+ */
+export const deleteCourse = (id) => {
+    return dispatch => {
+        dispatch({type: types.DELETE_START});
+        const url = AxiosConfig.getEndpointAddress() + "/courses/" + id;
+        return axios.delete(url, AxiosConfig.getConfig(),)
+            .then((response) => {
+                dispatch({
+                    type: types.DELETE_FULFILLED,
+                    data: id,
+                });
+            })
+            .catch(function (error) {
+                dispatch({
+                    type: types.DELETE_REJECTED,
+                    data: error.response.data,
+                });
+            });
+    }
+}
