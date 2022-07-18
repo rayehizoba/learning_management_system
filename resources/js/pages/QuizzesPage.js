@@ -18,6 +18,8 @@ import {
 import * as quizzesActions from "../store/quizzes/quizzes.actions";
 import QuizGridItem from "../components/QuizGridItem";
 import QuizSettingsMenu from "../components/QuizSettingsMenu";
+import {selectGrid} from "../store/app/app.selectors";
+import * as appActions from "../store/app/app.actions";
 
 function QuizzesPage() {
     const dispatch = useDispatch();
@@ -26,8 +28,8 @@ function QuizzesPage() {
     const quizzesFetch = useSelector(selectQuizzesFetch);
     const quizzesFetchSuccess = useSelector(selectQuizzesFetchSuccess);
     const quizzesFetchError = useSelector(selectQuizzesFetchError);
-
-    const [grid, setGrid] = React.useState(true);
+    const grid = useSelector(selectGrid);
+    const onChangeGrid = value => dispatch(appActions.setGrid(value));
 
     React.useEffect(() => {
         if (!quizzesFetchSuccess) {
@@ -72,7 +74,7 @@ function QuizzesPage() {
                         <li>
                             <GridListToggle
                                 defaultValue={grid}
-                                onChange={setGrid}
+                                onChange={onChangeGrid}
                             />
                         </li>
                     </ol>
@@ -110,10 +112,7 @@ function QuizzesPage() {
                                         Category
                                     </th>
                                     <th className="px-5">
-                                        Completion Rate
-                                    </th>
-                                    <th className="px-5">
-                                        Reaction Score
+                                        Avg Correct Answer
                                     </th>
                                     <th className="pr-4 md:pr-5">
                                     </th>
@@ -123,8 +122,8 @@ function QuizzesPage() {
                                 {quizzes.map(each => (
                                     <tr key={each.id}>
                                         <td className="pl-4 md:pl-5 py-5">
-                                            <a
-                                                href="#"
+                                            <Link
+                                                to={'/quizzes/' + each.id}
                                                 className="flex items-center space-x-5 group"
                                             >
                                                 <figure
@@ -137,7 +136,7 @@ function QuizzesPage() {
                                                     </p>
                                                     <PublishedState published={each.published}/>
                                                 </div>
-                                            </a>
+                                            </Link>
                                         </td>
                                         <td className="px-5">
                                             {each.published ? (
@@ -155,18 +154,10 @@ function QuizzesPage() {
                                         </td>
                                         <td className="px-5">
                                             {each.published ? (
-                                                <div className="flex items-center space-x-1 text-sm">
-                                                    <i className="mdi mdi-check-circle-outline"></i>
-                                                    <p>65%</p>
-                                                </div>
-                                            ) : '-'}
-                                        </td>
-                                        <td className="px-5">
-                                            {each.published ? (
-                                                <div className="flex items-center space-x-1 text-sm whitespace-nowrap">
-                                                    <i className="mdi mdi-emoticon-outline"></i>
-                                                    <p>50% Useful</p>
-                                                </div>
+                                                <p className="text-sm">
+                                                    <span className="text-red-500">12</span> / 24 <span
+                                                    className="font-semibold">(50% correct answer rate)</span>
+                                                </p>
                                             ) : '-'}
                                         </td>
                                         <td className="pr-4 md:pr-5">
@@ -192,7 +183,7 @@ function QuizzesPage() {
                                 ))}
                                 {quizzes.length === 0 && (
                                     <tr>
-                                        <td colSpan="6">
+                                        <td colSpan="5">
                                             <p>No quizzes yet</p>
                                         </td>
                                     </tr>

@@ -2,6 +2,7 @@ import React from 'react';
 import PublishedState from "./PublishedState";
 import CourseSettingsMenu from "./CourseSettingsMenu";
 import Tippy from "./Tippy";
+import {Link} from "react-router-dom";
 
 function CourseGridItem({course}) {
     return (
@@ -18,7 +19,7 @@ function CourseGridItem({course}) {
                         </button>
                     </Tippy>
                 </div>
-                <a href="" className="group">
+                <Link to={'/courses/' + course.id} className="group">
                     <figure className="w-full aspect-[3/1] bg-gray-300 text-gray-100 grid place-content-center">
                         <i className="mdi mdi-image text-5xl"></i>
                     </figure>
@@ -37,7 +38,7 @@ function CourseGridItem({course}) {
                             </div>
                         </div>
                     </div>
-                </a>
+                </Link>
             </header>
 
             {course.published ? (

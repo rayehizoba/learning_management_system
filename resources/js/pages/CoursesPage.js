@@ -16,6 +16,8 @@ import PublishedState from "../components/PublishedState";
 import CourseSettingsMenu from "../components/CourseSettingsMenu";
 import Tippy from "../components/Tippy";
 import ApiError from "../components/ApiError";
+import {selectGrid} from "../store/app/app.selectors";
+import * as appActions from "../store/app/app.actions";
 
 function CoursesPage() {
     const dispatch = useDispatch();
@@ -23,8 +25,8 @@ function CoursesPage() {
     const coursesFetch = useSelector(selectCoursesFetch);
     const coursesFetchSuccess = useSelector(selectCoursesFetchSuccess);
     const coursesFetchError = useSelector(selectCoursesFetchError);
-
-    const [grid, setGrid] = React.useState(true);
+    const grid = useSelector(selectGrid);
+    const onChangeGrid = value => dispatch(appActions.setGrid(value));
 
     React.useEffect(() => {
         if (!coursesFetchSuccess) {
@@ -69,7 +71,7 @@ function CoursesPage() {
                         <li>
                             <GridListToggle
                                 defaultValue={grid}
-                                onChange={setGrid}
+                                onChange={onChangeGrid}
                             />
                         </li>
                     </ol>
@@ -120,8 +122,8 @@ function CoursesPage() {
                                 {courses.map(each => (
                                     <tr key={each.id}>
                                         <td className="pl-4 md:pl-5 py-5">
-                                            <a
-                                                href="#"
+                                            <Link
+                                                to={'/courses/' + each.id}
                                                 className="flex items-center space-x-5 group"
                                             >
                                                 <figure
@@ -134,7 +136,7 @@ function CoursesPage() {
                                                     </p>
                                                     <PublishedState published={each.published}/>
                                                 </div>
-                                            </a>
+                                            </Link>
                                         </td>
                                         <td className="px-5">
                                             {each.published ? (

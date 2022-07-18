@@ -4,6 +4,9 @@ import {Switch, Route, useLocation, Redirect, Routes} from "react-router-dom";
 import CoursesPage from "./CoursesPage";
 import QuizzesPage from "./QuizzesPage";
 import CourseEditPage from "./CourseEditPage";
+import QuizEditPage from "./QuizEditPage";
+import QuizPage from "./QuizPage";
+import CoursePage from "./CoursePage";
 // import {selectAuthenticated} from "../store/user/user.selectors";
 // import AuthUserRoute from "../components/AuthUserRoute";
 // import HomePage from "./HomePage";
@@ -20,8 +23,11 @@ function PageSwitch(props) {
             <Route path="/courses" element={<CoursesPage/>}/>
             <Route path="/courses/create" element={<CourseEditPage/>}/>
             <Route path="/courses/:course_id/edit" element={<CourseEditPage/>}/>
+            <Route path="/courses/:course_id" element={<CoursePage/>}/>
 
             <Route path="/quizzes" element={<QuizzesPage/>}/>
+            <Route path="/quizzes/create" element={<QuizEditPage/>}/>
+            <Route path="/quizzes/:quiz_id" element={<QuizPage/>}/>
             {/*<AuthUserRoute*/}
             {/*  path="/team-analytics"*/}
             {/*  component={TeamAnalyticsPage}*/}
