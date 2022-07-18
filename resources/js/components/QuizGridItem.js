@@ -1,6 +1,5 @@
 import React from 'react';
 import PublishedState from "./PublishedState";
-import CourseSettingsMenu from "./CourseSettingsMenu";
 import Tippy from "./Tippy";
 import QuizSettingsMenu from "./QuizSettingsMenu";
 import {Link} from "react-router-dom";

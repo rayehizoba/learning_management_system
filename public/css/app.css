@@ -1229,6 +1229,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-transparent {
   border-color: transparent;
 }
+.border-black\/50 {
+  border-color: rgb(0 0 0 / 0.5);
+}
+.border-gray-500\/50 {
+  border-color: rgb(107 114 128 / 0.5);
+}
+.border-gray-100\/50 {
+  border-color: rgb(243 244 246 / 0.5);
+}
 .\!border-l-yellow-400 {
   --tw-border-opacity: 1 !important;
   border-left-color: rgb(250 204 21 / var(--tw-border-opacity)) !important;

@@ -86,7 +86,6 @@ function Navigation(props) {
                                 </NavLink>
                             </li>
                             <li>
-
                                 <NavLink
                                     to="/quizzes"
                                     className={({isActive}) => classNames(
@@ -135,14 +134,26 @@ function Navigation(props) {
                     >
                         <ul>
                             <li>
-                                <a href="#" className={classNames(className, inactiveClassName)}>
-                                    <span className="">Individual</span>
-                                </a>
+                                <NavLink
+                                    to="/individuals"
+                                    className={({isActive}) => classNames(
+                                        "p-2 pl-10 block rounded-md transition",
+                                        isActive ? activeClassName : inactiveClassName
+                                    )}
+                                >
+                                    Individual
+                                </NavLink>
                             </li>
                             <li>
-                                <a href="#" className={classNames(className, inactiveClassName)}>
-                                    <span className="">Group</span>
-                                </a>
+                                <NavLink
+                                    to="/groups"
+                                    className={({isActive}) => classNames(
+                                        "p-2 pl-10 block rounded-md transition",
+                                        isActive ? activeClassName : inactiveClassName
+                                    )}
+                                >
+                                    Group
+                                </NavLink>
                             </li>
                         </ul>
                     </Expands>
