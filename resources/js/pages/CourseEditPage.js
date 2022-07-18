@@ -157,7 +157,7 @@ function CourseEditPage(props) {
     const header = (
         <div className="flex flex-col space-y-3 lg:flex-row lg:space-y-0 lg:space-x-3 justify-between">
             <div className="flex items-center flex-1">
-                <AsideToggleBtn className="lg:hidden"/>
+                <AsideToggleBtn/>
                 <div className="h-10 md:h-7 border-l border-gray-300 mx-3 md:mx-5"></div>
                 <div
                     className="flex flex-col lg:flex-row lg:flex-1 lg:items-center lg:justify-between lg:space-x-3">

@@ -15,6 +15,10 @@ export const types = {
     DELETE_START: "QUIZ/DELETE_START",
     DELETE_FULFILLED: "QUIZ/DELETE_FULFILLED",
     DELETE_REJECTED: "QUIZ/DELETE_REJECTED",
+
+    FETCH_START: "COURSE/FETCH_START",
+    FETCH_FULFILLED: "COURSE/FETCH_FULFILLED",
+    FETCH_REJECTED: "COURSE/FETCH_REJECTED",
 };
 
 export const initialState = {
@@ -27,10 +31,38 @@ export const initialState = {
     update: false,
     updateSuccess: false,
     updateError: null,
+
+    fetch: false,
+    fetchSuccess: false,
+    fetchError: null,
 };
 
 export default function reducer(state = {...initialState}, action) {
     switch (action.type) {
+        case types.FETCH_START:
+            return {
+                ...state,
+                fetch: true,
+                fetchSuccess: false,
+                fetchError: null,
+            };
+
+        case types.FETCH_FULFILLED:
+            return {
+                ...state,
+                fetch: false,
+                fetchSuccess: true,
+                model: action.data,
+            };
+
+        case types.FETCH_REJECTED:
+            return {
+                ...state,
+                fetch: false,
+                fetchSuccess: false,
+                fetchError: action.data,
+            };
+
         case appTypes.CLEAR_ERRORS:
             return {
                 ...initialState,

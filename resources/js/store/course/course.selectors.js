@@ -5,3 +5,6 @@ export const selectCourseStoreSuccess = (state) => state.course.storeSuccess;
 export const selectCourseUpdate = (state) => state.course.update;
 export const selectCourseUpdateError = (state) => state.course.updateError;
 export const selectCourseUpdateSuccess = (state) => state.course.updateSuccess;
+export const selectCourseFetch = (state) => state.course.fetch;
+export const selectCourseFetchError = (state) => state.course.fetchError;
+export const selectCourseFetchSuccess = (state) => state.course.fetchSuccess;

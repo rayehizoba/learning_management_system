@@ -18,6 +18,7 @@ import Tippy from "../components/Tippy";
 import ApiError from "../components/ApiError";
 import {selectGrid} from "../store/app/app.selectors";
 import * as appActions from "../store/app/app.actions";
+import * as courseActions from "../store/course/course.actions";
 
 function CoursesPage() {
     const dispatch = useDispatch();
@@ -27,6 +28,10 @@ function CoursesPage() {
     const coursesFetchError = useSelector(selectCoursesFetchError);
     const grid = useSelector(selectGrid);
     const onChangeGrid = value => dispatch(appActions.setGrid(value));
+
+    const onClickCourse = course => () => {
+        dispatch(courseActions.setCourse(course));
+    }
 
     React.useEffect(() => {
         if (!coursesFetchSuccess) {
@@ -123,6 +128,7 @@ function CoursesPage() {
                                     <tr key={each.id}>
                                         <td className="pl-4 md:pl-5 py-5">
                                             <Link
+                                                onClick={onClickCourse(each)}
                                                 to={'/courses/' + each.id}
                                                 className="flex items-center space-x-5 group"
                                             >

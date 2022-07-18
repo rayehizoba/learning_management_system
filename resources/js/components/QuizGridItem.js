@@ -4,8 +4,12 @@ import CourseSettingsMenu from "./CourseSettingsMenu";
 import Tippy from "./Tippy";
 import QuizSettingsMenu from "./QuizSettingsMenu";
 import {Link} from "react-router-dom";
+import * as quizActions from "../store/quiz/quiz.actions";
+import {useDispatch} from "react-redux";
 
 function QuizGridItem({quiz}) {
+    const dispatch = useDispatch();
+    const onClick = () => dispatch(quizActions.setQuiz(quiz));
     return (
         <div className="border rounded divide-y">
             <header>
@@ -20,7 +24,7 @@ function QuizGridItem({quiz}) {
                         </button>
                     </Tippy>
                 </div>
-                <Link to={'/quizzes/' + quiz.id} className="group">
+                <Link onClick={onClick} to={'/quizzes/' + quiz.id} className="group">
                     <figure className="w-full aspect-[3/1] bg-gray-300 text-gray-100 grid place-content-center">
                         <i className="mdi mdi-image text-5xl"></i>
                     </figure>

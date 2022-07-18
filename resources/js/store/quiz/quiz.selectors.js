@@ -5,3 +5,6 @@ export const selectQuizStoreSuccess = (state) => state.quiz.storeSuccess;
 export const selectQuizUpdate = (state) => state.quiz.update;
 export const selectQuizUpdateError = (state) => state.quiz.updateError;
 export const selectQuizUpdateSuccess = (state) => state.quiz.updateSuccess;
+export const selectQuizFetch = (state) => state.quiz.fetch;
+export const selectQuizFetchError = (state) => state.quiz.fetchError;
+export const selectQuizFetchSuccess = (state) => state.quiz.fetchSuccess;

@@ -88,3 +88,28 @@ export const deleteQuiz = (id) => {
             });
     }
 }
+
+/**
+ *
+ * @param id
+ * @returns {function(*): Promise<AxiosResponse<any>>}
+ */
+export const fetchQuiz = (id) => {
+    return dispatch => {
+        dispatch({type: types.FETCH_START});
+        const url = AxiosConfig.getEndpointAddress() + "/quizzes/" + id;
+        return axios.get(url, AxiosConfig.getConfig())
+            .then(response => {
+                dispatch({
+                    type: types.FETCH_FULFILLED,
+                    data: response.data
+                });
+            })
+            .catch(error => {
+                dispatch({
+                    type: types.FETCH_REJECTED,
+                    data: error.response.data,
+                });
+            });
+    }
+}

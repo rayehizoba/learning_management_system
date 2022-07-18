@@ -20,6 +20,7 @@ import QuizGridItem from "../components/QuizGridItem";
 import QuizSettingsMenu from "../components/QuizSettingsMenu";
 import {selectGrid} from "../store/app/app.selectors";
 import * as appActions from "../store/app/app.actions";
+import * as quizActions from "../store/quiz/quiz.actions";
 
 function QuizzesPage() {
     const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function QuizzesPage() {
     const quizzesFetchError = useSelector(selectQuizzesFetchError);
     const grid = useSelector(selectGrid);
     const onChangeGrid = value => dispatch(appActions.setGrid(value));
+    const onClickQuiz = quiz => () => dispatch(quizActions.setQuiz(quiz));
 
     React.useEffect(() => {
         if (!quizzesFetchSuccess) {
@@ -123,6 +125,7 @@ function QuizzesPage() {
                                     <tr key={each.id}>
                                         <td className="pl-4 md:pl-5 py-5">
                                             <Link
+                                                onClick={onClickQuiz(each)}
                                                 to={'/quizzes/' + each.id}
                                                 className="flex items-center space-x-5 group"
                                             >

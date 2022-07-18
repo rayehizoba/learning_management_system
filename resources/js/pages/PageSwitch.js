@@ -27,6 +27,7 @@ function PageSwitch(props) {
 
             <Route path="/quizzes" element={<QuizzesPage/>}/>
             <Route path="/quizzes/create" element={<QuizEditPage/>}/>
+            <Route path="/quizzes/:quiz_id/edit" element={<QuizEditPage/>}/>
             <Route path="/quizzes/:quiz_id" element={<QuizPage/>}/>
             {/*<AuthUserRoute*/}
             {/*  path="/team-analytics"*/}
