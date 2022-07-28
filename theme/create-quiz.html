@@ -157,7 +157,7 @@
                         </button>
                         <div class="lg:hidden h-10 md:h-7 border-l border-gray-300 mr-3 md:mr-5"></div>
                         <div class="flex flex-col md:flex-row md:flex-1 md:items-center md:justify-between">
-                            <div class="text-lg font-bold">
+                            <div x-text="quizName.length > 0 && question != null ? quizName : 'Create Quiz'" class="text-lg font-bold">
                                 Create Quiz
                             </div>
                             <p class="text-xs md:text-sm text-gray-400">
@@ -234,7 +234,7 @@
                             <label class="font-bold after:content-['*'] after:text-red-600">
                                 Quiz Name
                             </label>
-                            <input class="form-input"/>
+                            <input class="form-input" x-model="quizName"/>
                         </div>
 
                         <div class="space-y-2 flex flex-col">
@@ -464,6 +464,7 @@
                 {name: 'Linker', description: 'Recreate the right path'},
                 {name: 'Fill in the Blank', description: 'Complete the blank sentence'},
             ],
+            quizName: '',
             init() {
                 const tipps = ['data-add-content', 'data-select-question-type'];
                 tipps.forEach(tipp => {

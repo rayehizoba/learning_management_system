@@ -1,7 +1,6 @@
 import React from 'react';
-import {Link, useParams} from "react-router-dom";
+import {Link, Outlet, useParams, NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import AsideToggleBtn from "../components/AsideToggleBtn";
 import CourseSettingsMenu from "../components/CourseSettingsMenu";
 import {
     selectCourse,
@@ -118,31 +117,42 @@ function CoursePage(props) {
 
             {/* Tab Nav */}
             <ul className="border-b px-4 md:px-5 flex space-x-8 font-bold text-gray-400">
-                <li
-                    className={classNames(
-                        "py-3 hover:text-black transition-all duration-300 cursor-pointer border-b-2",
-                        true ? 'border-yellow-400 text-black' : 'border-transparent'
-                    )}
-                >
-                    Content
+                <li className="flex">
+                    <NavLink
+                        to={'/courses/' + course.id + '/content'}
+                        className={({isActive}) => classNames(
+                            "py-3 hover:text-black transition-all duration-300 cursor-pointer border-b-2",
+                            isActive ? 'border-yellow-400 text-black' : 'border-transparent'
+                        )}
+                    >
+                        Content
+                    </NavLink>
                 </li>
-                <li
-                    className={classNames(
-                        "py-3 hover:text-black transition-all duration-300 cursor-pointer border-b-2",
-                        false ? 'border-yellow-400 text-black' : 'border-transparent'
-                    )}
-                >
-                    Statistic
+                <li className="flex">
+                    <NavLink
+                        to={'/courses/' + course.id + '/statistic'}
+                        className={({isActive}) => classNames(
+                            "py-3 hover:text-black transition-all duration-300 cursor-pointer border-b-2",
+                            isActive ? 'border-yellow-400 text-black' : 'border-transparent'
+                        )}
+                    >
+                        Statistic
+                    </NavLink>
                 </li>
-                <li
-                    className={classNames(
-                        "py-3 hover:text-black transition-all duration-300 cursor-pointer border-b-2",
-                        false ? 'border-yellow-400 text-black' : 'border-transparent'
-                    )}
-                >
-                    Learner
+                <li className="flex">
+                    <NavLink
+                        to={'/courses/' + course.id + '/learner'}
+                        className={({isActive}) => classNames(
+                            "py-3 hover:text-black transition-all duration-300 cursor-pointer border-b-2",
+                            isActive ? 'border-yellow-400 text-black' : 'border-transparent'
+                        )}
+                    >
+                        Learner
+                    </NavLink>
                 </li>
             </ul>
+
+            <Outlet/>
         </>
     );
 

@@ -42,6 +42,7 @@ import AutosizeInput from 'react-input-autosize';
 import Tippy from "../components/Tippy";
 import SectionSettingsMenu from "../components/SectionSettingsMenu";
 import CourseSettingsMenu from "../components/CourseSettingsMenu";
+import SectionItem from "../components/SectionItem";
 
 function CourseEditPage(props) {
     const navigate = useNavigate();
@@ -283,24 +284,12 @@ function CourseEditPage(props) {
                             key={index}
                             id={jsSection + index}
                             onClick={onSetSection(each)}
-                            className={classNames(
-                                "border-l-4 p-4 px-1 cursor-pointer transition-all",
-                                Boolean(section) && JSON.stringify(section) == JSON.stringify(each)
-                                    ? '!border-l-yellow-400 bg-blue-100/50'
-                                    : '!border-l-gray-400 hover:bg-gray-100/50'
-                            )}
                         >
-                            <div className="flex items-center space-x-1">
-                                <i className="mdi mdi-drag-vertical text-gray-400 text-2xl cursor-grab"></i>
-                                <div>
-                                    <p className="">
-                                        {each.name || 'Section - ' + (index + 1)}
-                                    </p>
-                                    <p className="text-gray-400 text-xs">
-                                        Updated: {moment(each.updated_at).format("MMM D, YYYY h:mma")}
-                                    </p>
-                                </div>
-                            </div>
+                            <SectionItem
+                                section={each}
+                                active={Boolean(section) && JSON.stringify(section) == JSON.stringify(each)}
+                                defaultName={'Section - ' + (index + 1)}
+                            />
                         </li>
                     ))}
                 </ul>
