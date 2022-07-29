@@ -39,7 +39,8 @@ function Navigation(props) {
     const activeClassName = 'font-bold bg-teal-400/25 hover:bg-teal-400/50';
     const inactiveClassName = 'hover:bg-white/25 text-gray-500';
 
-    const contentMatch = useMatch('/courses/*') || useMatch('/quizzes/*');
+    const contentMatch = useMatch('/courses/*') || useMatch('/quizzes/*') || useMatch('/files-folders/*');
+    const learningPathsMatch = useMatch('/learning-paths/*');
     const userMatch = useMatch('/users/*') || useMatch('/groups/*');
 
     return (
@@ -120,10 +121,15 @@ function Navigation(props) {
                                 </a>
                             </li>
                             <li>
-                                <a href="#"
-                                   className="p-2 pl-10 block rounded-md transition hover:bg-white/25 text-gray-500">
-                                    <span className="">Files & Folders</span>
-                                </a>
+                                <NavLink
+                                    to="/files-folders"
+                                    className={({isActive}) => classNames(
+                                        "p-2 pl-10 block rounded-md transition",
+                                        isActive ? activeClassName : inactiveClassName
+                                    )}
+                                >
+                                    Files & Folders
+                                </NavLink>
                             </li>
                         </ul>
                     </Expands>
@@ -131,10 +137,19 @@ function Navigation(props) {
 
                 {/* Learning Path */}
                 <li>
-                    <a href="#" className={classNames(className, inactiveClassName)}>
-                        <i className="mdi mdi-book-open-outline text-2xl"></i>
+                    <NavLink
+                        to="/learning-paths"
+                        className={({isActive}) => classNames(
+                            className,
+                            isActive ? activeClassName : inactiveClassName
+                        )}
+                    >
+                        <i className={classNames(
+                            "mdi mdi-book-open-outline text-2xl",
+                            learningPathsMatch && 'text-teal-500',
+                        )}></i>
                         <span className="">Learning Path</span>
-                    </a>
+                    </NavLink>
                 </li>
 
                 {/* Public Site */}

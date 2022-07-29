@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('ext');
             $table->string('path');
+            $table->boolean('pinned')->default(false);
             $table->timestamps();
         });
     }

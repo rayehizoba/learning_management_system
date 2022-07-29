@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\LearningPath;
+use App\Models\Course;
 use App\Models\Section;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -18,7 +18,7 @@ class CourseSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        LearningPath::factory()
+        Course::factory()
             ->has(
                 Section::factory()
                 ->count($faker->unique(true)->numberBetween(1, 10))

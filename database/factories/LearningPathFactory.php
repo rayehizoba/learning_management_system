@@ -17,7 +17,7 @@ class LearningPathFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->text(),
+            'name' => $this->faker->name(),
             'published' => rand(0,1) == 1,
             'description' => $this->faker->paragraph(),
         ];

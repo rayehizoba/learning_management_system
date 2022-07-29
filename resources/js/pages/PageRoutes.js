@@ -11,6 +11,8 @@ import CourseStatistic from "../components/CourseStatistic";
 import CourseLearner from "../components/CourseLearner";
 import UsersPage from "./UsersPage";
 import GroupsPage from "./GroupsPage";
+import FilesFoldersPage from "./FilesFoldersPage";
+import LearningPathsPage from "./LearningPathsPage";
 
 function PageRoutes(props) {
     return (
@@ -30,7 +32,12 @@ function PageRoutes(props) {
             <Route path="/quizzes/:quiz_id/edit" element={<QuizEditPage/>}/>
             <Route path="/quizzes/:quiz_id" element={<QuizPage/>}/>
 
+            <Route path="/learning-paths" element={<LearningPathsPage/>}/>
+
+            <Route path="/files-folders" element={<FilesFoldersPage/>}/>
+
             <Route path="/users" element={<UsersPage/>}/>
+
             <Route path="/groups" element={<GroupsPage/>}/>
         </Routes>
     );

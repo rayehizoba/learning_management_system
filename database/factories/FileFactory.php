@@ -17,8 +17,10 @@ class FileFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->text(),
-            'path' => $this->faker->filePath(),
+            'name' => $name = $this->faker->name(),
+            'ext' => $ext = $this->faker->fileExtension(),
+            'path' => $name . '.' . $ext,
+            'pinned' => rand(0, 1),
         ];
     }
 }

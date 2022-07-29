@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(QuizSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(GroupSeeder::class);
+        $this->call(FileSeeder::class);
         $this->call(FolderSeeder::class);
         $this->call(LearningPathSeeder::class);
     }

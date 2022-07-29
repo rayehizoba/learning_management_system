@@ -1,0 +1,297 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/6.6.96/css/materialdesignicons.min.css">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/tippy.js@6/themes/light.css"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=line-clamp,aspect-ratio"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Open Sans', 'Helvetica', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .btn {
+                @apply p-2 rounded-md whitespace-nowrap transition flex items-center justify-center;
+            }
+
+            .btn-primary {
+                @apply bg-teal-500 hover:bg-teal-600 text-white btn;
+            }
+
+            .btn-outline {
+                @apply border text-gray-400 btn hover:bg-gray-50;
+            }
+
+            .btn-primary-outline {
+                @apply btn border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white font-medium;
+                @apply disabled:border-gray-400 disabled:text-gray-400 disabled:hover:bg-inherit;
+            }
+        }
+    </style>
+</head>
+<body x-data="{open: true,}" class="relative">
+
+<main class="h-screen w-screen overflow-hidden relative flex">
+    <!--  LHS: Main Menu  -->
+    <aside class="absolute inset-y-0 left-0 w-72 lg:w-3/12 xl:w-1/5 flex">
+    </aside>
+
+    <!--  RHS: Main Content  -->
+    <section
+        :class="open ? 'lg:w-9/12 xl:w-4/5 translate-x-72 lg:translate-x-0 p-5' : 'p-0'"
+        class="w-full ml-auto transition-all transform"
+    >
+        <div
+            :class="open ? '-ml-5 rounded-2xl shadow' : ''"
+            class="bg-white overflow-y-auto h-full transition-all"
+        >
+            <header class="py-3 px-7 border-b sticky top-0 bg-white z-20">
+                <div class="flex justify-between">
+                    <div class="flex items-center space-x-5">
+                        <button
+                            @click="open = !open"
+                            class="rounded border-2 border-l-[10px] h-7 w-7 border-gray-400 transition hover:bg-gray-100 hover:ring-8 ring-gray-100"
+                        >
+                            <i :class="open ? 'mdi-chevron-left':'mdi-chevron-right'" class="mdi text-gray-400"></i>
+                        </button>
+                        <div class="h-7 border-l"></div>
+                        <div class="">
+                            <div class="text-2xl font-bold">
+                                Learning Paths
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-5">
+                        <ul class="flex space-x-3">
+                            <li>
+                                <button class="btn-primary h-9 w-9 text-xl">
+                                    <i class="mdi mdi-plus"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button class="btn-outline h-9 w-9 text-xl">
+                                    <i class="mdi mdi-bell-outline"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button class="btn-outline h-9 w-9 text-xl">
+                                    <i class="mdi mdi-magnify"></i>
+                                </button>
+                            </li>
+                        </ul>
+                        <div class="h-7 border-l"></div>
+                        <div class="flex items-center space-x-2 cursor-pointer hover:opacity-75 transition">
+                            <div class="rounded-full w-8 h-8 bg-gray-200"></div>
+                            <div class="">
+                                <div class="text-sm font-semibold">
+                                    Theresa
+                                </div>
+                                <div class="text-gray-400 text-xs">
+                                    Super Admin
+                                </div>
+                            </div>
+                            <i class="mdi mdi-chevron-down text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <section>
+                <header
+                    class="p-5 border-b flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-5">
+                    <div class="md:w-9/12 flex flex-col md:flex-row md:items-center md:justify-between">
+                        <div class="text-2xl font-bold">
+                            7 <span class="text-gray-400">Learning Paths in total</span>
+                        </div>
+                        <ol class="flex justify-between md:justify-end items-center h-full space-x-7">
+                            <ol class="flex items-center h-full space-x-7">
+                                <li>
+                                    <button
+                                        class="text-gray-400 hover:opacity-50 transition text-sm flex items-center whitespace-nowrap">
+                                        <i class="text-lg mdi mdi-check-circle-outline mr-1"></i>
+                                        All status
+                                    </button>
+                                </li>
+                                <li>
+                                    <button
+                                        class="text-gray-400 hover:opacity-50 transition text-sm flex items-center whitespace-nowrap">
+                                        <i class="text-lg mdi mdi-filter-variant mr-1"></i>
+                                        Filter
+                                    </button>
+                                </li>
+                                <li>
+                                    <button
+                                        class="text-gray-400 hover:opacity-50 transition text-sm flex items-center whitespace-nowrap">
+                                        <i class="text-lg mdi mdi-sort-variant mr-1"></i>
+                                        Sort
+                                    </button>
+                                </li>
+                            </ol>
+                        </ol>
+                    </div>
+                    <div class="md:w-3/12">
+                        <a href="#" class="w-full btn-primary">
+                            + New Learning Path
+                        </a>
+                    </div>
+                </header>
+
+                <ul class="p-5 space-y-4">
+                    <template x-for="i in (3*3)" :key="i" hidden>
+                        <li>
+                            <div class="border rounded-lg overflow-hidden flex">
+                                <figure class="w-2/5 aspect-[2/1.5] bg-gray-100"></figure>
+                                <div class="w-fit p-5 space-y-3">
+                                    <ul class="flex flex-wrap items-center space-x-3 text-gray-400">
+                                        <li>
+                                            <div class="bg-green-100 text-green-700 text-xs p-1 px-2 rounded-md">
+                                                <i class="mdi mdi-web"></i>
+                                                Published
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="flex items-center space-x-1 text-gray-400">
+                                                <i class="mdi mdi-license"></i>
+                                                <span class="text-xs">Design</span>
+                                            </div>
+                                        </li>
+                                        <li>•</li>
+                                        <li>
+                                            <div class="flex items-center space-x-1 text-gray-400">
+                                                <i class="mdi mdi-calendar-month-outline"></i>
+                                                <span class="text-xs">Created: March 7 2022</span>
+                                            </div>
+                                        </li>
+                                        <li>•</li>
+                                        <div class="flex items-center space-x-1 text-gray-400">
+                                            <i class="mdi mdi-eye-outline"></i>
+                                            <span class="text-xs">Public</span>
+                                        </div>
+                                    </ul>
+                                    <p class="font-semibold text-lg">
+                                        Lorem ipsum dolor sit amet.
+                                    </p>
+                                    <p class="text-sm text-gray-400 line-clamp-2">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aspernatur
+                                        beatae delectus doloribus eligendi impedit laborum modi, praesentium repellendus
+                                        voluptatem. Animi consequatur cupiditate laborum quibusdam voluptates! Adipisci
+                                        dolore quasi sunt.
+                                    </p>
+                                    <hr>
+                                    <div class="divide-x flex space-x-5">
+                                        <div class="w-1/2 space-y-2">
+                                            <p class="font-semibold text-sm">
+                                                Contents
+                                            </p>
+                                            <div class="grid grid-cols-3 gap-2">
+                                                <div class="aspect-[1.5/1] w-full bg-purple-100 text-purple-700 rounded-md grid place-content-center text-center leading-none">
+                                                    <p class="font-bold">8</p>
+                                                    <p class="text-xs">Courses</p>
+                                                </div>
+                                                <div class="aspect-[1.5/1] w-full bg-yellow-100 text-yellow-700 rounded-md grid place-content-center text-center leading-none">
+                                                    <p class="font-bold">2</p>
+                                                    <p class="text-xs">Quizzes</p>
+                                                </div>
+                                                <div class="aspect-[1.5/1] w-full bg-green-100 text-green-700 rounded-md grid place-content-center text-center leading-none">
+                                                    <p class="font-bold">5</p>
+                                                    <p class="text-xs">Manuals</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="w-1/2 flex flex-col justify-center space-y-4">
+                                            <div class="flex items-center space-x-2 px-5">
+                                                <p class="text-sm font-semibold">
+                                                    Total Learner
+                                                </p>
+                                                <div class="flex items-center -space-x-4">
+                                                    <div class="w-9 aspect-[1/1] rounded-full border-2 border-white bg-gray-100"></div>
+                                                    <div class="w-9 aspect-[1/1] rounded-full border-2 border-white bg-gray-100"></div>
+                                                    <div class="w-9 aspect-[1/1] rounded-full border-2 border-white bg-gray-100"></div>
+                                                    <div class="w-9 aspect-[1/1] rounded-full border-2 border-white bg-yellow-400 text-xs text-white grid place-content-center">
+                                                        +21
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center space-x-2 px-5">
+                                                <p class="text-sm font-semibold">
+                                                    Completion Rate
+                                                </p>
+                                                <p class="text-teal-500 text-sm">
+                                                    75% Completed this path
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </section>
+        </div>
+    </section>
+</main>
+
+<figure class="fixed inset-0 bg-gradient-to-tr from-[#41b8b0] via-[#f0bc05] to-[#e4f7ee] opacity-25 -z-10">
+</figure>
+
+<script src="//unpkg.com/alpinejs" defer></script>
+<script src="//unpkg.com/@popperjs/core@2"></script>
+<script src="//unpkg.com/tippy.js@6"></script>
+<script>
+    const observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+            if (mutation.addedNodes.length) {
+                initializeTippy();
+            }
+        });
+    });
+    observer.observe(document.querySelector('.js-tippy-parent'), {
+        childList: true,
+    });
+
+    initializeTippy();
+
+    function initializeTippy() {
+        const config = {
+            interactive: true,
+            trigger: 'click',
+            allowHTML: true,
+            appendTo: 'parent',
+            theme: 'light',
+            placement: 'bottom-end',
+            content: getContent,
+        };
+
+        tippy('[data-folder-popup]', config)
+        tippy('[data-folder-color-popup]', {
+            ...config,
+            placement: 'right-start',
+        })
+    }
+
+    function getContent(reference) {
+        const id = reference.getAttribute('data-template');
+        const template = document.getElementById(id);
+        return template.innerHTML;
+    }
+</script>
+
+</body>
+</html>
