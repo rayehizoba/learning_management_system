@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Course;
+use App\Models\LearningPath;
 use App\Models\Section;
 use Livewire\Component;
 use Session;
 
 class EditCourseSection extends Component
 {
-    public Course $course;
+    public LearningPath $course;
     public Section|null $section;
     public int $sectionIndex;
 
@@ -25,9 +25,9 @@ class EditCourseSection extends Component
     public function mount(int $course_id = null)
     {
         if (isset($course_id)) {
-            $this->course = Course::all()->find($course_id);
+            $this->course = LearningPath::all()->find($course_id);
         } else {
-            $this->course = new Course;
+            $this->course = new LearningPath;
 //            $this->course = Course::firstOrCreate(
 //                ['new' => true],
 //                ['name' => '']

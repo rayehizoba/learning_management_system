@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Course;
+use App\Models\LearningPath;
 use Livewire\Component;
 
 class ShowCourseDetail extends Component
@@ -14,11 +14,11 @@ class ShowCourseDetail extends Component
     public array $tabs = [self::CONTENT, self::STATISTICS, self::LEARNERS];
     public $tab = self::CONTENT;
 
-    public Course $course;
+    public LearningPath $course;
 
     public function mount($course_id)
     {
-        $this->course = Course::all()->find($course_id);
+        $this->course = LearningPath::all()->find($course_id);
     }
 
     public function render()

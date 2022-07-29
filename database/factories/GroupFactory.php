@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\LearningPath>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Group>
  */
-class CourseFactory extends Factory
+class GroupFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,7 @@ class CourseFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'published' => rand(0,1) == 1,
-            'description' => $this->faker->paragraph(),
+            'name' => $this->faker->text(),
         ];
     }
 }

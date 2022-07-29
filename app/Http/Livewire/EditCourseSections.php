@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Course;
+use App\Models\LearningPath;
 use App\Models\Section;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
@@ -11,15 +11,15 @@ class EditCourseSections extends Component
 {
     public Collection $sections;
     public Section|null $section;
-    public Course $course;
+    public LearningPath $course;
 
     public function mount(int $course_id = null)
     {
         if (isset($course_id)) {
-            $this->course = Course::all()->find($course_id);
+            $this->course = LearningPath::all()->find($course_id);
             $this->sections = Collection::make($this->course->sections);
         } else {
-            $this->course = Course::Create(
+            $this->course = LearningPath::Create(
                 ['name' => '']
             );
             $this->sections = Collection::make();

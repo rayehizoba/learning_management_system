@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Http\Livewire\EditCourseSection;
 use App\Http\Livewire\EditCourseSections;
-use App\Models\Course;
+use App\Models\LearningPath;
 use App\Models\Section;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -18,7 +18,7 @@ class EditCourseTest extends TestCase
 //    /** @test */
     public function can_create_course(): void
     {
-        $course = new Course(['name' => $this->faker->name()]);
+        $course = new LearningPath(['name' => $this->faker->name()]);
         $section = ['name' => ''];
 
         Livewire::test(EditCourseSections::class)
@@ -38,7 +38,7 @@ class EditCourseTest extends TestCase
 
         $test->call('save');
 
-        $this->assertTrue(Course::where('name', $course->name)->exists());
+        $this->assertTrue(LearningPath::where('name', $course->name)->exists());
         $this->assertEquals(2, Section::count());
         $this->assertEmpty(\Session::get('course.sections'));
     }
@@ -46,7 +46,7 @@ class EditCourseTest extends TestCase
 //    /** @test  */
     public function name_category_and_focus_area_fields_are_required_for_saving_a_course()
     {
-        $course = new Course(['name' => '']);
+        $course = new LearningPath(['name' => '']);
         Livewire::test(EditCourseSection::class)
             ->set('course', $course)
             ->call('save')

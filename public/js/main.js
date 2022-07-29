@@ -6908,6 +6908,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 var _excluded = ["trigger", "children"],
     _excluded2 = ["to", "icon", "children", "activeClassName", "inActiveClassName"];
@@ -6984,6 +6985,7 @@ function Navigation(props) {
   var className = 'px-2 py-1 flex items-center space-x-2 rounded-md transition';
   var activeClassName = 'font-bold bg-teal-400/25 hover:bg-teal-400/50';
   var inactiveClassName = 'hover:bg-white/25 text-gray-500';
+  var contentMatch = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useMatch)('/courses/*') || (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useMatch)('/quizzes/*');
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "flex flex-col space-y-6 overflow-y-auto flex-1 p-5 pb-0",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("figure", {
@@ -7025,10 +7027,11 @@ function Navigation(props) {
         className: "border-t border-white/50"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Expands, {
+          defaultOpen: contentMatch,
           trigger: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(className, inactiveClassName),
+            className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(className, inactiveClassName, contentMatch && 'font-bold text-black'),
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-              className: "mdi mdi-clipboard-text-outline text-2xl"
+              className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("mdi mdi-clipboard-text-outline text-2xl", contentMatch && 'text-teal-500')
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
               children: "Contents"
             })]

@@ -1,7 +1,12 @@
 <?php
 
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\FileController;
+use App\Http\Controllers\FolderController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\LearningPathController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,5 +40,36 @@ Route::middleware(['cors'])->group(function () {
     Route::get('quizzes', [QuizController::class, 'index']);
     Route::get('quizzes/{quiz}', [QuizController::class, 'show']);
     Route::delete('quizzes/{course}', [QuizController::class, 'delete']);
+
+    Route::get('learning_paths', [LearningPathController::class, 'index']);
+    Route::get('learning_paths/{learning_path}', [LearningPathController::class, 'show']);
+    Route::post('learning_paths', [LearningPathController::class, 'store']);
+    Route::put('learning_paths/{learning_path}', [LearningPathController::class, 'update']);
+    Route::delete('learning_paths/{learning_path}', [LearningPathController::class, 'delete']);
+
+    Route::get('groups', [GroupController::class, 'index']);
+    Route::get('groups/{group}', [GroupController::class, 'show']);
+    Route::post('groups', [GroupController::class, 'store']);
+    Route::put('groups/{group}', [GroupController::class, 'update']);
+    Route::delete('groups/{group}', [GroupController::class, 'delete']);
+
+    Route::get('users', [UserController::class, 'index']);
+    Route::get('users/{user}', [UserController::class, 'show']);
+    Route::post('users', [UserController::class, 'store']);
+    Route::put('users/{user}', [UserController::class, 'update']);
+    Route::delete('users/{user}', [UserController::class, 'delete']);
+
+    Route::get('folders', [FolderController::class, 'index']);
+    Route::get('folders/{folder}', [FolderController::class, 'show']);
+    Route::post('folders', [FolderController::class, 'store']);
+    Route::put('folders/{folder}', [FolderController::class, 'update']);
+    Route::delete('folders/{folder}', [FolderController::class, 'delete']);
+
+    Route::get('files', [FileController::class, 'index']);
+    Route::get('files/{file}', [FileController::class, 'show']);
+    Route::post('files', [FileController::class, 'store']);
+    Route::put('files/{file}', [FileController::class, 'update']);
+    Route::delete('files/{file}', [FileController::class, 'delete']);
+
 });
 

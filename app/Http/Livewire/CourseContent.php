@@ -2,16 +2,16 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Course;
+use App\Models\LearningPath;
 use App\Models\Section;
 use Livewire\Component;
 
 class CourseContent extends Component
 {
-    public Course $course;
+    public LearningPath $course;
     public Section $section;
 
-    public function mount(Course $course)
+    public function mount(LearningPath $course)
     {
         $this->course = $course;
 

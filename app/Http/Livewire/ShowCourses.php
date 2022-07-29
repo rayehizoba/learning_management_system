@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Course;
+use App\Models\LearningPath;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
@@ -14,7 +14,7 @@ class ShowCourses extends Component
 
     public function render()
     {
-        $this->courses = Course::all();
+        $this->courses = LearningPath::all();
         return view('livewire.show-courses');
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from "classnames";
-import {NavLink} from "react-router-dom";
+import {NavLink, useMatch} from "react-router-dom";
 
 function NavigationGroup({trigger, children, ...restProps}) {
     return (
@@ -38,6 +38,9 @@ function Navigation(props) {
     const className = 'px-2 py-1 flex items-center space-x-2 rounded-md transition';
     const activeClassName = 'font-bold bg-teal-400/25 hover:bg-teal-400/50';
     const inactiveClassName = 'hover:bg-white/25 text-gray-500';
+
+    const contentMatch = useMatch('/courses/*') || useMatch('/quizzes/*');
+
     return (
         <div className="flex flex-col space-y-6 overflow-y-auto flex-1 p-5 pb-0">
             <figure className="bg-white shadow rounded-lg p-3 flex items-center sticky top-0">
@@ -51,12 +54,15 @@ function Navigation(props) {
             </figure>
 
             <ul className="space-y-3 flex-1 select-none">
+                {/* Dashboard */}
                 <li>
                     <a href="#" className={classNames(className, inactiveClassName)}>
                         <i className="mdi mdi-view-dashboard-outline text-2xl"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
+
+                {/* Inbox */}
                 <li>
                     <a href="#" className={classNames(className, inactiveClassName)}>
                         <i className="mdi mdi-email-outline text-2xl"></i>
@@ -64,11 +70,21 @@ function Navigation(props) {
                     </a>
                 </li>
                 <li className="border-t border-white/50"></li>
+
+                {/* Contents */}
                 <li>
                     <Expands
+                        defaultOpen={contentMatch}
                         trigger={(
-                            <div className={classNames(className, inactiveClassName)}>
-                                <i className="mdi mdi-clipboard-text-outline text-2xl"></i>
+                            <div className={classNames(
+                                className,
+                                inactiveClassName,
+                                contentMatch && 'font-bold text-black'
+                            )}>
+                                <i className={classNames(
+                                    "mdi mdi-clipboard-text-outline text-2xl",
+                                    contentMatch && 'text-teal-500'
+                                )}></i>
                                 <span>Contents</span>
                             </div>
                         )}
@@ -111,18 +127,24 @@ function Navigation(props) {
                         </ul>
                     </Expands>
                 </li>
+
+                {/* Learning Path */}
                 <li>
                     <a href="#" className={classNames(className, inactiveClassName)}>
                         <i className="mdi mdi-book-open-outline text-2xl"></i>
                         <span className="">Learning Path</span>
                     </a>
                 </li>
+
+                {/* Public Site */}
                 <li>
                     <a href="#" className={classNames(className, inactiveClassName)}>
                         <i className="mdi mdi-application-outline text-2xl"></i>
                         <span className="">Public Site</span>
                     </a>
                 </li>
+
+                {/* User */}
                 <li>
                     <Expands
                         trigger={(
@@ -158,6 +180,8 @@ function Navigation(props) {
                         </ul>
                     </Expands>
                 </li>
+
+                {/* Tracking */}
                 <li>
                     <a href="#" className={classNames(className, inactiveClassName)}>
                         <i className="mdi mdi-poll text-2xl"></i>
@@ -167,12 +191,15 @@ function Navigation(props) {
             </ul>
 
             <ul className="space-y-3 sticky bottom-0 backdrop-blur pt-3 pb-5 border-t border-white/50">
+                {/* Help */}
                 <li className="">
                     <a href="#" className={classNames(className, inactiveClassName)}>
                         <i className="mdi mdi-chat-question-outline text-2xl"></i>
                         <span className="">Help</span>
                     </a>
                 </li>
+
+                {/* Settings */}
                 <li className="">
                     <a href="#" className={classNames(className, inactiveClassName)}>
                         <i className="mdi mdi-cog-outline text-2xl"></i>

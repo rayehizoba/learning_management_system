@@ -9,8 +9,6 @@ class Section extends Model
 {
     use HasFactory;
 
-//    protected $connection = "mysql";
-
     protected $guarded = [];
 
     protected $casts = [
@@ -19,6 +17,6 @@ class Section extends Model
 
     public function course(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(LearningPath::class);
     }
 }
