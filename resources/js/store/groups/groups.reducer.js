@@ -1,9 +1,9 @@
 import {types as userTypes} from '../user/user.reducer';
 
 export const types = {
-  FETCH_START: 'USERS/FETCH_START',
-  FETCH_FULFILLED: 'USERS/FETCH_FULFILLED',
-  FETCH_REJECTED: 'USERS/FETCH_REJECTED',
+  FETCH_START: 'GROUPS/FETCH_START',
+  FETCH_FULFILLED: 'GROUPS/FETCH_FULFILLED',
+  FETCH_REJECTED: 'GROUPS/FETCH_REJECTED',
 };
 
 const initialState = {

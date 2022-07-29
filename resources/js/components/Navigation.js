@@ -40,6 +40,7 @@ function Navigation(props) {
     const inactiveClassName = 'hover:bg-white/25 text-gray-500';
 
     const contentMatch = useMatch('/courses/*') || useMatch('/quizzes/*');
+    const userMatch = useMatch('/users/*') || useMatch('/groups/*');
 
     return (
         <div className="flex flex-col space-y-6 overflow-y-auto flex-1 p-5 pb-0">
@@ -147,9 +148,17 @@ function Navigation(props) {
                 {/* User */}
                 <li>
                     <Expands
+                        defaultOpen={userMatch}
                         trigger={(
-                            <div className={classNames(className, inactiveClassName, "cursor-pointer")}>
-                                <i className="mdi mdi-account-outline text-2xl"></i>
+                            <div className={classNames(
+                                className,
+                                inactiveClassName,
+                                userMatch && 'font-bold text-black'
+                            )}>
+                                <i className={classNames(
+                                    "mdi mdi-account-outline text-2xl",
+                                    userMatch && 'text-teal-500'
+                                )}></i>
                                 <span>User</span>
                             </div>
                         )}
@@ -157,13 +166,13 @@ function Navigation(props) {
                         <ul>
                             <li>
                                 <NavLink
-                                    to="/individuals"
+                                    to="/users"
                                     className={({isActive}) => classNames(
                                         "p-2 pl-10 block rounded-md transition",
                                         isActive ? activeClassName : inactiveClassName
                                     )}
                                 >
-                                    Individual
+                                    Individuals
                                 </NavLink>
                             </li>
                             <li>
@@ -174,7 +183,7 @@ function Navigation(props) {
                                         isActive ? activeClassName : inactiveClassName
                                     )}
                                 >
-                                    Group
+                                    Groups
                                 </NavLink>
                             </li>
                         </ul>

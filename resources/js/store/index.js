@@ -8,6 +8,7 @@ import storage from 'redux-persist/lib/storage';
 import app from "./app/app.reducer";
 import course from "./course/course.reducer";
 import courses from "./courses/courses.reducer";
+import groups from "./groups/groups.reducer";
 import quiz from "./quiz/quiz.reducer";
 import quizzes from "./quizzes/quizzes.reducer";
 import roles from "./roles/roles.reducer";
@@ -23,6 +24,7 @@ const reducers = combineReducers({
     app,
     course,
     courses,
+    groups,
     quiz,
     quizzes,
     roles,
@@ -38,10 +40,12 @@ const persistConfig = {
     blacklist: [
         'course',
         'courses',
+        'groups',
         'section',
         'sections',
         'quiz',
         'quizzes',
+        'users',
     ],
     // whitelist: ['user']
 };

@@ -9,6 +9,8 @@ import CoursePage from "./CoursePage";
 import CourseContent from "../components/CourseContent";
 import CourseStatistic from "../components/CourseStatistic";
 import CourseLearner from "../components/CourseLearner";
+import UsersPage from "./UsersPage";
+import GroupsPage from "./GroupsPage";
 
 function PageRoutes(props) {
     return (
@@ -27,6 +29,9 @@ function PageRoutes(props) {
             <Route path="/quizzes/create" element={<QuizEditPage/>}/>
             <Route path="/quizzes/:quiz_id/edit" element={<QuizEditPage/>}/>
             <Route path="/quizzes/:quiz_id" element={<QuizPage/>}/>
+
+            <Route path="/users" element={<UsersPage/>}/>
+            <Route path="/groups" element={<GroupsPage/>}/>
         </Routes>
     );
 }
