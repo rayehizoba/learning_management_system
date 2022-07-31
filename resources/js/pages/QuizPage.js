@@ -1,7 +1,7 @@
 import React from 'react';
 import PageTemplate from "./PageTemplate";
 import {useDispatch, useSelector} from "react-redux";
-import {Link, useParams} from "react-router-dom";
+import {Link, Outlet, useParams} from "react-router-dom";
 import {
     selectCourse,
     selectCourseFetch,
@@ -23,6 +23,7 @@ import {
 } from "../store/quiz/quiz.selectors";
 import * as quizActions from "../store/quiz/quiz.actions";
 import QuizSettingsMenu from "../components/QuizSettingsMenu";
+import TabLink from "../components/TabLink";
 
 function QuizPage(props) {
     const dispatch = useDispatch();
@@ -124,31 +125,24 @@ function QuizPage(props) {
 
             {/* Tab Nav */}
             <ul className="border-b px-4 md:px-5 flex space-x-8 font-bold text-gray-400">
-                <li
-                    className={classNames(
-                        "py-3 hover:text-black transition-all duration-300 cursor-pointer border-b-2",
-                        true ? 'border-yellow-400 text-black' : 'border-transparent'
-                    )}
-                >
-                    Content
+                <li className="flex">
+                    <TabLink to={'/quizzes/' + quiz.id + '/content'}>
+                        Content
+                    </TabLink>
                 </li>
-                <li
-                    className={classNames(
-                        "py-3 hover:text-black transition-all duration-300 cursor-pointer border-b-2",
-                        false ? 'border-yellow-400 text-black' : 'border-transparent'
-                    )}
-                >
-                    Statistic
+                <li className="flex">
+                    <TabLink to={'/quizzes/' + quiz.id + '/statistic'}>
+                        Statistic
+                    </TabLink>
                 </li>
-                <li
-                    className={classNames(
-                        "py-3 hover:text-black transition-all duration-300 cursor-pointer border-b-2",
-                        false ? 'border-yellow-400 text-black' : 'border-transparent'
-                    )}
-                >
-                    Learner
+                <li className="flex">
+                    <TabLink to={'/quizzes/' + quiz.id + '/learner'}>
+                        Learner
+                    </TabLink>
                 </li>
             </ul>
+
+            <Outlet/>
         </>
     );
 

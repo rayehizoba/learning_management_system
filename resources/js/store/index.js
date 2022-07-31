@@ -12,6 +12,8 @@ import files from "./files/files.reducer";
 import folders from "./folders/folders.reducer";
 import groups from "./groups/groups.reducer";
 import learningPaths from "./learningPaths/learningPaths.reducer";
+import question from "./question/question.reducer";
+import questions from "./questions/questions.reducer";
 import quiz from "./quiz/quiz.reducer";
 import quizzes from "./quizzes/quizzes.reducer";
 import roles from "./roles/roles.reducer";
@@ -31,6 +33,8 @@ const reducers = combineReducers({
     folders,
     groups,
     learningPaths,
+    question,
+    questions,
     quiz,
     quizzes,
     roles,
@@ -50,6 +54,8 @@ const persistConfig = {
         'folders',
         'groups',
         'learningPaths',
+        'question',
+        'questions',
         'section',
         'sections',
         'quiz',

@@ -1,7 +1,7 @@
 import React from 'react';
 import GridListToggle from "./GridListToggle";
 
-function CourseLearner(props) {
+function QuizLearner(props) {
     return (
         <section>
             <div className="bg-gray-100 border-b p-5 py-3">
@@ -114,4 +114,4 @@ function CourseLearner(props) {
     );
 }
 
-export default CourseLearner;
+export default QuizLearner;

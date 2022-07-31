@@ -13,6 +13,9 @@ import UsersPage from "./UsersPage";
 import GroupsPage from "./GroupsPage";
 import FilesFoldersPage from "./FilesFoldersPage";
 import LearningPathsPage from "./LearningPathsPage";
+import QuizLearner from "../components/QuizLearner";
+import QuizStatistic from "../components/QuizStatistic";
+import QuizContent from "../components/QuizContent";
 
 function PageRoutes(props) {
     return (
@@ -20,7 +23,7 @@ function PageRoutes(props) {
             <Route path="/courses" element={<CoursesPage/>}/>
             <Route path="/courses/create" element={<CourseEditPage/>}/>
             <Route path="/courses/:course_id/edit" element={<CourseEditPage/>}/>
-            <Route path="/courses/:course_id" element={<CoursePage />}>
+            <Route path="/courses/:course_id" element={<CoursePage/>}>
                 <Route index element={<Navigate to="content"/>} />
                 <Route path="content" element={<CourseContent/>} />
                 <Route path="statistic" element={<CourseStatistic/>} />
@@ -30,7 +33,12 @@ function PageRoutes(props) {
             <Route path="/quizzes" element={<QuizzesPage/>}/>
             <Route path="/quizzes/create" element={<QuizEditPage/>}/>
             <Route path="/quizzes/:quiz_id/edit" element={<QuizEditPage/>}/>
-            <Route path="/quizzes/:quiz_id" element={<QuizPage/>}/>
+            <Route path="/quizzes/:quiz_id" element={<QuizPage/>}>
+                <Route index element={<Navigate to="content"/>} />
+                <Route path="content" element={<QuizContent/>} />
+                <Route path="statistic" element={<QuizStatistic/>} />
+                <Route path="learner" element={<QuizLearner/>} />
+            </Route>
 
             <Route path="/learning-paths" element={<LearningPathsPage/>}/>
 

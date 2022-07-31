@@ -33,6 +33,7 @@ class FileTest extends TestCase
     {
         $payload = [
             'name' => $this->faker->name(),
+            'ext' => $this->faker->fileExtension(),
             'path' => $this->faker->filePath(),
         ];
         $this->assertEmpty(File::count());

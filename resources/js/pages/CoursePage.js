@@ -16,6 +16,7 @@ import Tippy from "../components/Tippy";
 import PublishedState from "../components/PublishedState";
 import moment from "moment";
 import classNames from "classnames";
+import TabLink from "../components/TabLink";
 
 function CoursePage(props) {
     const dispatch = useDispatch();
@@ -116,39 +117,21 @@ function CoursePage(props) {
             </section>
 
             {/* Tab Nav */}
-            <ul className="border-b px-4 md:px-5 flex space-x-8 font-bold text-gray-400">
+            <ul className="border-b px-4 md:px-5 flex space-x-8 text-gray-400">
                 <li className="flex">
-                    <NavLink
-                        to={'/courses/' + course.id + '/content'}
-                        className={({isActive}) => classNames(
-                            "py-3 hover:text-black transition-all duration-300 cursor-pointer border-b-2",
-                            isActive ? 'border-yellow-400 text-black' : 'border-transparent'
-                        )}
-                    >
+                    <TabLink to={'/courses/' + course.id + '/content'}>
                         Content
-                    </NavLink>
+                    </TabLink>
                 </li>
                 <li className="flex">
-                    <NavLink
-                        to={'/courses/' + course.id + '/statistic'}
-                        className={({isActive}) => classNames(
-                            "py-3 hover:text-black transition-all duration-300 cursor-pointer border-b-2",
-                            isActive ? 'border-yellow-400 text-black' : 'border-transparent'
-                        )}
-                    >
+                    <TabLink to={'/courses/' + course.id + '/statistic'}>
                         Statistic
-                    </NavLink>
+                    </TabLink>
                 </li>
                 <li className="flex">
-                    <NavLink
-                        to={'/courses/' + course.id + '/learner'}
-                        className={({isActive}) => classNames(
-                            "py-3 hover:text-black transition-all duration-300 cursor-pointer border-b-2",
-                            isActive ? 'border-yellow-400 text-black' : 'border-transparent'
-                        )}
-                    >
+                    <TabLink to={'/courses/' + course.id + '/learner'}>
                         Learner
-                    </NavLink>
+                    </TabLink>
                 </li>
             </ul>
 

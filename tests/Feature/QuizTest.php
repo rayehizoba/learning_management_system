@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Question;
 use App\Models\Quiz;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -62,25 +63,25 @@ class QuizTest extends TestCase
             ->assertStatus(204);
     }
 
-//    /** @test */
-//    public function course_sections_are_listed_correctly(): void
-//    {
-//        $course = Course::factory()->create();
-//        $sections = Section::factory()->count($count = 3)->create([
-//            'course_id' => $course->id
-//        ]);
-//        $this->assertEquals(
-//            $sections->count(),
-//            Section::where('course_id', $course->id)->count()
-//        );
-//        $response = $this->get('/api/courses/' . $course->id . '/sections')
-//            ->assertStatus(200)
-//            ->assertJson($sections->toArray())
-//            ->assertJsonStructure([
-//                '*' => ['id', 'name']
-//            ]);
-//    }
-//
+    /** @test */
+    public function quiz_questions_are_listed_correctly(): void
+    {
+        $quiz = Quiz::factory()->create();
+        $questions = Question::factory()->count($count = 3)->create([
+            'quiz_id' => $quiz->id
+        ]);
+        $this->assertEquals(
+            $questions->count(),
+            Question::where('quiz_id', $quiz->id)->count()
+        );
+        $response = $this->get('/api/quizzes/' . $quiz->id . '/questions')
+            ->assertStatus(200)
+            ->assertJson($questions->toArray())
+            ->assertJsonStructure([
+                '*' => ['id', 'name']
+            ]);
+    }
+
 //    /** @test */
 //    public function course_sections_are_created_correctly(): void
 //    {

@@ -3,48 +3,48 @@ import classNames from "classnames";
 import ContentItem from "./ContentItem";
 import {useDispatch, useSelector} from "react-redux";
 import {
-    selectSections,
-    selectSectionsFetchError,
-    selectSectionsFetchSuccess
-} from "../store/sections/sections.selectors";
-import * as sectionActions from "../store/section/section.actions";
-import * as sectionsActions from "../store/sections/sections.actions";
+    selectQuestions,
+    selectQuestionsFetchError,
+    selectQuestionsFetchSuccess
+} from "../store/questions/questions.selectors";
+import * as questionActions from "../store/question/question.actions";
+import * as questionsActions from "../store/questions/questions.actions";
 import {useParams} from "react-router-dom";
-import {selectSection} from "../store/section/section.selectors";
+import {selectQuestion} from "../store/question/question.selectors";
 import * as appActions from "../store/app/app.actions";
 
-function CourseContent(props) {
+function QuizContent(props) {
     const dispatch = useDispatch();
-    const {course_id} = useParams();
-    const section = useSelector(selectSection);
-    const sections = useSelector(selectSections);
-    const sectionsFetchSuccess = useSelector(selectSectionsFetchSuccess);
-    const sectionsFetchError = useSelector(selectSectionsFetchError);
+    const {quiz_id} = useParams();
+    const question = useSelector(selectQuestion);
+    const questions = useSelector(selectQuestions);
+    const questionsFetchSuccess = useSelector(selectQuestionsFetchSuccess);
+    const questionsFetchError = useSelector(selectQuestionsFetchError);
 
     const [expand, setExpand] = React.useState(true);
 
     const toggleExpand = () => setExpand(!expand);
-    const onSetSection = section => () => {
-        dispatch(sectionActions.setSection(section));
+    const onSetQuestion = question => () => {
+        dispatch(questionActions.setQuestion(question));
     };
 
     React.useEffect(() => {
-        if (course_id && !sectionsFetchSuccess) {
-            dispatch(sectionsActions.fetchSections(course_id));
+        if (quiz_id && !questionsFetchSuccess) {
+            dispatch(questionsActions.fetchQuestions(quiz_id));
         }
         return () => {
             dispatch(appActions.clearErrors());
-            dispatch(sectionsActions.clearSections());
-            dispatch(sectionActions.setSection());
+            dispatch(questionsActions.clearQuestions());
+            dispatch(questionActions.setQuestion());
         }
     }, []);
 
     React.useEffect(() => {
-        if (!section && sections.length) {
-            const firstSection = sections[0];
-            dispatch(sectionActions.setSection(firstSection));
+        if (!question && questions.length) {
+            const firstQuestion = questions[0];
+            dispatch(questionActions.setQuestion(firstQuestion));
         }
-    }, [section, sections]);
+    }, [question, questions]);
 
     return (
         <section className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x">
@@ -55,15 +55,15 @@ function CourseContent(props) {
                         expand ? 'max-h-[1000vh] border-b' : 'max-h-0'
                     )}
                 >
-                    {sections.map((each, index) => (
+                    {questions.map((each, index) => (
                         <li
                             key={index}
-                            onClick={onSetSection(each)}
+                            onClick={onSetQuestion(each)}
                         >
                             <ContentItem
                                 model={each}
-                                active={Boolean(section) && JSON.stringify(section) == JSON.stringify(each)}
-                                defaultName={'Section - ' + (index + 1)}
+                                active={Boolean(question) && JSON.stringify(question) == JSON.stringify(each)}
+                                defaultName={'Question - ' + (index + 1)}
                             />
                         </li>
                     ))}
@@ -74,7 +74,7 @@ function CourseContent(props) {
                 >
                     <i className="mdi mdi-unfold-more-horizontal text-2xl text-gray-400"></i>
                     <div>
-                        {expand ? 'Hide Course Sections' : 'View Course Sections'}
+                        {expand ? 'Hide Course Questions' : 'View Course Questions'}
                     </div>
                 </div>
             </div>
@@ -88,4 +88,4 @@ function CourseContent(props) {
     );
 }
 
-export default CourseContent;
+export default QuizContent;

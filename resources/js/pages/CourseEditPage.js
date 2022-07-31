@@ -42,7 +42,7 @@ import AutosizeInput from 'react-input-autosize';
 import Tippy from "../components/Tippy";
 import SectionSettingsMenu from "../components/SectionSettingsMenu";
 import CourseSettingsMenu from "../components/CourseSettingsMenu";
-import SectionItem from "../components/SectionItem";
+import ContentItem from "../components/ContentItem";
 
 function CourseEditPage(props) {
     const navigate = useNavigate();
@@ -285,7 +285,7 @@ function CourseEditPage(props) {
                             id={jsSection + index}
                             onClick={onSetSection(each)}
                         >
-                            <SectionItem
+                            <ContentItem
                                 section={each}
                                 active={Boolean(section) && JSON.stringify(section) == JSON.stringify(each)}
                                 defaultName={'Section - ' + (index + 1)}

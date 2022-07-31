@@ -35,11 +35,11 @@ class QuizController extends Controller
         return response()->json(null, 204);
     }
 
-//    public function indexSections(Course $course)
-//    {
-//        return $course->sections;
-//    }
-//
+    public function indexQuestions(Quiz $quiz)
+    {
+        return $quiz->questions;
+    }
+
 //    public function storeSections(Request $request, Course $course)
 //    {
 //        foreach ($request->all() as $section) {

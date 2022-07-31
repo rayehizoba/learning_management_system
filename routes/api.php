@@ -39,7 +39,8 @@ Route::middleware(['cors'])->group(function () {
 
     Route::get('quizzes', [QuizController::class, 'index']);
     Route::get('quizzes/{quiz}', [QuizController::class, 'show']);
-    Route::delete('quizzes/{course}', [QuizController::class, 'delete']);
+    Route::delete('quizzes/{quiz}', [QuizController::class, 'delete']);
+    Route::get('quizzes/{quiz}/questions', [QuizController::class, 'indexQuestions']);
 
     Route::get('learning_paths', [LearningPathController::class, 'index']);
     Route::get('learning_paths/{learning_path}', [LearningPathController::class, 'show']);

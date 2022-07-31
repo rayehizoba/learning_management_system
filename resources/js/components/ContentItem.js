@@ -2,7 +2,7 @@ import React from 'react';
 import moment from "moment";
 import classNames from "classnames";
 
-function SectionItem({active, section, defaultName}) {
+function ContentItem({active, model, defaultName}) {
     return (
         <div
             className={classNames(
@@ -14,10 +14,10 @@ function SectionItem({active, section, defaultName}) {
                 <i className="mdi mdi-drag-vertical text-gray-400 text-2xl cursor-grab"></i>
                 <div>
                     <p className="">
-                        {section.name || defaultName}
+                        {model.name || defaultName}
                     </p>
                     <p className="text-gray-400 text-xs">
-                        Updated: {moment(section.updated_at).format("MMM D, YYYY h:mma")}
+                        Updated: {moment(model.updated_at).format("MMM D, YYYY h:mma")}
                     </p>
                 </div>
             </div>
@@ -25,4 +25,4 @@ function SectionItem({active, section, defaultName}) {
     );
 }
 
-export default SectionItem;
+export default ContentItem;
