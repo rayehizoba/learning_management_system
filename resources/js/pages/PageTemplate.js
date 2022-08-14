@@ -14,17 +14,26 @@ function PageTemplate({navigation, header, title, subtitle, children}) {
             <div className="h-screen w-screen overflow-hidden relative flex">
                 {/*   LHS: Main Menu   */}
                 <aside
-                    className={classNames("absolute inset-y-0 left-0 w-72 lg:w-3/12 xl:w-1/5 flex transition", aside ? 'opacity-100' : 'opacity-0')}
+                    className={classNames(
+                        "absolute inset-y-0 left-0 w-72 lg:w-3/12 xl:w-1/5 flex transition",
+                        aside ? 'opacity-100' : 'opacity-0'
+                    )}
                 >
                     {navigation || <Navigation/>}
                 </aside>
 
                 {/*  RHS: Main Content  */}
                 <section
-                    className={classNames("w-full ml-auto transition-all transform", aside ? 'lg:w-9/12 xl:w-4/5 translate-x-72 lg:translate-x-0 p-5' : 'p-0')}
+                    className={classNames(
+                        "w-full ml-auto transition-all transform will-change-transform",
+                        aside ? 'lg:w-9/12 xl:w-4/5 translate-x-72 lg:translate-x-0 p-5' : 'p-0'
+                    )}
                 >
                     <div
-                        className={classNames("bg-white overflow-y-auto h-full transition-all", aside ? '-ml-5 rounded-2xl shadow' : '')}
+                        className={classNames(
+                            "bg-white overflow-y-auto h-full transition-all flex flex-col flex-1",
+                            aside ? '-ml-5 rounded-2xl shadow' : ''
+                        )}
                     >
                         <header className="sticky top-0 z-10 bg-white py-3 px-4 md:px-5 border-b">
                             {header || (
@@ -93,7 +102,7 @@ function PageTemplate({navigation, header, title, subtitle, children}) {
                                     </div>
                                 </div>)}
                         </header>
-                        <section className="">
+                        <section className="flex flex-col flex-1">
                             {children}
                         </section>
                     </div>

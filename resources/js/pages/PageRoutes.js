@@ -16,6 +16,7 @@ import LearningPathsPage from "./LearningPathsPage";
 import QuizLearner from "../components/QuizLearner";
 import QuizStatistic from "../components/QuizStatistic";
 import QuizContent from "../components/QuizContent";
+import UserEditPage from "./UserEditPage";
 
 function PageRoutes(props) {
     return (
@@ -45,6 +46,7 @@ function PageRoutes(props) {
             <Route path="/files-folders" element={<FilesFoldersPage/>}/>
 
             <Route path="/users" element={<UsersPage/>}/>
+            <Route path="/users/create" element={<UserEditPage/>}/>
 
             <Route path="/groups" element={<GroupsPage/>}/>
         </Routes>

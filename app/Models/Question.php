@@ -19,4 +19,9 @@ class Question extends Model
     {
         return $this->belongsTo(Quiz::class);
     }
+
+    public static array $types = [
+        'Single' => 'single',
+        'Multiple' => 'multiple',
+    ];
 }

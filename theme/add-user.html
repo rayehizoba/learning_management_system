@@ -1,0 +1,338 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/6.6.96/css/materialdesignicons.min.css">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/tippy.js@6/themes/light.css"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=line-clamp"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Open Sans', 'Helvetica', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .btn {
+                @apply p-2 px-3 md:px-4 rounded-md whitespace-nowrap transition flex items-center justify-center text-sm;
+            }
+
+            .btn-primary {
+                @apply bg-teal-500 hover:bg-teal-600 text-white btn;
+            }
+
+            .btn-outline {
+                @apply bg-white border text-gray-400 btn hover:bg-gray-50;
+            }
+
+            .btn-primary-outline {
+                @apply btn border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white font-medium;
+                @apply disabled:border-gray-400 disabled:text-gray-400 disabled:hover:bg-inherit;
+            }
+
+            [contenteditable]:empty:before {
+                content: attr(data-placeholder);
+                opacity: 0.5;
+            }
+
+            .form-input {
+                @apply bg-white rounded border p-2 px-3 outline-none focus:border-teal-500 transition;
+            }
+        }
+    </style>
+</head>
+<body x-data="page" class="relative">
+
+<main class="h-screen w-screen overflow-hidden relative flex">
+    <!--  LHS: Main Menu  -->
+    <aside class="absolute inset-y-0 left-0 w-72 lg:w-3/12 xl:w-1/5 flex">
+        <div class="flex flex-col divide-y divide-white/50 overflow-y-auto flex-1">
+            <header class="sticky top-0 backdrop-blur divide-y divide-white/50">
+                <div class="flex items-center space-x-2 relative group mt-5 px-3 py-5">
+                    <a href="#" class="absolute inset-0"></a>
+                    <div
+                        class="block border border-teal-500 rounded-full w-8 h-8 md:w-6 md:h-6 grid place-content-center group-hover:bg-teal-500 group-hover:text-white transition">
+                        <i class="mdi mdi-chevron-left text-2xl"></i>
+                    </div>
+                    <div class="font-medium">
+                        Back to User List
+                    </div>
+                </div>
+                <ul class="flex-1 divide-y divide-white/50">
+                    <li
+                        @click="manual = true"
+                        :class="manual ? '!border-l-yellow-400 bg-blue-100/50':'!border-l-gray-400 hover:bg-gray-100/50'"
+                        class="border-l-4 p-4 cursor-pointer transition-all"
+                    >
+                        <p class="font-semibold py-1">
+                            Manual Setup
+                        </p>
+                    </li>
+                    <li
+                        @click="manual = false"
+                        :class="!manual ? '!border-l-yellow-400 bg-blue-100/50':'!border-l-gray-400 hover:bg-gray-100/50'"
+                        class="border-l-4 p-4 cursor-pointer transition-all"
+                    >
+                        <p class="font-semibold py-1">
+                            Email Invite
+                        </p>
+                    </li>
+                </ul>
+            </header>
+
+            <div class="flex-1"></div>
+
+            <div class="space-y-3 sticky bottom-0 backdrop-blur p-5 pt-3">
+                <a href="#" class="group px-2 block">
+                    <div class="text-gray-400 text-xs">Powered by</div>
+                    <div class="font-bold text-xl text-red-900 group-hover:text-red-700 transition">Razortech</div>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!--  RHS: Main Content  -->
+    <section
+        :class="open ? 'lg:w-9/12 xl:w-4/5 translate-x-72 lg:translate-x-0 p-5' : 'p-0'"
+        class="w-full ml-auto transition-all transform"
+    >
+        <div
+            :class="open ? '-ml-5 rounded-2xl shadow' : ''"
+            class="bg-white overflow-y-auto h-full transition-all flex flex-col"
+        >
+            <header class="p-3 px-4 md:px-7 border-b sticky top-0 bg-white z-20">
+                <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:space-x-3 justify-between">
+                    <div class="flex items-center flex-1">
+                        <button
+                            @click="open = !open"
+                            :class="open ? 'border-l-[12px] hover:border-l-4' : 'border-l-4 hover:border-l-[12px]'"
+                            class="lg:hidden rounded-md border-2 h-9 w-9 md:h-8 md:w-8 border-gray-400 transition-all mr-3 md:mr-5"
+                        >
+                            <i
+                                :class="open ? 'mdi-chevron-left':'mdi-chevron-right'"
+                                class="mdi text-gray-400 text-2xl md:text-lg"
+                            ></i>
+                        </button>
+                        <div class="lg:hidden h-10 md:h-7 border-l border-gray-300 mr-3 md:mr-5"></div>
+                        <div class="text-lg font-bold py-1.5">
+                            Add User
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="p-3 px-4 md:px-7 flex-1 flex flex-col">
+                <form class="space-y-12 md:space-y-10 max-w-3xl flex flex-col flex-1">
+                    <!--User Role-->
+                    <div class="space-y-3">
+                        <h1 class="text-xl md:text-2xl font-bold">
+                            User Role
+                        </h1>
+                        <ul class="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-10 font-bold">
+                            <li>
+                                <label class="flex items-center">
+                                    <input type="radio" name="role" class="peer sr-only"/>
+                                    <span
+                                        class="mr-2 w-5 h-5 border rounded-full peer-checked:border-teal-500 transition-all peer-checked:border-4"></span>
+                                    <span>Learner</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="flex items-center">
+                                    <input type="radio" name="role" class="peer sr-only"/>
+                                    <span
+                                        class="mr-2 w-5 h-5 border rounded-full peer-checked:border-teal-500 transition-all peer-checked:border-4"></span>
+                                    <span>Admin</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="flex items-center">
+                                    <input type="radio" name="role" class="peer sr-only"/>
+                                    <span
+                                        class="mr-2 w-5 h-5 border rounded-full peer-checked:border-teal-500 transition-all peer-checked:border-4"></span>
+                                    <span>Super Admin</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--Profile Picture-->
+                    <div x-show="manual" class="space-y-2">
+                        <h1 class="text-xl md:text-2xl font-bold">
+                            Profile Picture
+                        </h1>
+                        <p class="text-xs sm:text-sm text-gray-300">
+                            We recommend an image of at least 500 x 500. You can upload a PNG or JPG under 10MB
+                        </p>
+                        <div class="flex items-center space-x-8">
+                            <div class="bg-gray-100 rounded-full w-32 aspect-square"></div>
+                            <div class="grid gap-3 sm:grid-cols-2">
+                                <button class="btn-primary" type="button">
+                                    Change Picture
+                                </button>
+                                <button class="btn-outline font-semibold px-" type="button">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Personal Information-->
+                    <div x-show="manual" class="space-y-4">
+                        <h1 class="text-xl md:text-2xl font-bold">
+                            Personal Information
+                        </h1>
+
+                        <div class="md:col-span-2 space-y-2 flex flex-col">
+                            <label class="font-bold after:content-['*'] after:text-red-600">
+                                Fullname
+                            </label>
+                            <input class="form-input" placeholder="Fullname"/>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-3 md:gap-5">
+                            <div class="space-y-2 flex flex-col">
+                                <label class="font-bold after:content-['*'] after:text-red-600">
+                                    SSN Number
+                                </label>
+                                <input class="form-input" placeholder="SSN Number"/>
+                            </div>
+                            <div class="space-y-4">
+                                <label class="font-bold">
+                                    Gender
+                                </label>
+                                <ul class="flex items-center space-x-10">
+                                    <li>
+                                        <label class="flex items-center">
+                                            <input type="radio" name="gender" class="peer sr-only"/>
+                                            <span
+                                                class="mr-2 w-5 h-5 border rounded-full peer-checked:border-teal-500 transition-all peer-checked:border-4"></span>
+                                            <span>Male</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="flex items-center">
+                                            <input type="radio" name="gender" class="peer sr-only"/>
+                                            <span
+                                                class="mr-2 w-5 h-5 border rounded-full peer-checked:border-teal-500 transition-all peer-checked:border-4"></span>
+                                            <span>Female</span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Contact Information-->
+                    <div x-show="manual" class="space-y-4">
+                        <h1 class="text-xl md:text-2xl font-bold">
+                            Contact Information
+                        </h1>
+
+                        <div class="grid md:grid-cols-2 gap-3 md:gap-5">
+                            <div class="space-y-2 flex flex-col">
+                                <label class="font-bold after:content-['*'] after:text-red-600">
+                                    Email
+                                </label>
+                                <input class="form-input" placeholder="Email"/>
+                            </div>
+
+                            <div class="space-y-2 flex flex-col">
+                                <label class="font-bold after:content-['*'] after:text-red-600">
+                                    Mobile Number
+                                </label>
+                                <div class="flex flex-1">
+                                    <select class="form-input !rounded-r-none !border-r-0">
+                                        <option>
+                                            +1
+                                        </option>
+                                    </select>
+                                    <input class="form-input !rounded-l-none flex-1" placeholder="Mobile Number"/>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2 flex flex-col">
+                                <label class="font-bold after:content-['*'] after:text-red-600">
+                                    Country
+                                </label>
+                                <select class="form-input"></select>
+                            </div>
+
+                            <div class="space-y-2 flex flex-col">
+                                <label class="font-bold after:content-['*'] after:text-red-600">
+                                    State
+                                </label>
+                                <select class="form-input"></select>
+                            </div>
+
+                            <div class="space-y-2 flex flex-col">
+                                <label class="font-bold after:content-['*'] after:text-red-600">
+                                    City
+                                </label>
+                                <select class="form-input"></select>
+                            </div>
+
+                            <div class="space-y-2 flex flex-col">
+                                <label class="font-bold after:content-['*'] after:text-red-600">
+                                    Postal Code
+                                </label>
+                                <input class="form-input" placeholder="Postal Code"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--User Email Address-->
+                    <div x-show="!manual" class="md:col-span-2 space-y-2 flex flex-col flex-1">
+                        <label class="font-bold">
+                            User Email Address
+                        </label>
+                        <textarea rows="10" class="form-input" placeholder="User email"></textarea>
+                    </div>
+
+                    <footer class="grid gap-3 grid-cols-2 sm:w-fit pb-3 sm:pb-5">
+                        <button class="btn-primary !px-12" type="button">
+                            Save
+                        </button>
+                        <button class="btn-outline font-semibold" type="button">
+                            Cancel
+                        </button>
+                    </footer>
+                </form>
+            </section>
+        </div>
+    </section>
+</main>
+
+<figure class="fixed inset-0 bg-gradient-to-tr from-[#41b8b0] via-[#f0bc05] to-[#e4f7ee] opacity-25 -z-10">
+</figure>
+
+<script src="//unpkg.com/alpinejs" defer></script>
+<script src="//unpkg.com/@popperjs/core@2"></script>
+<script src="//unpkg.com/tippy.js@6"></script>
+<script>
+    function page() {
+        return {
+            open: true,
+            manual: true,
+            init() {
+            },
+        };
+    }
+</script>
+
+</body>
+</html>
