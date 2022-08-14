@@ -473,8 +473,10 @@ function CourseEditPage(props) {
             header={header}
             navigation={navigation}
         >
-            {generalInformation}
-            {sectionContent}
+            <div>
+                {generalInformation}
+                {sectionContent}
+            </div>
         </PageTemplate>
     );
 }

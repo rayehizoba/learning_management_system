@@ -3,9 +3,64 @@ import PageTemplate from "./PageTemplate";
 import classNames from "classnames";
 import AsideToggleBtn from "../components/AsideToggleBtn";
 import {Link} from "react-router-dom";
+import {preventDefault} from "../lib/helpers";
+import Validator from "validatorjs";
+import * as courseActions from "../store/course/course.actions";
+import ValidatedComponent from "../components/ValidatedComponent";
+import {GENDER_OPTIONS, ROLE_OPTIONS} from "../lib/consts";
 
 function UserEditPage(props) {
     const [manual, setManual] = React.useState(true);
+
+    const [formData, setFormData] = React.useState({
+        role: ROLE_OPTIONS.length ? ROLE_OPTIONS[0].value : null,
+        fullname: null,
+        ssn_number: null,
+        gender: GENDER_OPTIONS.length ? GENDER_OPTIONS[0].value : null,
+        email: null,
+        mobile_number_country_code: null,
+        mobile_number: null,
+        country_id: null,
+        state: null,
+        city: null,
+        postal_code: null,
+    });
+    const [formErrors, setFormErrors] = React.useState(null);
+
+    const changedInput = e => {
+        const { name, value } = e.target;
+        setFormData({...formData, [name]: value});
+        setFormErrors(null);
+    };
+
+    const saving = false;
+    const save = () => {
+        manual ? saveManualSetup() : saveEmailInvite();
+    };
+    const saveManualSetup = () => {
+        console.log(formData);
+        const validation = new Validator(formData, {
+            role: "required",
+            fullname: "required|max:100",
+            ssn_number: "required|max:100",
+            email: "required|email",
+            mobile_number_country_code: "required",
+            mobile_number: "required",
+            country_id: "required",
+            state: "required",
+            city: "required",
+            postal_code: "required",
+        });
+        if (validation.passes()) {
+            setFormErrors(null);
+            // dispatch(course_id
+            //     ? courseActions.updateCourse(course_id, formData)
+            //     : courseActions.storeCourse(formData));
+        } else {
+            setFormErrors(validation.errors.all());
+        }
+    };
+    const saveEmailInvite = () => {};
 
     const header = (
         <div className="flex flex-col space-y-3 md:flex-row md:space-y-0 md:space-x-3 justify-between">
@@ -75,30 +130,23 @@ function UserEditPage(props) {
                 User Role
             </h1>
             <ul className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-10 font-bold">
-                <li>
-                    <label className="flex items-center">
-                        <input type="radio" name="role" className="peer sr-only"/>
-                        <span
-                            className="mr-2 w-5 h-5 border rounded-full peer-checked:border-teal-500 transition-all peer-checked:border-4"></span>
-                        <span>Learner</span>
-                    </label>
-                </li>
-                <li>
-                    <label className="flex items-center">
-                        <input type="radio" name="role" className="peer sr-only"/>
-                        <span
-                            className="mr-2 w-5 h-5 border rounded-full peer-checked:border-teal-500 transition-all peer-checked:border-4"></span>
-                        <span>Admin</span>
-                    </label>
-                </li>
-                <li>
-                    <label className="flex items-center">
-                        <input type="radio" name="role" className="peer sr-only"/>
-                        <span
-                            className="mr-2 w-5 h-5 border rounded-full peer-checked:border-teal-500 transition-all peer-checked:border-4"></span>
-                        <span>Super Admin</span>
-                    </label>
-                </li>
+                {ROLE_OPTIONS.map(({label, value}) => (
+                    <li key={value}>
+                        <label className="flex items-center">
+                            <input
+                                name="role"
+                                onChange={changedInput}
+                                value={value}
+                                defaultChecked={formData.role === value}
+                                type="radio"
+                                className="peer sr-only"
+                            />
+                            <span
+                                className="mr-2 w-5 h-5 border rounded-full peer-checked:border-teal-500 transition-all peer-checked:border-4"></span>
+                            <span>{label}</span>
+                        </label>
+                    </li>
+                ))}
             </ul>
         </div>
     );
@@ -114,7 +162,10 @@ function UserEditPage(props) {
                     We recommend an image of at least 500 x 500. You can upload a PNG or JPG under 10MB
                 </p>
                 <div className="flex items-center space-x-8">
-                    <div className="bg-gray-100 rounded-full w-32 aspect-square"></div>
+                    <figure
+                        className="w-32 aspect-[1/1] rounded-full bg-gray-100 text-gray-200 grid place-content-center">
+                        <i className="mdi mdi-account text-6xl"></i>
+                    </figure>
                     <div className="grid gap-3 sm:grid-cols-2">
                         <button className="btn-primary" type="button">
                             Change Picture
@@ -136,37 +187,64 @@ function UserEditPage(props) {
                     <label className="font-bold after:content-['*'] after:text-red-600">
                         Fullname
                     </label>
-                    <input className="form-input" placeholder="Fullname"/>
+                    <ValidatedComponent
+                        name="fullname"
+                        errors={formErrors}
+                        className="form-input"
+                        renderComponent={(cn) => (
+                            <input
+                                name="fullname"
+                                value={formData.fullname}
+                                onChange={changedInput}
+                                placeholder="Fullname"
+                                className={cn}
+                            />
+                        )}
+                    />
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-3 md:gap-5">
+                <div className="grid md:grid-cols-2 gap-3 md:gap-5 items-start">
                     <div className="space-y-2 flex flex-col">
                         <label className="font-bold after:content-['*'] after:text-red-600">
                             SSN Number
                         </label>
-                        <input className="form-input" placeholder="SSN Number"/>
+                        <ValidatedComponent
+                            name="ssn_number"
+                            errors={formErrors}
+                            className="form-input"
+                            renderComponent={(cn) => (
+                                <input
+                                    value={formData.ssn_number}
+                                    name="ssn_number"
+                                    onChange={changedInput}
+                                    placeholder="SSN Number"
+                                    className={cn}
+                                />
+                            )}
+                        />
                     </div>
                     <div className="space-y-4">
                         <label className="font-bold">
                             Gender
                         </label>
                         <ul className="flex items-center space-x-10">
-                            <li>
-                                <label className="flex items-center">
-                                    <input type="radio" name="gender" className="peer sr-only"/>
-                                    <span
-                                        className="mr-2 w-5 h-5 border rounded-full peer-checked:border-teal-500 transition-all peer-checked:border-4"></span>
-                                    <span>Male</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label className="flex items-center">
-                                    <input type="radio" name="gender" className="peer sr-only"/>
-                                    <span
-                                        className="mr-2 w-5 h-5 border rounded-full peer-checked:border-teal-500 transition-all peer-checked:border-4"></span>
-                                    <span>Female</span>
-                                </label>
-                            </li>
+                            {GENDER_OPTIONS.map(({label, value}) => (
+                                <li key={value}>
+                                    <label className="flex items-center">
+                                        <input
+                                            name="gender"
+                                            value={value}
+                                            onChange={changedInput}
+                                            defaultChecked={formData.gender === value}
+                                            type="radio"
+                                            className="peer sr-only"
+                                        />
+                                        <span
+                                            className="mr-2 w-5 h-5 border rounded-full peer-checked:border-teal-500 transition-all peer-checked:border-4"></span>
+                                        <span>{label}</span>
+                                    </label>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>
@@ -178,12 +256,26 @@ function UserEditPage(props) {
                     Contact Information
                 </h1>
 
-                <div className="grid md:grid-cols-2 gap-3 md:gap-5">
+                <div className="grid md:grid-cols-2 gap-3 md:gap-5 items-start">
                     <div className="space-y-2 flex flex-col">
                         <label className="font-bold after:content-['*'] after:text-red-600">
                             Email
                         </label>
-                        <input className="form-input" placeholder="Email"/>
+                        <ValidatedComponent
+                            name="email"
+                            errors={formErrors}
+                            className="form-input"
+                            renderComponent={(cn) => (
+                                <input
+                                    value={formData.email}
+                                    name="email"
+                                    onChange={changedInput}
+                                    placeholder="Email"
+                                    className={cn}
+                                    type="email"
+                                />
+                            )}
+                        />
                     </div>
 
                     <div className="space-y-2 flex flex-col">
@@ -204,28 +296,80 @@ function UserEditPage(props) {
                         <label className="font-bold after:content-['*'] after:text-red-600">
                             Country
                         </label>
-                        <select className="form-input"></select>
+                        <ValidatedComponent
+                            name="country_id"
+                            errors={formErrors}
+                            className="form-input"
+                            renderComponent={(cn) => (
+                                <select
+                                    value={formData.country_id}
+                                    name="country_id"
+                                    onChange={changedInput}
+                                    className={cn}
+                                >
+                                </select>
+                            )}
+                        />
                     </div>
 
                     <div className="space-y-2 flex flex-col">
                         <label className="font-bold after:content-['*'] after:text-red-600">
                             State
                         </label>
-                        <select className="form-input"></select>
+                        <ValidatedComponent
+                            name="state"
+                            errors={formErrors}
+                            className="form-input"
+                            renderComponent={(cn) => (
+                                <input
+                                    name="state"
+                                    value={formData.state}
+                                    onChange={changedInput}
+                                    placeholder="State"
+                                    className={cn}
+                                />
+                            )}
+                        />
                     </div>
 
                     <div className="space-y-2 flex flex-col">
                         <label className="font-bold after:content-['*'] after:text-red-600">
                             City
                         </label>
-                        <select className="form-input"></select>
+                        <ValidatedComponent
+                            name="city"
+                            errors={formErrors}
+                            className="form-input"
+                            renderComponent={(cn) => (
+                                <input
+                                    name="city"
+                                    value={formData.city}
+                                    onChange={changedInput}
+                                    placeholder="City"
+                                    className={cn}
+                                />
+                            )}
+                        />
                     </div>
 
                     <div className="space-y-2 flex flex-col">
                         <label className="font-bold after:content-['*'] after:text-red-600">
                             Postal Code
                         </label>
-                        <input className="form-input" placeholder="Postal Code"/>
+                        <ValidatedComponent
+                            name="postal_code"
+                            errors={formErrors}
+                            className="form-input"
+                            renderComponent={(cn) => (
+                                <input
+                                    name="postal_code"
+                                    value={formData.postal_code}
+                                    onChange={changedInput}
+                                    placeholder="Postal Code"
+                                    className={cn}
+                                />
+                            )}
+                        />
                     </div>
                 </div>
             </div>
@@ -247,12 +391,15 @@ function UserEditPage(props) {
             navigation={navigation}
         >
             <section className="p-3 px-4 md:px-7 flex-1 flex flex-col">
-                <form className="space-y-12 md:space-y-10 max-w-3xl flex flex-col flex-1">
+                <form
+                    onSubmit={preventDefault(save)}
+                    className="space-y-12 md:space-y-10 max-w-3xl flex flex-col flex-1"
+                >
                     {userRole}
                     {manualSetup}
                     {emailInvite}
                     <footer className="grid gap-3 grid-cols-2 sm:w-fit pb-3 sm:pb-5">
-                        <button className="btn-primary !px-12" type="button">
+                        <button className="btn-primary !px-12" type="submit">
                             Save
                         </button>
                         <button className="btn-outline font-semibold" type="button">

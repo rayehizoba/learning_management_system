@@ -44,9 +44,14 @@ function NewMenu(props) {
                     Add New User
                 </Link>
             </li>
-            <li className="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center">
-                <i className="mdi mdi-plus mr-1 text-lg"></i>
-                Create New Group
+            <li>
+                <Link
+                    to="/groups/create"
+                    className="hover:bg-teal-100 hover:text-teal-600 p-0.5 px-1 cursor-pointer font-medium flex items-center"
+                >
+                    <i className="mdi mdi-plus mr-1 text-lg"></i>
+                    Create New Group
+                </Link>
             </li>
             <li className="border-t -mx-2 my-2"></li>
 
