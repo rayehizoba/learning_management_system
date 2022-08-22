@@ -8,6 +8,7 @@ import Validator from "validatorjs";
 import * as courseActions from "../store/course/course.actions";
 import ValidatedComponent from "../components/ValidatedComponent";
 import {GENDER_OPTIONS, ROLE_OPTIONS} from "../lib/consts";
+import CountrySelect from "../components/CountrySelect";
 
 function UserEditPage(props) {
     const [manual, setManual] = React.useState(true);
@@ -301,13 +302,13 @@ function UserEditPage(props) {
                             errors={formErrors}
                             className="form-input"
                             renderComponent={(cn) => (
-                                <select
+                                <CountrySelect
                                     value={formData.country_id}
                                     name="country_id"
                                     onChange={changedInput}
                                     className={cn}
                                 >
-                                </select>
+                                </CountrySelect>
                             )}
                         />
                     </div>

@@ -6,6 +6,7 @@ import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import app from "./app/app.reducer";
+import countries from "./countries/countries.reducer";
 import course from "./course/course.reducer";
 import courses from "./courses/courses.reducer";
 import files from "./files/files.reducer";
@@ -27,6 +28,7 @@ export const history = createBrowserHistory();
 const reducers = combineReducers({
     // router: connectRouter(history),
     app,
+    countries,
     course,
     courses,
     files,
@@ -48,6 +50,7 @@ const persistConfig = {
     key: 'root',
     storage,
     blacklist: [
+        'countries',
         'course',
         'courses',
         'files',

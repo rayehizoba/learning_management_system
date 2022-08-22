@@ -8,8 +8,8 @@ export default class AxiosConfig {
     }
   };
 
-  static baseEndpointAddress = 'http://192.168.59.48';
-  static endpointAddress = 'http://192.168.59.48/api';
+  static baseEndpointAddress = 'http://lms.test';
+  static endpointAddress = AxiosConfig.baseEndpointAddress + '/api';
 
   /**
    *

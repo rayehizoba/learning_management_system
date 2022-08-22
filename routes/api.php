@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FolderController;
@@ -71,6 +72,8 @@ Route::middleware(['cors'])->group(function () {
     Route::post('files', [FileController::class, 'store']);
     Route::put('files/{file}', [FileController::class, 'update']);
     Route::delete('files/{file}', [FileController::class, 'delete']);
+
+    Route::get('countries', [CountryController::class, 'index']);
 
 });
 

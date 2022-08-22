@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FileSeeder::class);
         $this->call(FolderSeeder::class);
         $this->call(LearningPathSeeder::class);
+        $this->call(CountrySeeder::class);
     }
 }
