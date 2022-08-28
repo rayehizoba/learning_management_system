@@ -46,7 +46,7 @@
         }
     </style>
 </head>
-<body x-data="{open: true,}" class="relative">
+<body x-data="{open: true, assignmentModal: false}" class="relative">
 
 <main class="h-screen w-screen overflow-hidden relative flex">
     <!--  LHS: Main Menu  -->
@@ -241,7 +241,7 @@
                             </td>
                             <td class="pr-5">
                                 <div class="flex items-center space-x-5">
-                                    <button class="btn-primary-outline !px-10 text-sm">
+                                    <button @click="assignmentModal = true" class="btn-primary-outline !px-10 text-sm">
                                         <i class="mdi mdi-plus"></i>
                                         Assign
                                     </button>
@@ -318,7 +318,7 @@
                                     <p class="text-sm">This course has no stats yet</p>
                                 </div>
                                 <footer class="p-4">
-                                    <button :disabled="i > 1" class="btn-primary-outline w-full">
+                                    <button :disabled="i > 1" class="btn-primary-outline w-full" @click="assignmentModal = true">
                                         <i class="mdi mdi-plus"></i>
                                         Assign
                                     </button>
@@ -331,6 +331,167 @@
         </div>
     </section>
 </main>
+
+<!-- course assignment modal -->
+<div
+    x-show="assignmentModal"
+    tabindex="-1"
+    aria-hidden="true"
+    class="overflow-y-auto overflow-x-hidden fixed inset-0 z-50 w-full md:inset-0 md:h-full bg-black/50 flex flex-col items-center justify-center"
+>
+    <div class="relative p-2 w-full max-w-5xl h-full md:h-auto">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+            <!-- Modal header -->
+            <header class="p-5 pb-0 rounded-t">
+                <div class="flex justify-between items-start">
+                    <h3 class="text-xl font-bold">
+                        Assign to course
+                    </h3>
+                    <button
+                        @click="assignmentModal = !assignmentModal"
+                        type="button"
+                        class="bg-transparent hover:bg-gray-200 text-gray-400 hover:text-gray-800 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center transition"
+                    >
+                        <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                  clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <nav>
+                    <ul class="text-sm flex items-center space-x-8">
+                        <li class="border-b-2 border-yellow-500 py-2 relative cursor-pointer before:absolute before:-inset-x-2 before:inset-y-1 before:rounded hover:before:bg-gray-100 before:transition">
+                            <span class="relative z-10">Individuals</span>
+                        </li>
+                        <li class="border-b-2 border-white text-gray-400 py-2 relative cursor-pointer before:absolute before:-inset-x-2 before:inset-y-1 before:rounded hover:before:bg-gray-100 before:transition">
+                            <span class="relative z-10">Group</span>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+            <!-- Modal body -->
+            <div class="border-y max-h-[70vh] md:max-h-[60vh] overflow-y-auto">
+                <div class="bg-gray-100 border-b p-5 py-3 sticky top-0">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:space-x-3 space-y-3 lg:space-y-0 ">
+                        <div class="relative">
+                            <label for="search" class="absolute left-0 inset-y-0 grid place-content-center w-10">
+                                <i class="mdi mdi-magnify text-2xl text-gray-400"></i>
+                            </label>
+                            <input id="search" type="text"
+                                   class="p-2 pl-10 border focus:border-teal-600 outline-none transition rounded-md w-full md:w-96"
+                                   placeholder="Name, Email, Group">
+                        </div>
+                        <ol class="flex flex-wrap md:flex-nowrap items-center w-full space-x-3">
+                            <li>
+                                <button class="btn-outline !py-1.5 flex items-center bg-white">
+                                    <i class="text-lg mdi mdi-filter-variant mr-1"></i>
+                                    Filter
+                                </button>
+                            </li>
+                            <li>
+                                <button class="btn-outline !py-1.5 flex items-center bg-white">
+                                    <i class="text-lg mdi mdi-sort-variant mr-1"></i>
+                                    Sort
+                                </button>
+                            </li>
+                            <li class="!ml-auto">
+                                2 people selected
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <table class="table-auto w-full text-left border-b">
+                    <thead class="border-b text-xs whitespace-nowrap">
+                    <tr>
+                        <th class="pl-5 py-3">
+                            Name
+                        </th>
+                        <th class="px-5">
+                            Email
+                        </th>
+                        <th class="px-5">
+                            Department
+                        </th>
+                        <th class="px-5">
+                            Group
+                        </th>
+                        <th class="pr-5">
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody class="divide-y">
+                    <template hidden="" x-for="i in 10" :key="i">
+                        <tr :class="i < 2 && 'bg-gray-100'">
+                            <td class="pl-5 py-3">
+                                <div class="flex items-center space-x-5">
+                                    <div>
+                                        <figure class="w-16 aspect-[1/1] rounded-full bg-blue-100">
+                                        </figure>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <p class="font-semibold line-clamp-2">
+                                            Jack Bower Samuel
+                                        </p>
+                                        <div class="flex items-center space-x-2">
+                                            <div
+                                                class="inline bg-green-100 text-green-700 text-xs p-1 px-2 rounded font-semibold">
+                                                Active
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-5">
+                                <div class="text-sm">
+                                    fakeusername@foo.com
+                                </div>
+                            </td>
+                            <td class="px-5">
+                                <div class="flex items-center space-x-1 text-sm">
+                                    <span>Design</span>
+                                </div>
+                            </td>
+                            <td class="px-5">
+                                <div class="flex items-center space-x-1 text-sm">
+                                    Design Team
+                                </div>
+                            </td>
+                            <td class="pr-5">
+                                <label class="text-2xl text-teal-500">
+                                    <input type="checkbox" class="peer sr-only" :checked="i < 2">
+                                    <i class="mdi mdi-checkbox-marked hidden peer-checked:block"></i>
+                                    <i class="mdi mdi-checkbox-blank-outline peer-checked:hidden"></i>
+                                </label>
+                            </td>
+                        </tr>
+                    </template>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Modal footer -->
+            <footer class="flex items-center justify-end p-5 space-x-3">
+                <button
+                    @click="assignmentModal = !assignmentModal"
+                    type="button"
+                    class="btn-outline !px-10"
+                >
+                    Cancel
+                </button>
+                <button
+                    @click="assignmentModal = !assignmentModal"
+                    type="button"
+                    class="btn-primary !px-10"
+                >
+                    Assign
+                </button>
+            </footer>
+        </div>
+    </div>
+</div>
 
 <figure class="fixed inset-0 bg-gradient-to-tr from-[#41b8b0] via-[#f0bc05] to-[#e4f7ee] opacity-25 -z-10">
 </figure>

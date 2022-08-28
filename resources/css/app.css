@@ -11,8 +11,8 @@
         @apply p-2 px-3 md:px-4 rounded-md whitespace-nowrap transition flex items-center justify-center font-semibold text-sm;
     }
 
-    .btn:disabled {
-        @apply grayscale opacity-50;
+    .btn:disabled, .btn.disabled {
+        @apply grayscale opacity-50 pointer-events-none;
     }
 
     .btn-primary {
@@ -40,4 +40,55 @@
     .error {
         @apply text-red-500 text-sm;
     }
+}
+
+/* Enter/Exit Transition utilities */
+.enter {
+    @apply opacity-0 transition-all ease-out;
+}
+
+.enter-active {
+    @apply opacity-100 transition-all ease-out;
+}
+
+.exit {
+    @apply opacity-100 transition-all ease-in;
+}
+
+.exit-active {
+    @apply opacity-0 transition-all ease-in;
+}
+
+/* Opacity Transition */
+.opacity-enter {
+    @apply enter;
+}
+
+.opacity-enter-active {
+    @apply enter-active duration-300;
+}
+
+.opacity-exit {
+    @apply exit;
+}
+
+.opacity-exit-active {
+    @apply exit-active duration-150;
+}
+
+/* Scale Transition */
+.scale-enter {
+    @apply enter transform scale-90;
+}
+
+.scale-enter-active {
+    @apply enter-active transform scale-100 duration-200;
+}
+
+.scale-exit {
+    @apply exit transform scale-100;
+}
+
+.scale-exit-active {
+    @apply exit-active transform scale-90 duration-100;
 }

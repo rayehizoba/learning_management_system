@@ -15,21 +15,21 @@ function UserEditPage(props) {
 
     const [formData, setFormData] = React.useState({
         role: ROLE_OPTIONS.length ? ROLE_OPTIONS[0].value : null,
-        fullname: null,
-        ssn_number: null,
+        name: null,
+        ssn: null,
         gender: GENDER_OPTIONS.length ? GENDER_OPTIONS[0].value : null,
         email: null,
-        mobile_number_country_code: null,
-        mobile_number: null,
+        phone_country_code: null,
+        phone: null,
         country_id: null,
         state: null,
         city: null,
-        postal_code: null,
+        postcode: null,
     });
     const [formErrors, setFormErrors] = React.useState(null);
 
     const changedInput = e => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData({...formData, [name]: value});
         setFormErrors(null);
     };
@@ -41,16 +41,22 @@ function UserEditPage(props) {
     const saveManualSetup = () => {
         console.log(formData);
         const validation = new Validator(formData, {
-            role: "required",
-            fullname: "required|max:100",
-            ssn_number: "required|max:100",
+            role: "required|in:" + (ROLE_OPTIONS
+                    .map(({value}) => value)
+                    .join(',')
+            ),
+            name: "required|max:100",
+            ssn: "required|max:100",
+            gender: "required|in:" + (GENDER_OPTIONS
+                    .map(({value}) => value)
+                    .join(',')
+            ),
             email: "required|email",
-            mobile_number_country_code: "required",
-            mobile_number: "required",
+            phone: "required",
             country_id: "required",
             state: "required",
             city: "required",
-            postal_code: "required",
+            postcode: "required",
         });
         if (validation.passes()) {
             setFormErrors(null);
@@ -61,7 +67,8 @@ function UserEditPage(props) {
             setFormErrors(validation.errors.all());
         }
     };
-    const saveEmailInvite = () => {};
+    const saveEmailInvite = () => {
+    };
 
     const header = (
         <div className="flex flex-col space-y-3 md:flex-row md:space-y-0 md:space-x-3 justify-between">
@@ -189,13 +196,13 @@ function UserEditPage(props) {
                         Fullname
                     </label>
                     <ValidatedComponent
-                        name="fullname"
+                        name="name"
                         errors={formErrors}
                         className="form-input"
                         renderComponent={(cn) => (
                             <input
-                                name="fullname"
-                                value={formData.fullname}
+                                name="name"
+                                value={formData.name}
                                 onChange={changedInput}
                                 placeholder="Fullname"
                                 className={cn}
@@ -210,13 +217,13 @@ function UserEditPage(props) {
                             SSN Number
                         </label>
                         <ValidatedComponent
-                            name="ssn_number"
+                            name="ssn"
                             errors={formErrors}
                             className="form-input"
                             renderComponent={(cn) => (
                                 <input
-                                    value={formData.ssn_number}
-                                    name="ssn_number"
+                                    value={formData.ssn}
+                                    name="ssn"
                                     onChange={changedInput}
                                     placeholder="SSN Number"
                                     className={cn}
@@ -283,14 +290,28 @@ function UserEditPage(props) {
                         <label className="font-bold after:content-['*'] after:text-red-600">
                             Mobile Number
                         </label>
-                        <div className="flex flex-1">
-                            <select className="form-input !rounded-r-none !border-r-0">
-                                <option>
-                                    +1
-                                </option>
-                            </select>
-                            <input className="form-input !rounded-l-none flex-1" placeholder="Mobile Number"/>
-                        </div>
+                        <ValidatedComponent
+                            name="phone"
+                            errors={formErrors}
+                            className="form-input"
+                            renderComponent={(cn) => (
+                                <div className="flex flex-1">
+                                    <select className={classNames(cn, '!rounded-r-none !border-r-0')}>
+                                        <option>
+                                            +1
+                                        </option>
+                                    </select>
+                                    <input
+                                        name="phone"
+                                        value={formData.phone}
+                                        onChange={changedInput}
+                                        className={classNames(cn, '!rounded-l-none flex-1')}
+                                        placeholder="Mobile Number"
+                                        type="tel"
+                                    />
+                                </div>
+                            )}
+                        />
                     </div>
 
                     <div className="space-y-2 flex flex-col">
@@ -358,13 +379,13 @@ function UserEditPage(props) {
                             Postal Code
                         </label>
                         <ValidatedComponent
-                            name="postal_code"
+                            name="postcode"
                             errors={formErrors}
                             className="form-input"
                             renderComponent={(cn) => (
                                 <input
-                                    name="postal_code"
-                                    value={formData.postal_code}
+                                    name="postcode"
+                                    value={formData.postcode}
                                     onChange={changedInput}
                                     placeholder="Postal Code"
                                     className={cn}

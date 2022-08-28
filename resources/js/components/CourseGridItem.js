@@ -5,6 +5,8 @@ import Tippy from "./Tippy";
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import * as courseActions from "../store/course/course.actions";
+import ModalLink from "./ModalLink";
+import classNames from "classnames";
 
 function CourseGridItem({course}) {
     const dispatch = useDispatch();
@@ -78,10 +80,16 @@ function CourseGridItem({course}) {
             )}
 
             <footer className="p-4">
-                <button disabled={!course.published} className="btn-primary-outline w-full">
+                <ModalLink
+                    to={`/courses/${course.id}/assign`}
+                    className={classNames(
+                        'btn-primary-outline w-full',
+                        !course.published && 'disabled'
+                    )}
+                >
                     <i className="mdi mdi-plus"></i>
                     Assign
-                </button>
+                </ModalLink>
             </footer>
         </div>
     );

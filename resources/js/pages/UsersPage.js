@@ -122,8 +122,13 @@ function UsersPage() {
                                         <td className="pl-5 py-5">
                                             <div className="flex items-center space-x-5">
                                                 <div>
-                                                    <figure className="w-16 aspect-[1/1] rounded-full bg-gray-100 text-gray-200 grid place-content-center">
-                                                        <i className="mdi mdi-account text-4xl"></i>
+                                                    <figure
+                                                        style={{backgroundImage: `url(${each.profile_photo_path})`}}
+                                                        className="w-16 aspect-[1/1] rounded-full bg-gray-100 text-gray-200 grid place-content-center bg-contain bg-center"
+                                                    >
+                                                        {Boolean(each.profile_photo_path) || (
+                                                            <i className="mdi mdi-account text-4xl"></i>
+                                                        )}
                                                     </figure>
                                                 </div>
                                                 <div className="space-y-1">

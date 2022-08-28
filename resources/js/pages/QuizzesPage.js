@@ -21,6 +21,8 @@ import QuizSettingsMenu from "../components/QuizSettingsMenu";
 import {selectGrid} from "../store/app/app.selectors";
 import * as appActions from "../store/app/app.actions";
 import * as quizActions from "../store/quiz/quiz.actions";
+import classNames from "classnames";
+import ModalLink from "../components/ModalLink";
 
 function QuizzesPage() {
     const dispatch = useDispatch();
@@ -165,13 +167,16 @@ function QuizzesPage() {
                                         </td>
                                         <td className="pr-4 md:pr-5">
                                             <div className="flex justify-end items-center space-x-5">
-                                                <button
-                                                    disabled={!each.published}
-                                                    className="btn-primary-outline !px-10 text-sm"
+                                                <ModalLink
+                                                    to={`/quizzes/${each.id}/assign`}
+                                                    className={classNames(
+                                                        'btn-primary-outline !px-10 text-sm',
+                                                        !each.published && 'disabled'
+                                                    )}
                                                 >
                                                     <i className="mdi mdi-plus"></i>
                                                     Assign
-                                                </button>
+                                                </ModalLink>
                                                 <Tippy content={<QuizSettingsMenu quiz={each}/>}>
                                                     <button
                                                         className="h-5 w-5 hover:bg-gray-400 transition rounded-full flex items-center justify-center text-gray-400 hover:text-white"

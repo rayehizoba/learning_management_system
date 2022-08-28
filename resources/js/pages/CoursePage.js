@@ -1,6 +1,7 @@
 import React from 'react';
-import {Link, Outlet, useParams, NavLink} from "react-router-dom";
+import moment from "moment";
 import {useDispatch, useSelector} from "react-redux";
+import {Link, Outlet, useParams} from "react-router-dom";
 import CourseSettingsMenu from "../components/CourseSettingsMenu";
 import {
     selectCourse,
@@ -11,17 +12,14 @@ import {
 import PageTemplate from "./PageTemplate";
 import * as appActions from "../store/app/app.actions";
 import * as courseActions from "../store/course/course.actions";
-import ApiError from "../components/ApiError";
-import Tippy from "../components/Tippy";
 import PublishedState from "../components/PublishedState";
-import moment from "moment";
-import classNames from "classnames";
+import ApiError from "../components/ApiError";
 import TabLink from "../components/TabLink";
+import Tippy from "../components/Tippy";
 
 function CoursePage(props) {
     const dispatch = useDispatch();
     const {course_id} = useParams();
-
     const course = useSelector(selectCourse);
     const courseFetch = useSelector(selectCourseFetch);
     const courseFetchSuccess = useSelector(selectCourseFetchSuccess);

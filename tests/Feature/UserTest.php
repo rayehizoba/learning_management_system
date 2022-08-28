@@ -2,8 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Models\Country;
 use App\Models\User;
 use App\Models\Section;
+use Database\Seeders\CountrySeeder;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
 use Tests\TestCase;
@@ -15,7 +18,13 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    use WithFaker;
+    use WithFaker, RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->seed(CountrySeeder::class);
+    }
 
     /** @test */
     public function users_are_listed_correctly(): void
@@ -34,11 +43,15 @@ class UserTest extends TestCase
     {
         $payload = [
             'name' => $this->faker->name(),
+            'ssn' => $this->faker->name(),
+            'gender' => rand(0,1) ? 'male' : 'female',
             'email' => $this->faker->unique()->safeEmail(),
-            'password' => 'password',
             'phone' => $this->faker->phoneNumber(),
-            'gender' => 'male',
-            'website' => $this->faker->url(),
+            'country_id' => Country::inRandomOrder()->first()->id,
+            'state' => $this->faker->word(),
+            'city' => $this->faker->city(),
+            'postcode' => $this->faker->postcode(),
+            'password' => 'password',
         ];
         $this->assertEmpty(User::count());
         $this->post('/api/users', $payload)

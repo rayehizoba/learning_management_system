@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Country;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -19,13 +20,18 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'ssn' => $this->faker->name(),
+            'gender' => rand(0,1) ? 'male' : 'female',
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
+            'phone' => $this->faker->phoneNumber(),
+            'country_id' => Country::inRandomOrder()->first()->id,
+            'state' => $this->faker->word(),
+            'city' => $this->faker->city(),
+            'postcode' => $this->faker->postcode(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'phone' => $this->faker->phoneNumber(),
-            'gender' => rand(0,1) ? 'male' : 'female',
-            'website' => $this->faker->url(),
+            'profile_photo_path' => rand(0,1) ? null : $this->faker->imageUrl(),
         ];
     }
 

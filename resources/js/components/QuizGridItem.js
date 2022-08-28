@@ -5,6 +5,8 @@ import QuizSettingsMenu from "./QuizSettingsMenu";
 import {Link} from "react-router-dom";
 import * as quizActions from "../store/quiz/quiz.actions";
 import {useDispatch} from "react-redux";
+import classNames from "classnames";
+import ModalLink from "./ModalLink";
 
 function QuizGridItem({quiz}) {
     const dispatch = useDispatch();
@@ -62,10 +64,16 @@ function QuizGridItem({quiz}) {
             )}
 
             <footer className="p-4">
-                <button className="btn-primary-outline w-full">
+                <ModalLink
+                    to={`/quizzes/${quiz.id}/assign`}
+                    className={classNames(
+                        'btn-primary-outline w-full',
+                        !quiz.published && 'disabled'
+                    )}
+                >
                     <i className="mdi mdi-plus"></i>
                     Assign
-                </button>
+                </ModalLink>
             </footer>
         </div>
     );

@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, Routes, Navigate} from "react-router-dom";
+import {Route, Routes, Navigate, useLocation} from "react-router-dom";
 import CoursesPage from "./CoursesPage";
 import QuizzesPage from "./QuizzesPage";
 import CourseEditPage from "./CourseEditPage";
@@ -19,8 +19,10 @@ import QuizContent from "../components/QuizContent";
 import UserEditPage from "./UserEditPage";
 
 function PageRoutes(props) {
+    const location = useLocation();
+    const background = location.state && location.state.background;
     return (
-        <Routes>
+        <Routes location={background || location}>
             <Route path="/courses" element={<CoursesPage/>}/>
             <Route path="/courses/create" element={<CourseEditPage/>}/>
             <Route path="/courses/:course_id/edit" element={<CourseEditPage/>}/>

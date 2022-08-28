@@ -26,7 +26,7 @@ function LearningPathsPage(props) {
         <PageTemplate title="Learning Paths">
             <header
                 className="p-5 border-b flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-5">
-                <div className="md:w-9/12 flex flex-col md:flex-row md:items-center md:justify-between">
+                <div className="flex-1 flex flex-col md:flex-row md:items-center md:justify-between">
                     <div className="text-2xl font-bold">
                         {pathsFetch
                             ? <div className="text-gray-400">Fetching Learning Paths...</div>
@@ -59,7 +59,7 @@ function LearningPathsPage(props) {
                         </ol>
                     </ol>
                 </div>
-                <div className="md:w-3/12">
+                <div className="">
                     <a href="#" className="w-full btn-primary">
                         + New Learning Path
                     </a>

@@ -1,7 +1,12 @@
 import React from 'react';
 import GridListToggle from "./GridListToggle";
+import classNames from "classnames";
+import ModalLink from "./ModalLink";
+import {useSelector} from "react-redux";
+import {selectCourse} from "../store/course/course.selectors";
 
 function CourseLearner(props) {
+    const course = useSelector(selectCourse);
     return (
         <section>
             <div className="bg-gray-100 border-b p-5 py-3">
@@ -34,9 +39,16 @@ function CourseLearner(props) {
                             <GridListToggle />
                         </li>
                         <li className="!ml-0 md:!ml-3 w-full md:w-auto mt-3 md:mt-0">
-                            <button className="btn-primary !px-8 w-full">
-                                + <span className="pl-1 font-semibold py-0.5">Assign Learner</span>
-                            </button>
+                            <ModalLink
+                                to={`/courses/${course.id}/assign`}
+                                className={classNames(
+                                    'btn-primary !px-8 w-full',
+                                    !course.published && 'disabled'
+                                )}
+                            >
+                                <i className="mdi mdi-plus"></i>
+                                Assign Learner
+                            </ModalLink>
                         </li>
                     </ol>
                 </div>

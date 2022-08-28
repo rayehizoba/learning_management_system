@@ -146,7 +146,7 @@ function CourseEditPage(props) {
     const jsSection = 'js-section-';
 
     React.useEffect(() => {
-        if (!prevSectionsFetch && prevSections && prevSections.length !== sections.length) {
+        if (!prevSectionsFetch && prevSections && sections.length && prevSections.length !== sections.length) {
             const last = sections.length - 1;
             dispatch(sectionActions.setSection(sections[last]));
             document
@@ -286,7 +286,7 @@ function CourseEditPage(props) {
                             onClick={onSetSection(each)}
                         >
                             <ContentItem
-                                section={each}
+                                model={each}
                                 active={Boolean(section) && JSON.stringify(section) == JSON.stringify(each)}
                                 defaultName={'Section - ' + (index + 1)}
                             />
