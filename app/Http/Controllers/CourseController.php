@@ -54,4 +54,15 @@ class CourseController extends Controller
         }
         return response()->json($course->sections, 201);
     }
+
+    public function indexLearners(Course $course)
+    {
+        return $course->learners;
+    }
+
+    public function updateLearners(Request $request, Course $course)
+    {
+        $course->learners()->sync($request->all());
+        return response()->json($course->learners, 200);
+    }
 }

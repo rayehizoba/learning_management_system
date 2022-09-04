@@ -15,4 +15,12 @@ class Quiz extends Model
     {
         return $this->hasMany(Question::class);
     }
+
+    /**
+     * Get all the learners for the course.
+     */
+    public function learners(): \Illuminate\Database\Eloquent\Relations\MorphToMany
+    {
+        return $this->morphToMany(User::class, 'learnable');
+    }
 }

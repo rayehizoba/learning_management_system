@@ -2,11 +2,22 @@ import React from 'react';
 import GridListToggle from "./GridListToggle";
 import classNames from "classnames";
 import ModalLink from "./ModalLink";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {selectCourse} from "../store/course/course.selectors";
+import {selectCourseLearners} from "../store/courseLearners/courseLearners.selectors";
+import {useParams} from "react-router-dom";
+import * as courseLearnersActions from "../store/courseLearners/courseLearners.actions";
 
 function CourseLearner(props) {
+    const dispatch = useDispatch();
+    const {course_id} = useParams();
     const course = useSelector(selectCourse);
+    const courseLearners = useSelector(selectCourseLearners);
+
+    React.useEffect(() => {
+        dispatch(courseLearnersActions.fetchLearners(course_id));
+    }, []);
+
     return (
         <section>
             <div className="bg-gray-100 border-b p-5 py-3">
@@ -43,7 +54,7 @@ function CourseLearner(props) {
                                 to={`/courses/${course.id}/assign`}
                                 className={classNames(
                                     'btn-primary !px-8 w-full',
-                                    !course.published && 'disabled'
+                                    false && 'disabled'
                                 )}
                             >
                                 <i className="mdi mdi-plus"></i>
@@ -81,8 +92,8 @@ function CourseLearner(props) {
                     </tr>
                     </thead>
                     <tbody className="divide-y">
-                    {Array(10).fill().map((_, index) => (
-                        <tr key={index}>
+                    {courseLearners.map((learner) => (
+                        <tr key={learner.id}>
                             <td className="pl-5 py-5">
                                 <div className="flex items-center space-x-3">
                                     <label className="text-2xl text-teal-500">
@@ -91,7 +102,9 @@ function CourseLearner(props) {
                                         <i className="mdi mdi-checkbox-blank-outline peer-checked:hidden"></i>
                                     </label>
                                     <div className="aspect-[1/1] w-10 bg-gray-200 rounded-full"></div>
-                                    <p className="whitespace-nowrap">Jerry Paula</p>
+                                    <p className="whitespace-nowrap">
+                                        {learner.name}
+                                    </p>
                                 </div>
                             </td>
                             <td className="px-5">

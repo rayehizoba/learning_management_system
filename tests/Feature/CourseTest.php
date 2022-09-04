@@ -4,6 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\Course;
 use App\Models\Section;
+use App\Models\User;
+use Database\Seeders\CountrySeeder;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
@@ -14,7 +17,13 @@ use Tests\TestCase;
 
 class CourseTest extends TestCase
 {
-    use WithFaker;
+    use WithFaker, RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->seed(CountrySeeder::class);
+    }
 
     /** @test */
     public function courses_are_listed_correctly(): void
@@ -24,7 +33,7 @@ class CourseTest extends TestCase
             ->assertStatus(200)
             ->assertJson($courses->toArray())
             ->assertJsonStructure([
-                '*' => ['id', 'name', 'published', 'description', 'created_at', 'updated_at'],
+                '*' => ['id', 'name', 'published', 'description', 'created_at', 'updated_at', 'learners_count'],
             ]);
     }
 
@@ -116,5 +125,27 @@ class CourseTest extends TestCase
             ->assertStatus(201)
             ->assertJson($sections = Section::where('course_id', $course->id)->get()->toArray());
         $this->assertSameSize($payload, $sections);
+    }
+
+    /** @test */
+    public function course_learners_are_listed_correctly(): void
+    {
+//        $course = Course::factory()->create();
+//        $users = User::factory()->count($count = 3)->create();
+//
+//        User::all()->each(function ($user) use ($course) {
+//            $user->courses()->attach($course->id);
+//        });
+//
+//        $this->assertEquals(
+//            $users->count(),
+//            Course::find($course->id)->learners()->count()
+//        );
+//        $response = $this->get('/api/courses/' . $course->id . '/learners')
+//            ->assertStatus(200)
+//            ->assertJson(Course::whereId($course->id)->first()->learners())
+//            ->assertJsonStructure([
+//                '*' => ['id', 'name']
+//            ]);
     }
 }

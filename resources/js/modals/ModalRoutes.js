@@ -14,11 +14,11 @@ function ModalRoutes(props) {
       >
         <Routes location={location}>
           <Route
-            path="/courses/:id/assign"
+            path="/courses/:course_id/assign"
             element={<CourseAssignModal/>}
           />
           <Route
-            path="/quizzes/:id/assign"
+            path="/quizzes/:course_id/assign"
             element={<CourseAssignModal/>}
           />
         </Routes>

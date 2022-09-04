@@ -9,6 +9,7 @@ import app from "./app/app.reducer";
 import countries from "./countries/countries.reducer";
 import course from "./course/course.reducer";
 import courses from "./courses/courses.reducer";
+import courseLearners from "./courseLearners/courseLearners.reducer";
 import files from "./files/files.reducer";
 import folders from "./folders/folders.reducer";
 import groups from "./groups/groups.reducer";
@@ -31,6 +32,7 @@ const reducers = combineReducers({
     countries,
     course,
     courses,
+    courseLearners,
     files,
     folders,
     groups,
@@ -53,6 +55,7 @@ const persistConfig = {
         'countries',
         'course',
         'courses',
+        'courseLearners',
         'files',
         'folders',
         'groups',

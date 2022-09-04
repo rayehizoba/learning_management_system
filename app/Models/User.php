@@ -58,4 +58,20 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Country::class);
     }
+
+    /**
+     * Get all the courses that are assigned this user.
+     */
+    public function courses(): \Illuminate\Database\Eloquent\Relations\MorphToMany
+    {
+        return $this->morphedByMany(Course::class, 'learnable');
+    }
+
+    /**
+     * Get all the quizzes that are assigned this user.
+     */
+    public function quizzes(): \Illuminate\Database\Eloquent\Relations\MorphToMany
+    {
+        return $this->morphedByMany(Quiz::class, 'learnable');
+    }
 }

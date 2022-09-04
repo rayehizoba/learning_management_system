@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/6.6.96/css/materialdesignicons.min.css">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/tippy.js@6/themes/light.css"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=line-clamp"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Open Sans', 'Helvetica', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .btn {
+                @apply p-2 rounded-md whitespace-nowrap transition flex items-center justify-center;
+            }
+
+            .btn-primary {
+                @apply bg-teal-500 hover:bg-teal-600 text-white btn;
+            }
+
+            .btn-outline {
+                @apply border text-gray-400 btn hover:bg-gray-50;
+            }
+
+            .btn-primary-outline {
+                @apply btn border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white font-medium;
+                @apply disabled:border-gray-400 disabled:text-gray-400 disabled:hover:bg-inherit;
+            }
+        }
+    </style>
+</head>
+<body x-data="{open: true,}" class="relative">
+
+<main class="h-screen w-screen overflow-hidden relative flex">
+    <!--  LHS: Main Menu  -->
+    <aside class="absolute inset-y-0 left-0 w-72 lg:w-3/12 xl:w-1/5 flex">
+    </aside>
+
+    <!--  RHS: Main Content  -->
+    <section
+        :class="open ? 'lg:w-9/12 xl:w-4/5 translate-x-72 lg:translate-x-0 p-5' : 'p-0'"
+        class="w-full ml-auto transition-all transform"
+    >
+        <div
+            :class="open ? '-ml-5 rounded-2xl shadow' : ''"
+            class="bg-white overflow-y-auto h-full transition-all"
+        >
+            <header class="py-3 px-4 md:px-7 border-b">
+                <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 justify-between">
+                    <div class="flex items-center space-x-3 md:space-x-5">
+                        <button
+                            @click="open = !open"
+                            :class="open ? 'border-l-[12px] hover:border-l-4' : 'border-l-4 hover:border-l-[12px]'"
+                            class="rounded-md border-2 h-9 w-9 md:h-8 md:w-8 border-gray-400 transition-all"
+                        >
+                            <i
+                                :class="open ? 'mdi-chevron-left':'mdi-chevron-right'"
+                                class="mdi text-gray-400 text-2xl md:text-lg"
+                            ></i>
+                        </button>
+                        <div class="h-10 md:h-7 border-l border-gray-300"></div>
+                        <div class="">
+                            <div class="text-xl md:text-2xl font-semibold">
+                                Welcome, Raymond 👋
+                            </div>
+                            <div class="text-gray-400 text-xs">
+                                Here's what happened with your learning system
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-5 justify-between">
+                        <ul class="flex space-x-3 w-1/2 md:w-auto">
+                            <li>
+                                <button class="btn-primary h-9 w-9 text-xl">
+                                    <i class="mdi mdi-plus"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button class="btn-outline h-9 w-9 text-xl">
+                                    <i class="mdi mdi-bell-outline"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button class="btn-outline h-9 w-9 text-xl">
+                                    <i class="mdi mdi-magnify"></i>
+                                </button>
+                            </li>
+                        </ul>
+                        <div class="h-10 md:h-7 border-l border-gray-300 hidden md:block"></div>
+                        <div class="w-1/2 md:w-auto">
+                            <div class="select-none flex items-center space-x-2 cursor-pointer relative before:absolute before:-inset-1 before:-inset-x-2 before:hover:bg-gray-100 before:transition before:rounded-md">
+                                <div class="relative rounded-full w-8 h-8 bg-gray-200"></div>
+                                <div class="relative flex-1">
+                                    <div class="text-sm font-semibold">
+                                        Theresa
+                                    </div>
+                                    <div class="text-gray-400 text-xs">
+                                        Super Admin
+                                    </div>
+                                </div>
+                                <i class="relative mdi mdi-chevron-down text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="p-5">
+                <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+                    <ul class="grid md:grid-cols-3 xl:grid-cols-1 gap-5 md:col-span-2 xl:col-span-1">
+                        <li class="rounded-lg border shadow p-5">
+                            <div class="h-full flex items-center space-x-5">
+                                <div class="grid place-content-center h-12 bg-teal-200/50 rounded-full aspect-square">
+                                    <i class="mdi mdi-account-star text-teal-600 text-2xl"></i>
+                                </div>
+                                <div class="">
+                                    <p class="text-gray-400 font-semibold text-xs">
+                                        Total User
+                                    </p>
+                                    <p class="text-lg font-semibold">
+                                        32 Learner
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="rounded-lg border shadow p-5">
+                            <div class="h-full flex items-center space-x-5">
+                                <div class="grid place-content-center h-12 bg-teal-200/50 rounded-full aspect-square">
+                                    <i class="mdi mdi-timer text-teal-600 text-2xl"></i>
+                                </div>
+                                <div class="">
+                                    <p class="text-gray-400 font-semibold text-xs">
+                                        Avg. Learning Time
+                                    </p>
+                                    <p class="text-lg font-semibold">
+                                        42 Minutes
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="rounded-lg border shadow p-5">
+                            <div class="h-full flex items-center space-x-5">
+                                <div class="grid place-content-center h-12 bg-teal-200/50 rounded-full aspect-square">
+                                    <i class="mdi mdi-av-timer text-teal-600 text-2xl"></i>
+                                </div>
+                                <div class="">
+                                    <p class="text-gray-400 font-semibold text-xs">
+                                        Avg. Access Time
+                                    </p>
+                                    <p class="text-lg font-semibold">
+                                        56 Minutes
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="border rounded-lg shadow p-5 flex flex-col justify-between">
+                        <p class="text-lg font-semibold">
+                            Total Contents
+                        </p>
+                        <div class="my-5 mx-auto w-1/2 aspect-square rounded-full border-[16px] border-teal-200">
+
+                        </div>
+                        <ul class="grid grid-cols-2 gap-5">
+                            <li>
+                               <div class="flex items-center space-x-3">
+                                   <div class="w-5 aspect-square bg-teal-400 rounded">
+                                   </div>
+                                   <p class="font-semibold">
+                                       40 <span class="text-sm">Courses</span>
+                                   </p>
+                               </div>
+                            </li>
+                            <li>
+                               <div class="flex items-center space-x-3">
+                                   <div class="w-5 aspect-square bg-teal-500 rounded">
+                                   </div>
+                                   <p class="font-semibold">
+                                       40 <span class="text-sm">Quizzes</span>
+                                   </p>
+                               </div>
+                            </li>
+                            <li>
+                               <div class="flex items-center space-x-3">
+                                   <div class="w-5 aspect-square bg-teal-600 rounded">
+                                   </div>
+                                   <p class="font-semibold">
+                                       40 <span class="text-sm">Manuals</span>
+                                   </p>
+                               </div>
+                            </li>
+                            <li>
+                               <div class="flex items-center space-x-3">
+                                   <div class="w-5 aspect-square bg-teal-300 rounded">
+                                   </div>
+                                   <p class="font-semibold">
+                                       40 <span class="text-sm">Files</span>
+                                   </p>
+                               </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="border rounded-lg shadow p-5">
+                        <p class="text-lg font-semibold">
+                            Recent Learner Activity
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<figure class="fixed inset-0 bg-gradient-to-tr from-[#41b8b0] via-[#f0bc05] to-[#e4f7ee] opacity-25 -z-10">
+</figure>
+
+<script src="//unpkg.com/alpinejs" defer></script>
+
+</body>
+</html>

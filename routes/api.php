@@ -37,6 +37,8 @@ Route::middleware(['cors'])->group(function () {
     Route::delete('courses/{course}', [CourseController::class, 'delete']);
     Route::get('courses/{course}/sections', [CourseController::class, 'indexSections']);
     Route::post('courses/{course}/sections', [CourseController::class, 'storeSections']);
+    Route::get('courses/{course}/learners', [CourseController::class, 'indexLearners']);
+    Route::put('courses/{course}/learners', [CourseController::class, 'updateLearners']);
 
     Route::get('quizzes', [QuizController::class, 'index']);
     Route::get('quizzes/{quiz}', [QuizController::class, 'show']);

@@ -9,7 +9,7 @@ function ModalTemplate({containerClassName, className, children, title}) {
         <div
             tabIndex="-1"
             aria-hidden="true"
-            className="fixed inset-0 overflow-y-auto bg-black/75 z-50"
+            className="fixed inset-0 bg-black/75 z-50"
         >
             <div className="fixed inset-0" onClick={dismiss}/>
             <div className={classNames("max-w-6xl mx-auto p-2 py-5 md:py-20", className)}>

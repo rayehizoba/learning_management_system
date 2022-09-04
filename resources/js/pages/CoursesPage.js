@@ -21,6 +21,7 @@ import * as appActions from "../store/app/app.actions";
 import * as courseActions from "../store/course/course.actions";
 import ModalLink from "../components/ModalLink";
 import classNames from "classnames";
+import {selectCourseLearnersAssignSuccess} from "../store/courseLearners/courseLearners.selectors";
 
 function CoursesPage() {
     const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function CoursesPage() {
     const coursesFetch = useSelector(selectCoursesFetch);
     const coursesFetchSuccess = useSelector(selectCoursesFetchSuccess);
     const coursesFetchError = useSelector(selectCoursesFetchError);
+    const courseLearnersAssignSuccess = useSelector(selectCourseLearnersAssignSuccess);
     const grid = useSelector(selectGrid);
     const onChangeGrid = value => dispatch(appActions.setGrid(value));
 
@@ -40,6 +42,12 @@ function CoursesPage() {
             dispatch(coursesActions.fetchCourses());
         }
     }, []);
+
+    React.useEffect(() => {
+        if (courseLearnersAssignSuccess) {
+            dispatch(coursesActions.fetchCourses());
+        }
+    }, [courseLearnersAssignSuccess]);
 
     return (
         <PageTemplate title="Courses">
@@ -92,7 +100,7 @@ function CoursesPage() {
 
             <ApiError error={coursesFetchError} className="px-5"/>
 
-            {coursesFetchSuccess && (
+            {courses.length > 0 && (
                 <>
                     {grid && (
                         <GridView
@@ -147,10 +155,10 @@ function CoursesPage() {
                                             </Link>
                                         </td>
                                         <td className="px-5">
-                                            {each.published ? (
+                                            {Boolean(each.learners_count) ? (
                                                 <div className="flex items-center space-x-1 text-sm whitespace-nowrap">
                                                     <i className="mdi mdi-account-circle-outline"></i>
-                                                    <span>24 Learners</span>
+                                                    <span>{each.learners_count} Learners</span>
                                                 </div>
                                             ) : '-'}
                                         </td>
@@ -161,7 +169,7 @@ function CoursesPage() {
                                             </div>
                                         </td>
                                         <td className="px-5">
-                                            {each.published ? (
+                                            {Boolean(each.learners_count) ? (
                                                 <div className="flex items-center space-x-1 text-sm">
                                                     <i className="mdi mdi-check-circle-outline"></i>
                                                     <p>65%</p>
@@ -169,7 +177,7 @@ function CoursesPage() {
                                             ) : '-'}
                                         </td>
                                         <td className="px-5">
-                                            {each.published ? (
+                                            {Boolean(each.learners_count) ? (
                                                 <div className="flex items-center space-x-1 text-sm whitespace-nowrap">
                                                     <i className="mdi mdi-emoticon-outline"></i>
                                                     <p>50% Useful</p>
@@ -182,7 +190,7 @@ function CoursesPage() {
                                                     to={`/courses/${each.id}/assign`}
                                                     className={classNames(
                                                         'btn-primary-outline !px-10 text-sm',
-                                                        !each.published && 'disabled'
+                                                        false && 'disabled'
                                                     )}
                                                 >
                                                     <i className="mdi mdi-plus"></i>

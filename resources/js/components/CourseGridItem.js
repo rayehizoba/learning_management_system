@@ -36,7 +36,9 @@ function CourseGridItem({course}) {
                         <div className="flex items-center space-x-5">
                             <div className="flex items-center space-x-1 text-gray-400">
                                 <i className="mdi mdi-account-circle-outline"></i>
-                                <span className="text-xs">24 Learners</span>
+                                <span className="text-xs">
+                                    {Boolean(course.learners_count) ? `${course.learners_count} Learners` : '-'}
+                                </span>
                             </div>
                             <div className="flex items-center space-x-1 text-gray-400">
                                 <i className="mdi mdi-license"></i>
@@ -47,7 +49,7 @@ function CourseGridItem({course}) {
                 </Link>
             </header>
 
-            {course.published ? (
+            {course.learners_count ? (
                 <div className="divide-x flex h-16">
                     <div className="w-1/2 flex items-center">
                         <div className="p-3 space-y-1">
@@ -84,7 +86,7 @@ function CourseGridItem({course}) {
                     to={`/courses/${course.id}/assign`}
                     className={classNames(
                         'btn-primary-outline w-full',
-                        !course.published && 'disabled'
+                        false && 'disabled'
                     )}
                 >
                     <i className="mdi mdi-plus"></i>
